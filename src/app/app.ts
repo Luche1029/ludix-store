@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AuthService } from './core/auth.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
 })
 export class App {
-  protected title = 'store-frontend';
+  constructor(private router: Router) {
+    const token = localStorage.getItem('auth_token');
+    if (!token && this.router.url === '/') {
+      this.router.navigate(['/login']);
+    }
+  }
+
 }
