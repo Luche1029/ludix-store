@@ -1,50 +1,67 @@
+// layouts
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: $font-base;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
 .app-container {
   display: flex;
   height: 100vh;
-  background-color: $color-bg;
+  background-color: $bg-color;
   font-family: $font-base;
-  color: $color-text;
+  color: $text-color;
 }
 
 .sidebar {
   width: 220px;
-  background-color: $color-surface;
-  border-right: 1px solid $color-border;
+  background-color: $surface-color;
+  border-right: 1px solid $border-color;
   padding: $spacing-unit;
   display: flex;
   flex-direction: column;
   gap: $spacing-unit;
 
   a {
-    color: $color-text;
+    color: $text-color;
     padding: $spacing-unit;
     border-radius: $radius;
     text-decoration: none;
     font-weight: 500;
     transition: background 0.2s;
+    border-bottom: 1px solid darken($surface-color, 15%);
 
     &:hover {
-      background-color: lighten($color-primary, 45%);
+      background-color: darken($surface-color, 5%);
     }
 
     &.active {
-      background-color: $color-primary;
+      background-color: $primary-color;
       color: white;
     }
   }
 }
 
-.main-content {
+.content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: $color-bg;
+  background-color: $bg-color;
 }
 
-.topbar {
+.header {
   height: 60px;
-  background-color: $color-surface;
-  border-bottom: 1px solid $color-border;
+  background-color: $surface-color;
+  border-bottom: 1px solid $border-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,15 +75,15 @@
 
   .logout {
     background-color: transparent;
-    border: 1px solid $color-primary;
+    border: 1px solid $primary-color;
     padding: 6px 12px;
     border-radius: $radius;
-    color: $color-primary;
+    color: $primary-color;
     font-weight: 500;
     cursor: pointer;
 
     &:hover {
-      background-color: $color-primary;
+      background-color: $primary-color;
       color: white;
     }
   }
