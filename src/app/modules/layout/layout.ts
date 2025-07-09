@@ -7,11 +7,11 @@ import { Loader } from "../../shared/loader/loader/loader";
 import { AuthService } from '../../core/auth.service';
 
 import { Home } from '../dashboard/home/home';
-import { OrderList } from '../orders/order-list/order-list';
-import { OrderDetail } from '../orders/order-detail/order-detail';
-import { AddressList } from '../addresses/address-list/address-list';
+import { OrdersList } from '../orders/orders-list/orders-list';
+import { OrderDetails } from '../orders/order-details/order-details';
+import { AddressesList } from '../addresses/addresses-list/addresses-list';
 import { AddressForm } from '../addresses/address-form/address-form';
-import { StoreList } from '../stores/store-list/store-list';
+import { StoresList } from '../stores/stores-list/stores-list';
 import { StoreForm } from '../stores/store-form/store-form';
 import { AccountSettings } from '../settings/account-settings/account-settings';
 import { Preferences } from '../settings/preferences/preferences';
@@ -26,11 +26,11 @@ import { Preferences } from '../settings/preferences/preferences';
     Sidebar,
     Loader,
     Home,
-    OrderList,
-    OrderDetail,
-    AddressList,
+    OrdersList,
+    OrderDetails,
+    AddressesList,
     AddressForm,
-    StoreList,
+    StoresList,
     StoreForm,
     AccountSettings,
     Preferences,

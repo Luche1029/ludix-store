@@ -1,0 +1,49 @@
+<div class="order-details">
+  <h2>Order #12345</h2>
+
+  <section class="section">
+    <h3>Customer Info</h3>
+    <p><strong>Name:</strong> Mario Rossi</p>
+    <p><strong>Email:</strong> mario.rossi&#64;example.com</p>
+    <p><strong>Phone:</strong> +39 345 678 9012</p>
+  </section>
+
+  <section class="section">
+    <h3>Shipping Address</h3>
+    <p>Via Roma 1</p>
+    <p>20100 Milano (MI)</p>
+    <p>Italy</p>
+  </section>
+
+  <section class="section">
+    <h3>Products</h3>
+    <ul class="product-list">
+      <li>
+        <span class="product-name">CPU Intel i7-13700K</span>
+        <span class="product-qty">Qty: 1</span>
+        <span class="product-price">€399,00</span>
+      </li>
+      <li>
+        <span class="product-name">GPU Nvidia RTX 4070</span>
+        <span class="product-qty">Qty: 1</span>
+        <span class="product-price">€649,00</span>
+      </li>
+      <li>
+        <span class="product-name">16GB DDR5 RAM</span>
+        <span class="product-qty">Qty: 2</span>
+        <span class="product-price">€160,00</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h3>Summary</h3>
+    <p><strong>Subtotal:</strong> €1.208,00</p>
+    <p><strong>Shipping:</strong> €20,00</p>
+    <p><strong>Total:</strong> €1.228,00</p>
+  </section>
+
+    <button routerLink="/orders" class="btn" (click)="back()">
+    ← Back to Orders
+  </button>
+</div>

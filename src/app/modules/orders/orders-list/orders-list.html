@@ -1,0 +1,47 @@
+<div class="orders-list">
+  <h2>Orders</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ORD-001</td>
+        <td>2025-07-01</td>
+        <td>Mario Rossi</td>
+        <td>€1.240</td>
+        <td>Completed</td>
+        <td>
+          <a [routerLink]="['/orders', 'ORD-001']" class="cta">Visualizza</a>
+        </td>
+      </tr>
+      <tr>
+        <td>ORD-002</td>
+        <td>2025-07-02</td>
+        <td>Giulia Verdi</td>
+        <td>€860</td>
+        <td>Pending</td>
+        <td>
+          <a [routerLink]="['/orders', 'ORD-002']" class="cta">Visualizza</a>
+        </td>
+      </tr>
+      <tr>
+        <td>ORD-003</td>
+        <td>2025-07-03</td>
+        <td>Luca Bianchi</td>
+        <td>€420</td>
+        <td>Cancelled</td>
+        <td>
+          <a [routerLink]="['/orders', 'ORD-003']" class="cta">Visualizza</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

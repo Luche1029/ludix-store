@@ -3,11 +3,12 @@ import { Routes } from '@angular/router';
 
 import { Login } from './modules/auth/login/login';
 import { Home } from './modules/dashboard/home/home';
-import { OrderList } from './modules/orders/order-list/order-list';
-import { OrderDetail } from './modules/orders/order-detail/order-detail';
-import { AddressList } from './modules/addresses/address-list/address-list';
+import { OrdersList } from './modules/orders/orders-list/orders-list';
+import { OrderDetails } from './modules/orders/order-details/order-details';
+import { AddressesList } from './modules/addresses/addresses-list/addresses-list';
 import { AddressForm } from './modules/addresses/address-form/address-form';
-import { StoreList } from './modules/stores/store-list/store-list';
+import { StoresList } from './modules/stores/stores-list/stores-list';
+import { StoreDetails } from './modules/stores/store-details/store-details';
 import { StoreForm } from './modules/stores/store-form/store-form';
 import { AccountSettings } from './modules/settings/account-settings/account-settings';
 import { Preferences } from './modules/settings/preferences/preferences';
@@ -26,14 +27,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: Home },
-      { path: 'orders', component: OrderList },
-      { path: 'orders/:id', component: OrderDetail },
-      { path: 'addresses', component: AddressList },
+      { path: 'orders', component: OrdersList },
+      { path: 'orders/:id', component: OrderDetails },
+      { path: 'addresses', component: AddressesList },
       { path: 'addresses/new', component: AddressForm },
       { path: 'addresses/:id', component: AddressForm },
-      { path: 'stores', component: StoreList },
+      { path: 'stores', component: StoresList },
       { path: 'stores/new', component: StoreForm },
-      { path: 'stores/:id', component: StoreForm },
+      { path: 'stores/:id', component: StoreDetails },
       { path: 'settings/account', component: AccountSettings },
       { path: 'settings/preferences', component: Preferences },
     ],

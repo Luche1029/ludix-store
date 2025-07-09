@@ -1,0 +1,21 @@
+.logout-button {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background: #dc3545;
+  transition: background 0.2s;
+
+  .material-icons {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    background: #c82333;
+  }
+}

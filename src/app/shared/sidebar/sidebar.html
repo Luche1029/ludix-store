@@ -1,9 +1,28 @@
-<nav>
+<div class="sidebar">
+  <div class="logo">store.ludix.ai</div>
   <ul>
-    <li><a routerLink="/dashboard">Dashboard</a></li>
-    <li><a routerLink="/orders">Orders</a></li>
-    <li><a routerLink="/addresses">Addresses</a></li>
-    <li><a routerLink="/stores">Stores</a></li>
-    <li><a routerLink="/settings/account">Settings</a></li>
+    <li *ngFor="let item of menu">
+      <div class="menu-item" (click)="toggle(item)">
+        <span class="material-icons">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
+        <span *ngIf="item.children" class="material-icons toggle-icon">
+          {{ isExpanded(item) ? 'expand_less' : 'expand_more' }}
+        </span>
+      </div>
+      <ul *ngIf="item.children && isExpanded(item)" class="submenu">
+        <li *ngFor="let child of item.children">
+          <a [routerLink]="child.route">
+            <span class="material-icons">{{ child.icon }}</span>
+            {{ child.label }}
+          </a>
+        </li>
+      </ul>
+    </li>
   </ul>
-</nav>
+
+  <div class="logout-button" (click)="logout()">
+    <span class="material-icons">logout</span>
+    <span class="label">Logout</span>
+  </div>
+
+</div>

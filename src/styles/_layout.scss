@@ -11,7 +11,7 @@
 .main {
   display: flex;
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .app-container {
@@ -23,32 +23,68 @@
 }
 
 .sidebar {
-  width: 220px;
-  background-color: $surface-color;
-  border-right: 1px solid $border-color;
-  padding: $spacing-unit;
+  width: 240px;
+  height: 100vh;
+  background: #f9fafb;
+  padding: 20px;
+  border-right: 1px solid #e5e7eb;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  gap: $spacing-unit;
+  position: relative;
+  
 
-  a {
-    color: $text-color;
-    padding: $spacing-unit;
-    border-radius: $radius;
-    text-decoration: none;
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #374151;
     font-weight: 500;
-    transition: background 0.2s;
+    cursor: pointer;
+    transition: background-color 0.2s;
 
     &:hover {
-      cursor: pointer;
-      font-weight: bold;
+      background-color: #e0e7ff;
+      color: #1d4ed8;
     }
 
-    &.active {
-      font-weight: bold;
+    .toggle-icon {
+      margin-left: auto;
+    }
+  }
+
+  .submenu {
+    margin-left: 32px;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #4b5563;
+        padding: 8px;
+        border-radius: 6px;
+        text-decoration: none;
+
+        &:hover {
+          background-color: #eef2ff;
+          color: #1d4ed8;
+        }
+      }
     }
   }
 }
+
+
 
 .content {
   flex: 1;
