@@ -1,49 +1,55 @@
-<div *ngIf="loading">Caricamento...</div>
-<div *ngIf="error">{{ error }}</div>
+<div class="order-details">
 
-<div *ngIf="!loading && orderDetails">
-  <h2>Ordine {{ orderDetails.orderNumber }}</h2>
-  <p>Status: {{ orderDetails.status }}</p>
-  <p>Dealer: {{ orderDetails.dealer }}</p>
-  <p>Data: {{ orderDetails.date | date:'short' }}</p>
-  <p>Totale: €{{ orderDetails.total }}</p>
 
-  <section class="pc-summary">
-    <div class="pc-header">
-      <p><strong>PC:</strong> {{ orderDetails.pc.pcPn }} (x{{ orderDetails.pc.pcQty }})</p>
-      <button (click)="togglePcDetails()" class="accordion-toggle">
-        {{ showPcComponents ? 'Hide details' : 'See details' }}
-      </button>
-    </div>
+  <div *ngIf="loading">Caricamento...</div>
+  <div *ngIf="error">{{ error }}</div>
 
-    <div *ngIf="showPcComponents" class="pc-components">
-      <div class="grid">
-        <div *ngFor="let comp of orderDetails.pc.components" class="card">
-          <img [src]="'/images/' + comp.image" alt="{{ comp.name }}" />
-          <p>{{ comp.name }}</p>
+  <div *ngIf="!loading && orderDetails">
+    <h2>Order Number {{ orderDetails.orderNumber }}</h2>
+    <p>Status: {{ orderDetails.status }}</p>
+    <p>Store: {{ orderDetails.dealer }}</p>
+    <p>Date: {{ orderDetails.date | date:'short' }}</p>
+    <p>Total: {{ orderDetails.total | currency}}</p>
+
+    <h3>PC</h3>
+    <section class="pc-component">
+      <div class="pc-header">
+        <p><strong>PC:</strong> {{ orderDetails.pc.pcPn }} (x{{ orderDetails.pc.pcQty }})</p>
+        <button (click)="togglePcDetails()" class="cta">
+          {{ showPcComponents ? 'Hide details' : 'See details' }}
+        </button>
+      </div>
+
+      <div *ngIf="showPcComponents" class="pc-components">
+        <div class="grid">
+          <div *ngFor="let comp of orderDetails.pc.components" class="card">
+            <img [src]="IMAGES_REMOTE_URL + comp.image" alt="{{ comp.name }}" />
+            <p>{{ comp.name }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 
-  <section *ngIf="orderDetails.accessories?.length">
-    <h3>Accessori</h3>
-    <div class="grid">
-      <div *ngFor="let a of orderDetails.accessories" class="card">
+    <section *ngIf="orderDetails.accessories?.length">
+      <h3>Accessori</h3>
+
+      <div *ngFor="let a of orderDetails.accessories" class="section">
         <img [src]="IMAGES_REMOTE_URL + a.image" alt="{{ a.name }}" class="thumb" />
         <p>{{ a.name }}</p>
       </div>
-    </div>
-  </section>
 
-  <section *ngIf="orderDetails.extraComponents?.length">
-    <h3>Componenti Extra</h3>
-    <div class="grid">
-      <div *ngFor="let e of orderDetails.extraComponents" class="card">
-        <img [src]="IMAGES_REMOTE_URL + e.image" alt="{{ e.name }}" class="thumb"/>
-        <p>{{ e.name }}</p>
+    </section>
+
+    <section *ngIf="orderDetails.extraComponents?.length">
+      <h3>Componenti Extra</h3>
+      <div class="grid">
+        <div *ngFor="let e of orderDetails.extraComponents" class="section">
+          <img [src]="IMAGES_REMOTE_URL + e.image" alt="{{ e.name }}" class="thumb"/>
+          <p>{{ e.name }}</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
 </div>
