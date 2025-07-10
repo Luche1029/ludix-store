@@ -1,1 +1,65 @@
-<p>address-form works!</p>
+<div class="address-form">
+  <h2>{{ formData.label ? 'Edit Address' : 'Add New Address' }}</h2>
+
+  <form (ngSubmit)="save()">
+    <label>
+      Label
+      <input type="text" [(ngModel)]="formData.label" name="label" required />
+    </label>
+
+    <label>
+      Contact
+      <input type="text" [(ngModel)]="formData.contact" name="contact" required />
+    </label>
+
+    <label>
+      Address Line 1
+      <input type="text" [(ngModel)]="formData.address1" name="address1" required />
+    </label>
+
+    <label>
+      Address Line 2
+      <input type="text" [(ngModel)]="formData.address2" name="address2" />
+    </label>
+
+    <label>
+      ZIP Code
+      <input type="text" [(ngModel)]="formData.zip" name="zip" required />
+    </label>
+
+    <label>
+      City
+      <input type="text" [(ngModel)]="formData.city" name="city" required />
+    </label>
+
+    <label>
+      Province
+      <input type="text" [(ngModel)]="formData.province" name="province" required />
+    </label>
+
+    <label>
+      Country
+      <input type="text" [(ngModel)]="formData.country" name="country" required />
+    </label>
+
+    <label>
+      Phone
+      <input type="text" [(ngModel)]="formData.phone" name="phone" />
+    </label>
+
+    <label>
+      Email
+      <input type="email" [(ngModel)]="formData.email" name="email" />
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" [(ngModel)]="formData.isDefault" name="isDefault" />
+      Default Address
+    </label>
+
+    <div class="buttons">
+      <button type="submit">Save</button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

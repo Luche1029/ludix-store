@@ -1,1 +1,43 @@
-<p>store-form works!</p>
+<div class="store-form">
+  <h2>Add New Store</h2>
+
+  <form (ngSubmit)="save()">
+    <label>Name
+      <input type="text" [(ngModel)]="store.name" name="name" required />
+    </label>
+
+    <label>Code
+      <input type="text" [(ngModel)]="store.code" name="code" required />
+    </label>
+
+    <label>Location
+      <input type="text" [(ngModel)]="store.location" name="location" />
+    </label>
+
+    <label>Type
+      <input type="text" [(ngModel)]="store.type" name="type" />
+    </label>
+
+    <label>Manager
+      <input type="text" [(ngModel)]="store.manager" name="manager" />
+    </label>
+
+    <label>Email
+      <input type="email" [(ngModel)]="store.email" name="email" />
+    </label>
+
+    <label>Phone
+      <input type="text" [(ngModel)]="store.phone" name="phone" />
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" [(ngModel)]="store.active" name="active" />
+      Active Store
+    </label>
+
+    <div class="actions">
+      <button type="submit">Save</button>
+      <button type="button" (click)="back()">Cancel</button>
+    </div>
+  </form>
+</div>

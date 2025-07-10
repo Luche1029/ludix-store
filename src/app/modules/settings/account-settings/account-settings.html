@@ -1,1 +1,25 @@
-<p>account-settings works!</p>
+<div class="account-settings">
+  <h2>Account Settings</h2>
+
+  <form (ngSubmit)="save()">
+    <label>Name
+      <input type="text" [(ngModel)]="user.name" name="name" required />
+    </label>
+
+    <label>Email
+      <input type="email" [(ngModel)]="user.email" name="email" required />
+    </label>
+
+    <label>Phone
+      <input type="text" [(ngModel)]="user.phone" name="phone" />
+    </label>
+
+    <label>New Password
+      <input type="password" [(ngModel)]="user.password" name="password" />
+    </label>
+
+    <div class="actions">
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</div>

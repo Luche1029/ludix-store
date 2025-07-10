@@ -1,47 +1,39 @@
 <div class="orders-list">
   <h2>Orders</h2>
-  <table>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <table *ngIf="!loading && orders.length > 0">
     <thead>
       <tr>
-        <th>#</th>
         <th>Date</th>
-        <th>Customer</th>
+        <th>Order</th>
+        <th>PN</th>
+        <th>Qty</th>
         <th>Total</th>
+        <th>Dealer</th>
         <th>Status</th>
-        <th>Azioni</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>ORD-001</td>
-        <td>2025-07-01</td>
-        <td>Mario Rossi</td>
-        <td>€1.240</td>
-        <td>Completed</td>
+      <tr *ngFor="let o of orders">
+        <td>{{ o.date | date:'yyyy-MM-dd HH:mm' }}</td>
+        <td>{{ o.orderNumber }}</td>
+        <td>{{ o.pcPn }}</td>
+        <td>{{ o.pcQty }}</td>
+        <td>{{ o.total | currency:'EUR':'symbol':'1.2-2' }}</td>
+        <td>{{ o.dealer }}</td>
+        <td>{{ o.status }}</td>
         <td>
-          <a [routerLink]="['/orders', 'ORD-001']" class="cta">Visualizza</a>
-        </td>
-      </tr>
-      <tr>
-        <td>ORD-002</td>
-        <td>2025-07-02</td>
-        <td>Giulia Verdi</td>
-        <td>€860</td>
-        <td>Pending</td>
-        <td>
-          <a [routerLink]="['/orders', 'ORD-002']" class="cta">Visualizza</a>
-        </td>
-      </tr>
-      <tr>
-        <td>ORD-003</td>
-        <td>2025-07-03</td>
-        <td>Luca Bianchi</td>
-        <td>€420</td>
-        <td>Cancelled</td>
-        <td>
-          <a [routerLink]="['/orders', 'ORD-003']" class="cta">Visualizza</a>
+          <a [routerLink]="['/orders', o.orderNumber]" class="cta">Details</a>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <div *ngIf="!loading && orders.length === 0">
+    No orders found.
+  </div>
 </div>

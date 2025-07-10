@@ -1,4 +1,16 @@
 <div class="store-details">
-  <h1>Store Details</h1>
-  <!-- Contenuto da aggiungere -->
+  <h2>Store Details</h2>
+
+  <div class="details">
+    <p><strong>Name:</strong> {{ store.name }}</p>
+    <p><strong>Code:</strong> {{ store.code }}</p>
+    <p><strong>Location:</strong> {{ store.location }}</p>
+    <p><strong>Type:</strong> {{ store.type }}</p>
+    <p><strong>Manager:</strong> {{ store.manager }}</p>
+    <p><strong>Email:</strong> {{ store.contact }}</p>
+    <p><strong>Phone:</strong> {{ store.phone }}</p>
+    <p><strong>Status:</strong> {{ store.active ? 'Active' : 'Inactive' }}</p>
+  </div>
+
+  <button class="back-btn" (click)="back()">← Back to Stores</button>
 </div>
