@@ -13,7 +13,7 @@ import { LoaderService } from '../../../core/loader.service';
   styleUrls: ['./login.scss'],
 })
 export class Login {
-  email = '';
+  username = '';
   password = '';
   error = '';
 
@@ -22,16 +22,15 @@ export class Login {
     private router: Router,
     private loader: LoaderService
   ) {}
-  submit() {
-    this.loader.show();
-    setTimeout(() => {
-      if (this.auth.login(this.email, this.password)) {
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.error = 'Invalid credentials';
-      }
-      this.loader.hide();
-    }, 1000);
-}
+
+  async submit() {
+    this.error = '';
+    const success = await this.auth.login(this.username, this.password);
+    if (success) {
+      this.router.navigate(['/home']);
+    } else {
+      this.error = 'Email o password non validi.';
+    }
+  }
 
 }
