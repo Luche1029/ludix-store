@@ -4,6 +4,43 @@
   <div *ngIf="loading">Loading...</div>
   <div *ngIf="error">{{ error }}</div>
 
+  <div class="filters">
+  <form (ngSubmit)="applyFilters()">
+
+    <!-- ADM: Selezione gruppo -->
+    <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group">
+      <option value="">Tutti i gruppi</option>
+      <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+    </select>
+
+    <!-- ADM, SUP: Selezione sottogruppo -->
+    <select *ngIf="['ADM', 'SUP'].includes(user?.role)" [(ngModel)]="filters.subgroup" name="subgroup">
+      <option value="">Tutti i sottogruppi</option>
+      <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+    </select>
+
+    <!-- ADM, SUP, CAT: Selezione store -->
+    <select *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)" [(ngModel)]="filters.store" name="store">
+      <option value="">Tutti gli store</option>
+      <option *ngFor="let s of stores" [value]="s.code">{{ s.name }}</option>
+    </select>
+
+    <!-- Visibili a tutti -->
+    <input type="date" [(ngModel)]="filters.startDate" name="startDate" placeholder="Data inizio" />
+    <input type="date" [(ngModel)]="filters.endDate" name="endDate" placeholder="Data fine" />
+
+    <select [(ngModel)]="filters.status" name="status">
+      <option value="">Tutti gli status</option>
+      <option value="inserted">Inserito</option>
+      <option value="approved">Approvato</option>
+      <option value="shipped">Spedito</option>
+    </select>
+
+    <button type="submit">Applica</button>
+  </form>
+</div>
+
+
   <table *ngIf="!loading && orders.length > 0">
     <thead>
       <tr>

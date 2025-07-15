@@ -29,7 +29,7 @@ export class Login {
     if (success) {
       this.router.navigate(['/home']);
     } else {
-      this.error = 'Email o password non validi.';
+      this.error = 'Username o password non validi.';
     }
   }
 

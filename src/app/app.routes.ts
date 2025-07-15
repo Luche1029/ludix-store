@@ -13,6 +13,12 @@ import { StoreForm } from './modules/stores/store-form/store-form';
 import { AccountSettings } from './modules/settings/account-settings/account-settings';
 import { Preferences } from './modules/settings/preferences/preferences';
 import { Layout } from './modules/layout/layout';
+import { GroupsList } from './modules/groups/groups-list/groups-list';
+import { GroupForm } from './modules/groups/group-form/group-form';
+import { GroupDetails } from './modules/groups/group-details/group-details';
+import { SubgroupsList } from './modules/subgroups/subgroups-list/subgroups-list';
+import { SubgroupForm } from './modules/subgroups/subgroup-form/subgroup-form';
+import { SubgroupDetails } from './modules/subgroups/subgroup-details/subgroup-details';
 
 import { AuthGuard } from './core/auth.guard';
 
@@ -37,6 +43,12 @@ export const routes: Routes = [
       { path: 'stores/:id', component: StoreDetails },
       { path: 'settings/account', component: AccountSettings },
       { path: 'settings/preferences', component: Preferences },
+      { path: 'groups', component: GroupsList },
+      { path: 'groups/new', component: GroupForm },
+      { path: 'groups/:id', component: GroupDetails },
+      { path: 'subgroups', component: SubgroupsList },
+      { path: 'subgroups/new', component: SubgroupForm },
+      { path: 'subgroups/:id', component: SubgroupDetails }
     ],
   },
 
