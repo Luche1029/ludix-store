@@ -35,7 +35,7 @@ export class OrderDetails {
   error = '';
 
   ngOnInit(): void {
-    this.api.post<any>('/getOrderDetails', { orderNumber: this.orderNumber, subgroupCode: 'SPR-WEB' }).subscribe({
+    this.api.post<any>('/getOrderDetails', { orderNumber: this.orderNumber }).subscribe({
        next: res => {
           this.orderDetails = res.orderDetails;
           this.loading = false;

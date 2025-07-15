@@ -8,40 +8,44 @@
   <form (ngSubmit)="applyFilters()">
 
     <!-- ADM: Selezione gruppo -->
-    <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group">
+    <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
       <option value="">Tutti i gruppi</option>
       <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
     </select>
 
-    <!-- ADM, SUP: Selezione sottogruppo -->
-    <select *ngIf="['ADM', 'SUP'].includes(user?.role)" [(ngModel)]="filters.subgroup" name="subgroup">
+    <!-- ADM + SUP: Selezione sottogruppo -->
+    <select *ngIf="['ADM', 'SUP'].includes(user?.role)" [(ngModel)]="filters.subgroup" name="subgroup" 
+            [disabled]="user?.role === 'ADM' && !filters.group" 
+            (change)="onSubgroupChange()">
       <option value="">Tutti i sottogruppi</option>
       <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
     </select>
 
     <!-- ADM, SUP, CAT: Selezione store -->
-    <select *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)" [(ngModel)]="filters.store" name="store">
+    <select *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)" [(ngModel)]="filters.store" name="store" 
+            [disabled]="(user?.role === 'ADM' && !filters.subgroup) || (user?.role === 'SUP' && !filters.subgroup)">
       <option value="">Tutti gli store</option>
-      <option *ngFor="let s of stores" [value]="s.code">{{ s.name }}</option>
+      <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
     </select>
+
 
     <!-- Visibili a tutti -->
     <input type="date" [(ngModel)]="filters.startDate" name="startDate" placeholder="Data inizio" />
     <input type="date" [(ngModel)]="filters.endDate" name="endDate" placeholder="Data fine" />
 
     <select [(ngModel)]="filters.status" name="status">
-      <option value="">Tutti gli status</option>
-      <option value="inserted">Inserito</option>
-      <option value="approved">Approvato</option>
-      <option value="shipped">Spedito</option>
+      <option value="">Tutti gli stati</option>
+      <option *ngFor="let s of status" [value]="s.id">{{ s.status }}</option>
     </select>
 
     <button type="submit">Applica</button>
   </form>
 </div>
 
+<app-table [data]="orders" [columns]="columns"></app-table>
 
-  <table *ngIf="!loading && orders.length > 0">
+
+  <!--table *ngIf="!loading && orders.length > 0">
     <thead>
       <tr>
         <th>Date</th>
@@ -68,7 +72,7 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table-->
 
   <div *ngIf="!loading && orders.length === 0">
     No orders found.
