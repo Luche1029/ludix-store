@@ -12,6 +12,7 @@
     color: white;
     border: none;
     border-radius: 0.3rem;
+    margin-right: 25px;
     cursor: pointer;
 
     &:hover {
@@ -84,5 +85,49 @@
   p {
     margin: 0.5rem 0 0;
     font-size: 0.85rem;
+  }
+}
+
+
+.pc-component.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+
+  .left {
+    flex: 1 1 40ch;
+    position: relative;
+
+.action-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem; // facoltativo: spazio tra i bottoni
+}
+
+  }
+
+  .right {
+    flex: 1 1 40ch;
+
+    form {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
   }
 }

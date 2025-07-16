@@ -5,38 +5,121 @@
   <div *ngIf="error">{{ error }}</div>
 
   <div *ngIf="!loading && orderDetails">
-    <section class="pc-component">
-      <h2>Order Number {{ orderDetails.orderNumber }}</h2>
-      <p>Status: {{ orderDetails.status }}</p>
-      <p>Store: {{ orderDetails.dealer }}</p>
-      <p>Date: {{ orderDetails.date | date:'short' }}</p>
-      <p>Total: {{ orderDetails.total | currency}}</p>
-    </section>
+  <section class="pc-component two-columns">
 
-    <section class="pc-component">
-      <button class="cta" *ngIf="orderDetails.statusId == 1 || orderDetails.statusId == 2">
-        approva ordine
+  <!-- Colonna Sinistra: Info ordine -->
+  <div class="left">
+    <h2>Order Number {{ orderDetails.orderNumber }}</h2>
+    <p>Status: {{ orderDetails.status }}</p>
+    <p>Store: {{ orderDetails.dealer }}</p>
+    <p>Date: {{ orderDetails.date | date:'short' }}</p>
+    <p>Total: {{ orderDetails.total | currency }}</p>
+    <div class="action-buttons">
+     <button 
+        class="cta" 
+        (click)="updateOrderStatus(3)"
+        *ngIf="orderDetails.statusId == 1 || orderDetails.statusId == 2">
+         <span class="material-icons">check</span>&nbsp;approva ordine
       </button>
-      <button class="cta"  *ngIf="orderDetails.statusId >= 1 && orderDetails.statusId <= 3">
-        annulla ordine
+      <button 
+        class="cta" 
+        (click)="updateOrderStatus(-1)"
+        *ngIf="orderDetails.statusId >= 1 && orderDetails.statusId <= 3">
+        <span class="material-icons">delete</span>&nbsp;annulla ordine
       </button>
-      <button class="cta"  *ngIf="orderDetails.statusId == 4 || orderDetails.statusId == 5">
-        richiedi annullamento ordine
+      <button 
+        class="cta"
+        (click)="updateOrderStatus(100)"
+        *ngIf="orderDetails.statusId == 4 || orderDetails.statusId == 5">
+        <span class="material-icons">auto</span>&nbsp;richiedi annullamento ordine
       </button>
-      <button class="cta"  *ngIf="orderDetails.statusId == 8">
-        segna come ricevuto
+      <button 
+        class="cta" 
+        *ngIf="orderDetails.statusId == 9">
+        <span class="material-icons">forklift</span>&nbsp;segna come ricevuto
       </button>
-      <button class="cta"  *ngIf="orderDetails.statusId == 9">
-        richiedi reso
+      <button 
+        class="cta" 
+        (click)="updateOrderStatus(-1)"
+        *ngIf="orderDetails.statusId == 10">
+        <span class="material-icons">undo</span>&nbsp;richiedi reso
       </button>
-    </section>
+    </div>
+  </div>
+
+    <!-- Colonna Destra: Form indirizzo -->
+    <div class="right">
+      <h3>Indirizzo</h3>
+      <form #addressForm="ngForm">
+        <div class="form-group">
+          <label>P.IVA</label>
+          <input type="text" [(ngModel)]="orderDetails.address.vatNumber" name="vatNumber" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" [(ngModel)]="orderDetails.address.firstName" name="firstName" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>Cognome</label>
+          <input type="text" [(ngModel)]="orderDetails.address.lastName" name="lastName" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>Indirizzo</label>
+          <input type="text" [(ngModel)]="orderDetails.address.address" name="address" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>CAP</label>
+          <input type="text" [(ngModel)]="orderDetails.address.zip" name="zip" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>Città</label>
+          <input type="text" [(ngModel)]="orderDetails.address.city" name="city" [readonly]="!isEditable"  />
+        </div>
+        <div class="form-group">
+          <label>Provincia</label>
+          <input type="text" [(ngModel)]="orderDetails.address.province" name="province" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>Nazione</label>
+          <input type="text" [(ngModel)]="orderDetails.address.country" name="country" [readonly]="!isEditable" />
+        </div>
+        <div class="form-group">
+          <label>Telefono</label>
+          <input type="text" [(ngModel)]="orderDetails.address.phone" name="phone" [readonly]="!isEditable"  />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="orderDetails.address.email" name="email" [readonly]="!isEditable"  />
+        </div>
+        <button 
+          class="cta" 
+          *ngIf="(orderDetails.statusId == 2 || orderDetails.statusId == 3) && !isEditable"
+          (click)="isEditable = true">
+        <span class="material-icons">edit</span>&nbsp;modifica indirizzo
+        </button>
+        <button 
+          class="cta" 
+          *ngIf="(orderDetails.statusId == 2 || orderDetails.statusId == 3) && isEditable"
+          (click)="isEditable = false">
+        <span class="material-icons">close</span>&nbsp;annulla
+        </button>
+        <button 
+          class="cta" 
+          type="button" 
+          (click)="saveAddress()" 
+          *ngIf="isEditable">        
+          <span class="material-icons">save</span>&nbsp;Salva Indirizzo
+        </button>
+      </form>
+    </div>
+  </section>
 
     <section class="pc-component">
       <h3>PC</h3>
       <div class="pc-header">
         <p><strong>PC:</strong> {{ orderDetails.pc.pcPn }} (x{{ orderDetails.pc.pcQty }})</p>
         <button (click)="togglePcDetails()" class="cta">
-          {{ showPcComponents ? 'Hide details' : 'See details' }}
+          <span class="material-icons">{{ showPcComponents ? 'visibility_off' : 'visibility' }}</span>&nbsp;{{ showPcComponents ? 'Hide details' : 'See details' }}
         </button>
       </div>
 
