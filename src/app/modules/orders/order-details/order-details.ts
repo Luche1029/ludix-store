@@ -52,7 +52,13 @@ export class OrderDetails {
       this.showPcComponents = !this.showPcComponents;
     }
 
+    updateOrderStatus (statu: number) {
+      
+    }
+
     back() {
       this.router.navigate(['/orders']);
     }
+
+
 }

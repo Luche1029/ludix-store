@@ -1,5 +1,5 @@
 export const environment = {
-  baseUrl: 'https://ludix.ai/api/adm/', 
+  baseUrl: 'https://cpq.ludix.ai/api/adm/', 
   appName: 'AdminPanel',
   version: '1.0.0',
   imagesRemoteUrl: 'https://ddxtuodftkuuchpokqff.supabase.co/storage/v1/object/public/product-images/',

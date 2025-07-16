@@ -5,14 +5,34 @@
   <div *ngIf="error">{{ error }}</div>
 
   <div *ngIf="!loading && orderDetails">
-    <h2>Order Number {{ orderDetails.orderNumber }}</h2>
-    <p>Status: {{ orderDetails.status }}</p>
-    <p>Store: {{ orderDetails.dealer }}</p>
-    <p>Date: {{ orderDetails.date | date:'short' }}</p>
-    <p>Total: {{ orderDetails.total | currency}}</p>
-
-    <h3>PC</h3>
     <section class="pc-component">
+      <h2>Order Number {{ orderDetails.orderNumber }}</h2>
+      <p>Status: {{ orderDetails.status }}</p>
+      <p>Store: {{ orderDetails.dealer }}</p>
+      <p>Date: {{ orderDetails.date | date:'short' }}</p>
+      <p>Total: {{ orderDetails.total | currency}}</p>
+    </section>
+
+    <section class="pc-component">
+      <button class="cta" *ngIf="orderDetails.statusId == 1 || orderDetails.statusId == 2">
+        approva ordine
+      </button>
+      <button class="cta"  *ngIf="orderDetails.statusId >= 1 && orderDetails.statusId <= 3">
+        annulla ordine
+      </button>
+      <button class="cta"  *ngIf="orderDetails.statusId == 4 || orderDetails.statusId == 5">
+        richiedi annullamento ordine
+      </button>
+      <button class="cta"  *ngIf="orderDetails.statusId == 8">
+        segna come ricevuto
+      </button>
+      <button class="cta"  *ngIf="orderDetails.statusId == 9">
+        richiedi reso
+      </button>
+    </section>
+
+    <section class="pc-component">
+      <h3>PC</h3>
       <div class="pc-header">
         <p><strong>PC:</strong> {{ orderDetails.pc.pcPn }} (x{{ orderDetails.pc.pcQty }})</p>
         <button (click)="togglePcDetails()" class="cta">

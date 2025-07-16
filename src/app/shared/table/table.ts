@@ -12,7 +12,14 @@ import { RouterModule } from '@angular/router';
 })
 export class TableModule {
 
-  @Input() data: any[] = [];
+private _data = signal<any[]>([]);
+@Input() set data(value: any[]) {
+  this._data.set(value || []);
+}
+get data() {
+  return this._data();
+}
+
   @Input() columns: ColumnConfig[] = [];
 
   searchTerm = signal('');
