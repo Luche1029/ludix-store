@@ -5,6 +5,7 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { Order } from 'src/app/interfaces/order.interface';
 import { FormsModule } from '@angular/forms';
 import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
+
 @Component({
   selector: 'app-orders-list',
   standalone: true,
@@ -39,28 +40,25 @@ export class OrdersList {
   stores: any[] = [];
   orders: any[]= [];
 
-columns: ColumnConfig[] = [
-  { key: 'date', label: 'Date', type: 'date', format: 'yyyy-MM-dd HH:mm' },
-  { key: 'orderNumber', label: 'Order', type: 'text' },
-  { key: 'pcPn', label: 'PN', type: 'text' },
-  { key: 'pcQty', label: 'Qty', type: 'text' },
-  { key: 'total', label: 'Total', type: 'currency', currency: 'EUR' },
-  { key: 'dealer', label: 'Dealer', type: 'text' },
-  { key: 'status', label: 'Status', type: 'text' },
-  { key: 'orderNumber', label: 'Details', type: 'link', path: '/orders' }
-];
-
+  columns: ColumnConfig[] = [
+    { key: 'date', label: 'Date', type: 'date', format: 'yyyy-MM-dd HH:mm' },
+    { key: 'orderNumber', label: 'Order', type: 'text' },
+    { key: 'pcPn', label: 'PN', type: 'text' },
+    { key: 'pcQty', label: 'Qty', type: 'text' },
+    { key: 'total', label: 'Total', type: 'currency', currency: 'EUR' },
+    { key: 'dealer', label: 'Dealer', type: 'text' },
+    { key: 'status', label: 'Status', type: 'text' },
+    { key: 'orderNumber', label: 'Details', type: 'link', path: '/orders' }
+  ];
 
   constructor(private api: ApiService) {}
-
 
   ngOnInit(): void {
     const stored = localStorage.getItem('user');
     this.user = stored ? JSON.parse(stored) : null;
     this.loadStatus();
     this.loadInitialFilters();
-    this.loadOrders(); 
-   
+    this.loadOrders();    
   }
 
   loadStatus() {

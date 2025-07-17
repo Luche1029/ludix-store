@@ -1,9 +1,4 @@
 <section class="groups">
   <h2>Gruppi</h2>
-  <ul>
-    <li *ngFor="let group of groups">
-      <span class="code">{{ group.code }}</span>
-      <span class="name">{{ group.name }}</span>
-    </li>
-  </ul>
+  <app-table [data]="groups" [columns]="columns"></app-table>
 </section>

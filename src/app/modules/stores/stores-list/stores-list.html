@@ -1,15 +1,29 @@
 <div class="stores-list">
   <h2>Stores</h2>
 
-  <ul>
-    <li *ngFor="let store of stores">
-      <div class="info">
-        <span class="name">{{ store.name }}</span>
-        <span class="location">{{ store.location }}</span>
-      </div>
-      <a [routerLink]="['/stores', store.id]" class="cta">Details</a>
-    </li>
-  </ul>
+  <div class="filters">
+    <form (ngSubmit)="applyFilters()">
+    
+      <!-- ADM: Selezione gruppo -->
+      <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
+        <option value="">Tutti i gruppi</option>
+        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+      </select>
+
+      <!-- ADM + SUP: Selezione sottogruppo -->
+      <select *ngIf="['ADM', 'SUP'].includes(user?.role)" [(ngModel)]="filters.subgroup" name="subgroup" 
+              [disabled]="user?.role === 'ADM' && !filters.group" 
+              (change)="onSubgroupChange()">
+        <option value="">Tutti i sottogruppi</option>
+        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+      </select>
+
+      <button type="submit">Applica</button>
+    </form>
+  </div>
+
+  
+<app-table [data]="stores" [columns]="columns"></app-table>
 
   <a routerLink="/stores/new" class="add-button">+ Add Store</a>
 </div>
