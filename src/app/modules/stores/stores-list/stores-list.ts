@@ -104,7 +104,6 @@ export class StoresList {
 
   onSubgroupChange() {
     this.stores = [];
-
   }
 
   applyFilters() {

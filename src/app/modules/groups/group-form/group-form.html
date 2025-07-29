@@ -1,1 +1,24 @@
-group-form
+<div class="group-form">
+  <h2>Create Group</h2>
+
+  <form (ngSubmit)="submit()">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="name" name="name" required />
+
+    <label>Code</label>
+    <input type="text" [(ngModel)]="code" name="code" required />
+
+    <label>Supplier</label>
+    <select [(ngModel)]="supplier" name="supplier" required>
+      <option value="">Select supplier</option>
+      <option *ngFor="let s of suppliers" [value]="s.code">{{ s.name }}</option>
+    </select>
+
+    <label>Custom Banner</label>
+    <input type="file" (change)="onFileChange($event)" />
+
+    <button type="submit" class="cta">Save</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </form>
+</div>
