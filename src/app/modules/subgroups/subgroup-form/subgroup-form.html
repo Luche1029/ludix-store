@@ -1,1 +1,39 @@
-subgroup-form
+<div class="subgroup-form">
+  <h2>Create Subgroup</h2>
+
+  <form (ngSubmit)="submit()">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="name" name="name" required />
+
+    <label>Code</label>
+    <input type="text" [(ngModel)]="code" name="code" required />
+
+    <label>Group</label>
+    <select [(ngModel)]="group" name="group" required>
+      <option value="">Select group</option>
+      <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+    </select>
+
+    <label>Max Pc Sold</label>
+    <input type="number" [(ngModel)]="maxPcSold" name="maxPcSold" required min="-1"/>
+
+    <app-switch 
+        label="Show User Data" 
+        [(ngModel)]="showUserData" 
+        name="showUserData">
+    </app-switch>
+
+    <app-switch 
+        label="Show Link" 
+        [(ngModel)]="showLink" 
+        name="showLink">
+    </app-switch>
+
+    <label>Custom Banner</label>
+    <input type="file" (change)="onFileChange($event)" />
+
+    <button type="submit" class="cta">Save</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </form>
+</div>

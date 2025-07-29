@@ -65,7 +65,7 @@ export class GroupForm {
         else this.error = res.error;
       },
       error: (err) => {
-        this.error = JSON.stringify(err);
+        this.error = err.error?.error || err.message;
       }
     });
   }
