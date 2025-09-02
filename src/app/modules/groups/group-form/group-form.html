@@ -14,7 +14,7 @@
       <option *ngFor="let s of suppliers" [value]="s.code">{{ s.name }}</option>
     </select>
 
-    <label>Custom Banner</label>
+    <label>Logo</label>
     <input type="file" (change)="onFileChange($event)" />
 
     <button type="submit" class="cta">Save</button>

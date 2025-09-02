@@ -21,6 +21,9 @@ import { SubgroupForm } from './modules/subgroups/subgroup-form/subgroup-form';
 import { SubgroupDetails } from './modules/subgroups/subgroup-details/subgroup-details';
 
 import { AuthGuard } from './core/auth.guard';
+import { BrandsList } from './modules/editor/brands/brands-list/brands-list';
+import { BrandDetails } from './modules/editor/brands/brand-details/brand-details';
+import { BrandForm } from './modules/editor/brands/brand-form/brand-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -48,7 +51,10 @@ export const routes: Routes = [
       { path: 'groups/:id', component: GroupDetails },
       { path: 'subgroups', component: SubgroupsList },
       { path: 'subgroups/new', component: SubgroupForm },
-      { path: 'subgroups/:id', component: SubgroupDetails }
+      { path: 'subgroups/:id', component: SubgroupDetails },
+      { path: 'brands', component: BrandsList },
+      { path: 'brands/new', component: BrandForm },
+      { path: 'brands/:id', component: BrandDetails }
     ],
   },
 

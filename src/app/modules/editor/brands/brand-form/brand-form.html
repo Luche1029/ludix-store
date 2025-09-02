@@ -1,0 +1,25 @@
+<div class="group-form">
+  <h2>Create Brand</h2>
+
+  <form (ngSubmit)="submit()">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="brand" name="brand" required />
+
+    <label>Code</label>
+    <input type="text" [(ngModel)]="code" name="code" required />
+
+    <label>Logo</label>
+    <input type="file" (change)="onFileChange($event, 'L')" />
+
+    <label>Svg Label</label>
+    <input type="file" (change)="onFileChange($event, 'S')" />
+
+    <label>Powered Image</label>
+    <input type="file" (change)="onFileChange($event, 'P')" />
+
+    <button type="submit" class="cta">Save</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <p class="success" *ngIf="success">{{ success }}</p>
+  </form>
+</div>

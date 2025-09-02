@@ -9,16 +9,42 @@
         {{ isExpanded(item) ? 'expand_less' : 'expand_more' }}
       </span>
     </div>
+
+    <!-- Second level -->
     <ul *ngIf="item.children && isExpanded(item)" class="submenu">
       <li *ngFor="let child of item.children">
-        <a [routerLink]="child.route">
-          <span class="material-icons">{{ child.icon }}</span>
-          {{ child.label }}
-        </a>
+        <ng-container *ngIf="child.children; else leafLink">
+          <div class="menu-item" (click)="toggle(child)">
+            <span class="material-icons">{{ child.icon }}</span>
+            <span>{{ child.label }}</span>
+            <span *ngIf="child.children" class="material-icons toggle-icon">
+              {{ isExpanded(child) ? 'expand_less' : 'expand_more' }}
+            </span>
+          </div>
+
+          <!-- Third level -->
+          <ul *ngIf="isExpanded(child)" class="submenu">
+            <li *ngFor="let grandchild of child.children">
+              <a [routerLink]="grandchild.route">
+                <span class="material-icons">{{ grandchild.icon }}</span>
+                {{ grandchild.label }}
+              </a>
+            </li>
+          </ul>
+        </ng-container>
+
+        <!-- Link without children -->
+        <ng-template #leafLink>
+          <a [routerLink]="child.route">
+            <span class="material-icons">{{ child.icon }}</span>
+            {{ child.label }}
+          </a>
+        </ng-template>
       </li>
     </ul>
   </li>
 </ul>
+
 
 <div class="logout-button" (click)="logout()">
   <span class="material-icons">logout</span>

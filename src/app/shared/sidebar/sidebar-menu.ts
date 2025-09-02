@@ -21,20 +21,20 @@ export const SIDEBAR_MENU: SidebarItem[] = [
   }, 
   {
     label: 'Groups',
-    icon: 'group_work',
+    icon: 'workspaces',
     roles: ['ADM'],
     children: [
       { label: 'Groups List', route: '/groups', icon: 'list' },
-      { label: 'Add group', route: '/groups/new', icon: 'add_circle' }
+      { label: 'Add group', route: '/groups/new', icon: 'add_box' }
     ]
   },
   {
-    label: 'Categories',
-    icon: 'category',
+    label: 'Subgroups',
+    icon: 'group_work',
     roles: ['ADM', 'SUP'],
     children: [
       { label: 'Subgroups List', route: '/subgroups', icon: 'list' },
-      { label: 'Add subgroup', route: '/subgroups/new', icon: 'add_box' }
+      { label: 'Add subgroup', route: '/subgroups/new', icon: 'add_circle' }
     ]
   },
   {
@@ -62,6 +62,37 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     children: [
       { label: 'Account', route: '/settings/account', icon: 'person' },
       { label: 'Preferences', route: '/settings/preferences', icon: 'tune' }
+    ]
+  },
+  {
+    label: 'Editor',
+    icon: 'construction',
+    roles: ['ADM'],
+    children: [
+      { 
+        label: 'Brand', 
+        icon: 'sell', 
+        children: [
+          { label: 'Brands List', route: '/brands', icon: 'list' },
+          { label: 'Add Brand', route: '/brands/new', icon: 'add' }
+        ]
+      },
+      { 
+        label: 'Categories', 
+        icon: 'category', 
+        children: [
+          { label: 'Categories List', route: '/categories', icon: 'list' },
+          { label: 'Add Category', route: '/categories/new', icon: 'add' }
+        ] 
+      },
+      { 
+        label: 'Products', 
+        icon: 'memory', 
+        children: [
+          { label: 'Product List', route: '/product', icon: 'list' },
+          { label: 'Add Product', route: '/product/new', icon: 'add' }
+        ] 
+      }
     ]
   }
 ];
