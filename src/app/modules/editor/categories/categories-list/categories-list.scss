@@ -1,0 +1,34 @@
+.draggable-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.draggable-item {
+    position:relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.drag-handle {
+  cursor: move;
+  margin-right: 8px;
+}
+
+.reset {
+    float: right;
+    margin-top: 20px;
+    width:175px;
+    height:55px;
+    font-size: 15pt;
+}
+
+.details {
+    position: absolute;
+    right:20px;
+    cursor: pointer;
+}

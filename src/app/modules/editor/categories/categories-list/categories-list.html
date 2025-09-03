@@ -1,1 +1,19 @@
-<p>categories-list works!</p>
+<section class="categories">
+  <h2>Categories</h2>
+
+  <div 
+    cdkDropList 
+    (cdkDropListDropped)="drop($event)"    
+    class="draggable-list">
+
+    <div *ngFor="let cat of categories" cdkDrag class="draggable-item">
+      <span class="drag-handle material-icons">drag_handle</span>
+      {{ cat.view_order }} - {{ cat.code }} - {{ cat.category }}
+      <a class="details"  (click)="seeDeatais()">Details</a>
+    </div>
+  </div>
+
+  <button class="reset" (click)="resetOrder()">reset order</button>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+</section>

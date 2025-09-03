@@ -24,6 +24,9 @@ import { AuthGuard } from './core/auth.guard';
 import { BrandsList } from './modules/editor/brands/brands-list/brands-list';
 import { BrandDetails } from './modules/editor/brands/brand-details/brand-details';
 import { BrandForm } from './modules/editor/brands/brand-form/brand-form';
+import { CategoriesList } from './modules/editor/categories/categories-list/categories-list';
+import { CategoryForm } from './modules/editor/categories/category-form/category-form';
+import { CategoryDetails } from './modules/editor/categories/category-details/category-details';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -54,7 +57,10 @@ export const routes: Routes = [
       { path: 'subgroups/:id', component: SubgroupDetails },
       { path: 'brands', component: BrandsList },
       { path: 'brands/new', component: BrandForm },
-      { path: 'brands/:id', component: BrandDetails }
+      { path: 'brands/:id', component: BrandDetails },
+      { path: 'categories', component: CategoriesList },
+      { path: 'categories/new', component: CategoryForm },
+      { path: 'categories/:id', component: CategoryDetails }
     ],
   },
 

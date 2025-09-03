@@ -1,1 +1,43 @@
-<p>category-form works!</p>
+<div class="group-form">
+  <h2>Create Category</h2>
+
+  <form (ngSubmit)="submit()">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="category" name="categoory" required />
+
+    <label>Code</label>
+    <input type="text" [(ngModel)]="code" name="code" required />
+
+    <label>Max quantity in configuration</label>
+    <select [(ngModel)]="qtmng" name="qtmng" required>
+        <optgroup label="Mandatory">
+            <option value="SINGLE_MANDATORY">Only one component</option>
+            <option value="MULTI_EQU_MANDATORY">One or more of the same component</option>
+            <option value="MULTI_NEQ_MANDATORY">One or more components, even different ones</option>
+        </optgroup>
+        <optgroup label="Optional">
+            <option value="SINGLE_OPTIONAL">Max one component</option>
+            <option value="MULTI_EQU_OPTIONAL">Zero or more of the same component</option>
+            <option value="MULTI_NEQ_OPTIONAL">Zero or more components, even different ones</option>
+        </optgroup>
+    </select> 
+    
+    <label>Wordpress ID</label>
+    <input type="text" [(ngModel)]="wp_id" name="wp_id" required />
+
+    <label>Short description required</label>
+    <select [(ngModel)]="sdr" name="sdr" required>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+
+    <label>Icon</label>
+    <input type="file" (change)="onFileChange($event)" />
+
+
+    <button type="submit" class="cta">Save</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <p class="success" *ngIf="success">{{ success }}</p>
+  </form>
+</div>

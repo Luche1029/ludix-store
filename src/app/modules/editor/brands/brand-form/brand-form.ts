@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/core/api.service';
   templateUrl: './brand-form.html',
   styleUrl: './brand-form.scss'
 })
+
 export class BrandForm {
   brand = '';
   code = '';
