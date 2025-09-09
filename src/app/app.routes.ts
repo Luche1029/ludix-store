@@ -27,6 +27,8 @@ import { BrandForm } from './modules/editor/brands/brand-form/brand-form';
 import { CategoriesList } from './modules/editor/categories/categories-list/categories-list';
 import { CategoryForm } from './modules/editor/categories/category-form/category-form';
 import { CategoryDetails } from './modules/editor/categories/category-details/category-details';
+import {ByApp} from './modules/editor/presets/by-app/by-app';
+import {ByPrice} from './modules/editor/presets/by-price/by-price';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -60,7 +62,9 @@ export const routes: Routes = [
       { path: 'brands/:id', component: BrandDetails },
       { path: 'categories', component: CategoriesList },
       { path: 'categories/new', component: CategoryForm },
-      { path: 'categories/:id', component: CategoryDetails }
+      { path: 'categories/:id', component: CategoryDetails },
+      { path: 'by-app', component: ByApp},
+      { path: 'by-price', component: ByPrice}
     ],
   },
 

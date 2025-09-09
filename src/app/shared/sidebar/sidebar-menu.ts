@@ -92,8 +92,15 @@ export const SIDEBAR_MENU: SidebarItem[] = [
           { label: 'Product List', route: '/product', icon: 'list' },
           { label: 'Add Product', route: '/product/new', icon: 'add' }
         ] 
-      }
+      },
+      { 
+        label: 'Presets', 
+        icon: 'extension', 
+        children: [
+          { label: 'By Game / App', route: '/by-app', icon: 'sports_esports' },
+          { label: 'By Price', route: '/by-price', icon: 'attach_money' }
+        ]
+      },
     ]
   }
 ];
-
