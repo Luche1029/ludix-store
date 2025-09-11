@@ -3,5 +3,9 @@
   <!--select name="supplier">
     <option *ngFor="let s of suppliers" value="{{s.code}}">{{s.name}}</option>
   </select-->
-  <app-table [data]="presets" [columns]="columns"></app-table>
+  <app-table 
+    [data]="presets" 
+    [columns]="columns"
+    (buttonClick)="handleTableButtonClick($event)">
+  </app-table>
 </section>

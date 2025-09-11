@@ -34,6 +34,11 @@
             <a [routerLink]="[col.path, row[col.key]]" class="cta">Details</a>
           </ng-container>
 
+          <!-- Button -->
+          <ng-container *ngIf="col.type === 'button'">
+            <button (click)="onButtonClick(col.action, row, col)">{{col.label}}</button>
+          </ng-container>
+
           <!-- Default / Text -->
           <ng-container *ngIf="!col.type || col.type === 'text'">
             {{ row[col.key] }}

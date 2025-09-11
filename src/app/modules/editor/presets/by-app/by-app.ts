@@ -22,13 +22,19 @@ export class ByApp {
   error = '';
 
   columns: ColumnConfig[] = [
-    { key: 'supplier', label: 'Supplier', type: 'text' },
-    { key: 'app', label: 'App / Games', type: 'text' },
+    { key: 'supplierName', label: 'Supplier', type: 'text' },
+    { key: 'appName', label: 'App / Games', type: 'text' },
     { key: 'req', label: 'Req', type: 'text' },
-    { key: 'pn', label: 'PN', type: 'text' }
+    { key: 'pn', label: 'PN', type: 'text' },
+    { key: '', 
+      label: 'Re-build', 
+      type: 'button', 
+      action: 'rebuild', 
+      params: ['appId', 'req', 'supplierCode'] }
   ];
 
   constructor(private api: ApiService) {}
+
 
   ngOnInit(): void {    
       this.loadSuppliers();
@@ -51,12 +57,40 @@ export class ByApp {
   loadPresets() {
     this.api.post<any>('/getPresetsByApp', null).subscribe({
       next: (res) => {
-        console.log(JSON.stringify(res));
+        //console.log(JSON.stringify(res));
         this.presets = res.presets || [];
         this.loading = false;
       },
       error: (err) => {
         this.error = 'Error loading subgroups';
+        this.loading = false;
+      }
+    });
+  }
+
+  handleTableButtonClick(event: { action: string, params: any }) {
+    switch (event.action) {
+      case 'rebuild':
+        this.rebuild(event.params.appId, event.params.req, event.params.supplierCode);        
+        break;
+      default:
+        console.warn('Unknown action:', event.action);
+    }
+  }
+
+  rebuild(appId: number, req: string, supplierCode: string) {
+    //alert(JSON.stringify({appId, req, supplierCode}));
+    const body = {
+      supplier: supplierCode,
+      id_app: appId,
+      col: req
+    };
+    this.api.post<any>('/createPresetByApp', body).subscribe({
+      next: (res) => {
+        console.log(JSON.stringify(res));
+      },
+      error: (err) => {
+        this.error = 'Error rebuilding preset';
         this.loading = false;
       }
     });

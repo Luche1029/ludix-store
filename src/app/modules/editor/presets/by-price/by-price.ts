@@ -21,11 +21,17 @@ export class ByPrice {
   error = '';
 
   columns: ColumnConfig[] = [
-    { key: 'supplier', label: 'Supplier', type: 'text' },
+    { key: 'supplierName', label: 'Supplier', type: 'text' },
+    { key: 'subgroupName', label: 'Subgroup', type: 'text' },
     { key: 'arc', label: 'Arc', type: 'text' },
     { key: 'min', label: 'Min', type: 'text' },
     { key: 'max', label: 'Max', type: 'text' },
-    { key: 'pn', label: 'PN', type: 'text' }
+    { key: 'pn', label: 'PN', type: 'text' },    
+    { key: '', 
+      label: 'Re-build', 
+      type: 'button', 
+      action: 'rebuild', 
+      params: ['arc', 'min', 'max', 'supplierCode', 'subgroupCode'] }
   ];
 
   constructor(private api: ApiService) {}
@@ -57,6 +63,36 @@ export class ByPrice {
       },
       error: (err) => {
         this.error = 'Error loading subgroups';
+        this.loading = false;
+      }
+    });
+  }
+
+    handleTableButtonClick(event: { action: string, params: any }) {
+    switch (event.action) {
+      case 'rebuild':
+        this.rebuild(event.params.arc, event.params.min, event.params.max, 
+          event.params.supplierCode, event.params.subgroupCode);        
+        break;
+      default:
+        console.warn('Unknown action:', event.action);
+    }
+  }
+
+  rebuild( arc: string, min: number, max: number,supplierCode: string, subgroupCode: string) {
+    const body = {
+      supplier: supplierCode,
+      subgroupCode: subgroupCode,
+      arc: arc,
+      min: min,
+      max: max
+    };
+    this.api.post<any>('/createPresetByPrice', body).subscribe({
+      next: (res) => {
+        console.log(JSON.stringify(res));
+      },
+      error: (err) => {
+        this.error = 'Error rebuilding preset';
         this.loading = false;
       }
     });

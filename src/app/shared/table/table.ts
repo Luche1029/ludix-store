@@ -1,4 +1,4 @@
-import { Component, Input, Signal, signal, computed } from '@angular/core';
+import { Component, Input, Signal, signal, computed, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'; 
@@ -12,15 +12,16 @@ import { RouterModule } from '@angular/router';
 })
 export class TableModule {
 
-private _data = signal<any[]>([]);
-@Input() set data(value: any[]) {
-  this._data.set(value || []);
-}
-get data() {
-  return this._data();
-}
+  private _data = signal<any[]>([]);
+  @Input() set data(value: any[]) {
+    this._data.set(value || []);
+  }
+  get data() {
+    return this._data();
+  }
 
   @Input() columns: ColumnConfig[] = [];
+  @Output() buttonClick = new EventEmitter<{ action: string, params: any }>();
 
   searchTerm = signal('');
   sortColumn = signal('');
@@ -58,31 +59,46 @@ get data() {
   }
 
   page = signal(1);
-    pageSize = signal(10);
+  pageSize = signal(10);
 
-    readonly pagedData = computed(() => {
+  readonly pagedData = computed(() => {
     const data = this.filteredData();
     const start = (this.page() - 1) * this.pageSize();
     return data.slice(start, start + this.pageSize());
-    });
+  });
 
-    get totalPages() {
+  get totalPages() {
     return Math.ceil(this.filteredData().length / this.pageSize());
-    }
+  }
 
-    setPage(newPage: number) {
+  setPage(newPage: number) {
     if (newPage >= 1 && newPage <= this.totalPages) {
         this.page.set(newPage);
     }
+  }
+
+  onButtonClick(action: string | undefined, row: any, col: ColumnConfig) {
+    if (!action) return;
+
+    const params: any = {};
+    if (col.params) {
+      col.params.forEach(key => {
+        params[key] = row[key];
+      });
     }
+
+    this.buttonClick.emit({ action, params });
+  }
 
 }
 
 export interface ColumnConfig {
   key: string;
   label: string;
-  type?: 'text' | 'date' | 'currency' | 'link';
+  type?: 'text' | 'date' | 'currency' | 'link' | 'button';
   format?: string;
   currency?: string;
   path?: string;
+  action?: string;
+  params?: string[];
 }
