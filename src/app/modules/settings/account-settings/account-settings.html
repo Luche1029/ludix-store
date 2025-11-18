@@ -1,8 +1,8 @@
 <div class="account-settings">
-  <h2>Account Settings</h2>
+  <h2>Account</h2>
 
   <form (ngSubmit)="save()">
-    <label>Name
+    <label>Nome
       <input type="text" [(ngModel)]="user.name" name="name" required />
     </label>
 
@@ -10,12 +10,20 @@
       <input type="email" [(ngModel)]="user.email" name="email" required />
     </label>
 
-    <label>Phone
+    <label>Telefono
       <input type="text" [(ngModel)]="user.phone" name="phone" />
     </label>
 
-    <label>New Password
+    <label>Nuova Password
       <input type="password" [(ngModel)]="user.password" name="password" />
+    </label>
+
+    <label>Conferma Password
+      <input type="password"  />
+    </label>
+
+    <label>PIN
+      <input type="password" />
     </label>
 
     <div class="actions">

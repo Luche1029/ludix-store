@@ -14,7 +14,7 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     roles: ['ADM', 'SUP', 'CAT', 'STO']
   },
   {
-    label: 'Orders',
+    label: 'Ordini',
     icon: 'receipt_long',
     route: '/orders',
     roles: ['ADM', 'SUP', 'CAT', 'STO']
@@ -47,21 +47,21 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     ]
   },
    {
-    label: 'Addresses',
+    label: 'Indirizzi',
     icon: 'location_on',
     roles: ['ADM', 'SUP', 'CAT', 'STO'],
     children: [
-      { label: 'Addresses List', route: '/addresses', icon: 'list' },
-      { label: 'Add Address', route: '/addresses/new', icon: 'add_location' }
+      { label: 'Lista indirizzi', route: '/addresses', icon: 'list' },
+      { label: 'Nuovo indirizzo', route: '/addresses/new', icon: 'add_location' }
     ]
   },
   {
-    label: 'Settings',
+    label: 'Impostazioni',
     icon: 'settings',
     roles: ['ADM', 'SUP', 'CAT', 'STO'],
     children: [
       { label: 'Account', route: '/settings/account', icon: 'person' },
-      { label: 'Preferences', route: '/settings/preferences', icon: 'tune' }
+   //   { label: 'Preferences', route: '/settings/preferences', icon: 'tune' }
     ]
   },
   {

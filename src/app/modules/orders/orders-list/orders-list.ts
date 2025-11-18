@@ -41,14 +41,14 @@ export class OrdersList {
   orders: any[]= [];
 
   columns: ColumnConfig[] = [
-    { key: 'date', label: 'Date', type: 'date', format: 'yyyy-MM-dd HH:mm' },
-    { key: 'orderNumber', label: 'Order', type: 'text' },
+    { key: 'date', label: 'Data', type: 'date', format: 'yyyy-MM-dd HH:mm' },
+    { key: 'orderNumber', label: 'Ordine', type: 'text' },
     { key: 'pcPn', label: 'PN', type: 'text' },
-    { key: 'pcQty', label: 'Qty', type: 'text' },
-    { key: 'total', label: 'Total', type: 'currency', currency: 'EUR' },
+    { key: 'pcQty', label: 'Qt', type: 'text' },
+    { key: 'total', label: 'Totale', type: 'currency', currency: 'EUR' },
     { key: 'dealer', label: 'Dealer', type: 'text' },
     { key: 'status', label: 'Status', type: 'text' },
-    { key: 'orderNumber', label: 'Details', type: 'link', path: '/orders' }
+    { key: 'orderNumber', label: '', type: 'link', path: '/orders' }
   ];
 
   constructor(private api: ApiService) {}

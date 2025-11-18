@@ -1,18 +1,18 @@
 <div class="addresses-list">
-  <h2>Saved Addresses</h2>
+  <h2>Indirizzi Salvati</h2>
 
-  <button class="add-btn" (click)="addAddress()">Add New Address</button>
+  <button class="add-btn" (click)="addAddress()">Aggiungi Nuovo indirizzo</button>
 
   <div class="address-card" *ngFor="let addr of addresses">
     <h3>{{ addr.label }}</h3>
-    <p><strong>Contact:</strong> {{ addr.contact }}</p>
+    <p><strong>Contatto:</strong> {{ addr.contact }}</p>
     <p>{{ addr.address1 }}</p>
     <p *ngIf="addr.address2">{{ addr.address2 }}</p>
     <p>{{ addr.zip }} {{ addr.city }} ({{ addr.province }}), {{ addr.country }}</p>
-    <p><strong>Phone:</strong> {{ addr.phone }}</p>
+    <p><strong>Tel.:</strong> {{ addr.phone }}</p>
     <p><strong>Email:</strong> {{ addr.email }}</p>
-    <p *ngIf="addr.isDefault" class="default">Default Address</p>
+    <p *ngIf="addr.isDefault" class="default">Indirizzo predefinito</p>
 
-    <button class="edit-btn" (click)="editAddress(addr)">Edit</button>
+    <button class="edit-btn" (click)="editAddress(addr)">Modifica</button>
   </div>
 </div>

@@ -9,11 +9,11 @@
 
   <!-- Colonna Sinistra: Info ordine -->
   <div class="left">
-    <h2>Order Number {{ orderDetails.orderNumber }}</h2>
+    <h2>Numero d'ordine {{ orderDetails.orderNumber }}</h2>
     <p>Status: {{ orderDetails.status }}</p>
-    <p>Store: {{ orderDetails.dealer }}</p>
-    <p>Date: {{ orderDetails.date | date:'short' }}</p>
-    <p>Total: {{ orderDetails.total | currency }}</p>
+    <p>Negozio: {{ orderDetails.dealer }}</p>
+    <p>Data: {{ orderDetails.date | date:'short' }}</p>
+    <p>Totale: {{ orderDetails.total  }} €</p>
     <div class="action-buttons">
      <button 
         class="cta" 
