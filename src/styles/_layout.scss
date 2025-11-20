@@ -108,6 +108,14 @@
     font-size: 18px;
   }
 
+   .language-selector {
+    select {
+      padding: 4px 8px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+  }
+
   .logout {
     background-color: transparent;
     border: 1px solid $primary-color;

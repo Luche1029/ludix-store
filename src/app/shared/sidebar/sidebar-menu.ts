@@ -8,19 +8,19 @@ export interface SidebarItem {
 
 export const SIDEBAR_MENU: SidebarItem[] = [
   {
-    label: 'Dashboard',
+    label: 'sidebar.dashboard',
     icon: 'dashboard',
     route: '/dashboard',
     roles: ['ADM', 'SUP', 'CAT', 'STO']
   },
   {
-    label: 'Ordini',
+    label: 'sidebar.orders',
     icon: 'receipt_long',
     route: '/orders',
     roles: ['ADM', 'SUP', 'CAT', 'STO']
   }, 
   {
-    label: 'Groups',
+    label: 'sidebar.groups',
     icon: 'workspaces',
     roles: ['ADM'],
     children: [
@@ -29,25 +29,25 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     ]
   },
   {
-    label: 'Subgroups',
+    label: 'sidebar.subgroups',
     icon: 'group_work',
     roles: ['ADM', 'SUP'],
     children: [
-      { label: 'Subgroups List', route: '/subgroups', icon: 'list' },
-      { label: 'Add subgroup', route: '/subgroups/new', icon: 'add_circle' }
+      { label: 'sidebar.subgroups_list', route: '/subgroups', icon: 'list' },
+      { label: 'sidebar.add_subgroup', route: '/subgroups/new', icon: 'add_circle' }
     ]
   },
   {
-    label: 'Stores',
+    label: 'sidebar.stores',
     icon: 'store',
     roles: ['ADM', 'SUP', 'CAT'],
     children: [
-      { label: 'Stores List', route: '/stores', icon: 'list' },
-      { label: 'Add Store', route: '/stores/new', icon: 'add_business' }
+      { label: 'sidebar.stores_list', route: '/stores', icon: 'list' },
+      { label: 'sidebar.add_store', route: '/stores/new', icon: 'add_business' }
     ]
   },
    {
-    label: 'Indirizzi',
+    label: 'sidebar.addresses',
     icon: 'location_on',
     roles: ['ADM', 'SUP', 'CAT', 'STO'],
     children: [
@@ -56,7 +56,7 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     ]
   },
   {
-    label: 'Impostazioni',
+    label: 'sidebar.settings',
     icon: 'settings',
     roles: ['ADM', 'SUP', 'CAT', 'STO'],
     children: [
@@ -65,7 +65,7 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     ]
   },
   {
-    label: 'Editor',
+    label: 'sidebar.editor',
     icon: 'construction',
     roles: ['ADM'],
     children: [
@@ -73,32 +73,32 @@ export const SIDEBAR_MENU: SidebarItem[] = [
         label: 'Brand', 
         icon: 'sell', 
         children: [
-          { label: 'Brands List', route: '/brands', icon: 'list' },
-          { label: 'Add Brand', route: '/brands/new', icon: 'add' }
+          { label: 'sidebar.brands_list', route: '/brands', icon: 'list' },
+          { label: 'sidebar.add_brand', route: '/brands/new', icon: 'add' }
         ]
       },
       { 
         label: 'Categories', 
         icon: 'category', 
         children: [
-          { label: 'Categories List', route: '/categories', icon: 'list' },
-          { label: 'Add Category', route: '/categories/new', icon: 'add' }
+          { label: 'sidebar.categories_list', route: '/categories', icon: 'list' },
+          { label: 'sidebar.add_category', route: '/categories/new', icon: 'add' }
         ] 
       },
       { 
         label: 'Products', 
         icon: 'memory', 
         children: [
-          { label: 'Product List', route: '/product', icon: 'list' },
-          { label: 'Add Product', route: '/product/new', icon: 'add' }
+          { label: 'sidebar.product_list', route: '/product', icon: 'list' },
+          { label: 'sidebar.add_product', route: '/product/new', icon: 'add' }
         ] 
       },
       { 
         label: 'Presets', 
         icon: 'extension', 
         children: [
-          { label: 'By Game / App', route: '/by-app', icon: 'sports_esports' },
-          { label: 'By Price', route: '/by-price', icon: 'attach_money' }
+          { label: 'sidebar.by_game_app', route: '/by-app', icon: 'sports_esports' },
+          { label: 'sidebar.by_price', route: '/by-price', icon: 'attach_money' }
         ]
       },
     ]

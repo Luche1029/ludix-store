@@ -1,4 +1,10 @@
-<div class="logo">
-    <img src="hd_icon_dark.png" width="150px"/>
-</div>
 
+  <div class="logo">
+    <img src="hd_icon_dark.png" width="150px" />
+  </div>
+  <div class="language-selector">
+    <select [(ngModel)]="selectedLang" (change)="changeLanguage(selectedLang)">
+      <option value="it">🇮🇹 IT</option>
+      <option value="en">🇬🇧 EN</option>
+    </select>
+  </div>

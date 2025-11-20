@@ -3,7 +3,7 @@
   <li *ngFor="let item of menu">
     <div class="menu-item" (click)="toggle(item)">
       <span class="material-icons">{{ item.icon }}</span>
-      <span>{{ item.label }}</span>
+      <span>{{ item.label | translate}}</span>
       <span *ngIf="item.children" class="material-icons toggle-icon">
         {{ isExpanded(item) ? 'expand_less' : 'expand_more' }}
       </span>
@@ -15,7 +15,7 @@
         <ng-container *ngIf="child.children; else leafLink">
           <div class="menu-item" (click)="toggle(child)">
             <span class="material-icons">{{ child.icon }}</span>
-            <span>{{ child.label }}</span>
+            <span>{{ child.label | translate }}</span>
             <span *ngIf="child.children" class="material-icons toggle-icon">
               {{ isExpanded(child) ? 'expand_less' : 'expand_more' }}
             </span>
