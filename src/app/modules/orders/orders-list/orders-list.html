@@ -1,50 +1,55 @@
 <div class="orders-list">
-  <h2>Orders</h2>
+  <h2>{{ 'orders.title' | translate }}</h2>
 
-  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="loading">{{ 'orders.loading' | translate }}</div>
   <div *ngIf="error">{{ error }}</div>
 
   <div class="filters">
-  <form (ngSubmit)="applyFilters()">
+    <form (ngSubmit)="applyFilters()">
 
-    <!-- ADM: Selezione gruppo -->
-    <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
-      <option value="">Tutti i gruppi</option>
-      <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
-    </select>
+      <!-- ADM: Selezione gruppo -->
+      <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
+        <option value="">{{ 'orders.all_groups' | translate }}</option>
+        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+      </select>
 
-    <!-- ADM + SUP: Selezione sottogruppo -->
-    <select *ngIf="['ADM', 'SUP'].includes(user?.role)" [(ngModel)]="filters.subgroup" name="subgroup" 
-            [disabled]="user?.role === 'ADM' && !filters.group" 
-            (change)="onSubgroupChange()">
-      <option value="">Tutti i sottogruppi</option>
-      <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
-    </select>
+      <!-- ADM + SUP: Selezione sottogruppo -->
+      <select 
+        *ngIf="['ADM', 'SUP'].includes(user?.role)"
+        [(ngModel)]="filters.subgroup"
+        name="subgroup"
+        [disabled]="user?.role === 'ADM' && !filters.group"
+        (change)="onSubgroupChange()">
+        <option value="">{{ 'orders.all_subgroups' | translate }}</option>
+        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+      </select>
 
-    <!-- ADM, SUP, CAT: Selezione store -->
-    <select *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)" [(ngModel)]="filters.store" name="store" 
-            [disabled]="(user?.role === 'ADM' && !filters.subgroup) || (user?.role === 'SUP' && !filters.subgroup)">
-      <option value="">Tutti gli store</option>
-      <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
-    </select>
+      <!-- ADM, SUP, CAT: Selezione store -->
+      <select 
+        *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)"
+        [(ngModel)]="filters.store"
+        name="store"
+        [disabled]="(user?.role === 'ADM' && !filters.subgroup) || (user?.role === 'SUP' && !filters.subgroup)">
+        <option value="">{{ 'orders.all_stores' | translate }}</option>
+        <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
+      </select>
 
+      <!-- Visibili a tutti -->
+      <input type="date" [(ngModel)]="filters.startDate" name="startDate" placeholder="{{ 'orders.start_date' | translate }}" />
+      <input type="date" [(ngModel)]="filters.endDate" name="endDate" placeholder="{{ 'orders.end_date' | translate }}" />
 
-    <!-- Visibili a tutti -->
-    <input type="date" [(ngModel)]="filters.startDate" name="startDate" placeholder="Data inizio" />
-    <input type="date" [(ngModel)]="filters.endDate" name="endDate" placeholder="Data fine" />
+      <select [(ngModel)]="filters.status" name="status">
+        <option value="">{{ 'orders.all_status' | translate }}</option>
+        <option *ngFor="let s of status" [value]="s.id">{{ s.status }}</option>
+      </select>
 
-    <select [(ngModel)]="filters.status" name="status">
-      <option value="">Tutti gli stati</option>
-      <option *ngFor="let s of status" [value]="s.id">{{ s.status }}</option>
-    </select>
+      <button type="submit">{{ 'orders.apply' | translate }}</button>
+    </form>
+  </div>
 
-    <button type="submit">Applica</button>
-  </form>
-</div>
-
-<app-table [data]="orders" [columns]="columns"></app-table>
+  <app-table [data]="orders" [columns]="columns"></app-table>
 
   <div *ngIf="!loading && orders.length === 0">
-    Nessun ordine trovato.
+    {{ 'orders.no_orders' | translate }}
   </div>
 </div>

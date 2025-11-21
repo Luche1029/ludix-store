@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/core/api.service';
 import { FormsModule } from '@angular/forms';
 import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-stores-list',
@@ -12,7 +13,9 @@ import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
     CommonModule, 
     RouterModule,
     FormsModule,
-    TableModule],
+    TableModule,
+    TranslateModule
+  ],
   templateUrl: './stores-list.html',
   styleUrl: './stores-list.scss',
 })

@@ -3,11 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/core/api.service';
 import { Switch} from 'src/app/shared/switch/switch'
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-group-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, Switch],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    Switch,
+    TranslateModule
+  ],
   templateUrl: './subgroup-form.html',
   styleUrls: ['./subgroup-form.scss']
 })
@@ -39,7 +45,7 @@ export class SubgroupForm {
         this.loading = false;
       },
       error: (err) => {
-        this.error = 'Error loading suppliers';
+        this.error = 'message.errors_loading_suppliers';
         this.loading = false;
       }
     });
@@ -67,7 +73,7 @@ export class SubgroupForm {
 
     this.api.post<any>('createSubgroup', formData).subscribe({
       next: (res) => {
-        if (res.success) alert('Subgroup saved successfully');
+        if (res.success) alert('messages.subgroup_saved_successfully');
         else this.error = res.error;
       },
       error: (err) => {

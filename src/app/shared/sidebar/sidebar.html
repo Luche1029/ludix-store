@@ -26,7 +26,7 @@
             <li *ngFor="let grandchild of child.children">
               <a [routerLink]="grandchild.route">
                 <span class="material-icons">{{ grandchild.icon }}</span>
-                {{ grandchild.label }}
+                {{ grandchild.label | translate}}
               </a>
             </li>
           </ul>
@@ -36,7 +36,7 @@
         <ng-template #leafLink>
           <a [routerLink]="child.route">
             <span class="material-icons">{{ child.icon }}</span>
-            {{ child.label }}
+            {{ child.label | translate}}
           </a>
         </ng-template>
       </li>

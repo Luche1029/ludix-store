@@ -18,10 +18,15 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class Header {
   constructor(private auth: AuthService, private router: Router, private languageService: LanguageService) {}
-  selectedLang = 'it'; // default
-  
+  selectedLang = 'it'; // default  
+  langMenuOpen = false;
+
+  toggleLangMenu() {
+    this.langMenuOpen = !this.langMenuOpen;
+  }
 
   changeLanguage(lang: string) {
+    this.selectedLang = lang;
     this.languageService.setLanguage(lang);
   }
 

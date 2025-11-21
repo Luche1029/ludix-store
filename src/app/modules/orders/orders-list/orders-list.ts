@@ -5,6 +5,7 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { Order } from 'src/app/interfaces/order.interface';
 import { FormsModule } from '@angular/forms';
 import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-orders-list',
@@ -15,7 +16,8 @@ import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
     CurrencyPipe, 
     DatePipe, 
     FormsModule,
-    TableModule
+    TableModule,
+    TranslateModule
   ],
   templateUrl: './orders-list.html',
   styleUrls: ['./orders-list.scss']
@@ -41,13 +43,13 @@ export class OrdersList {
   orders: any[]= [];
 
   columns: ColumnConfig[] = [
-    { key: 'date', label: 'Data', type: 'date', format: 'yyyy-MM-dd HH:mm' },
-    { key: 'orderNumber', label: 'Ordine', type: 'text' },
-    { key: 'pcPn', label: 'PN', type: 'text' },
-    { key: 'pcQty', label: 'Qt', type: 'text' },
-    { key: 'total', label: 'Totale', type: 'currency', currency: 'EUR' },
-    { key: 'dealer', label: 'Dealer', type: 'text' },
-    { key: 'status', label: 'Status', type: 'text' },
+    { key: 'date', label: 'orders.date', type: 'date', format: 'yyyy-MM-dd HH:mm' },
+    { key: 'orderNumber', label: 'orders.order_number', type: 'text' },
+    { key: 'pcPn', label: 'orders.pn', type: 'text' },
+    { key: 'pcQty', label: 'orders.qt', type: 'text' },
+    { key: 'total', label: 'orders.total', type: 'currency', currency: 'EUR' },
+    { key: 'dealer', label: 'orders.dealer', type: 'text' },
+    { key: 'status', label: 'orders.status', type: 'text' },
     { key: 'orderNumber', label: '', type: 'link', path: '/orders' }
   ];
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/core/api.service';
 import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -10,7 +11,8 @@ import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
   imports: [
     CommonModule, 
     RouterModule,  
-    TableModule
+    TableModule,
+    TranslateModule
   ],
   templateUrl: './groups-list.html',
   styleUrl: './groups-list.scss'
@@ -21,9 +23,9 @@ export class GroupsList {
   error = '';
 
   columns: ColumnConfig[] = [
-    { key: 'code', label: 'Code', type: 'text' },
-    { key: 'name', label: 'Name', type: 'text' },
-    { key: 'code', label: 'Details', type: 'link', path: '/groups' }
+    { key: 'code', label: 'groups.code', type: 'text' },
+    { key: 'name', label: 'groups.name', type: 'text' },
+    { key: 'code', label: 'groups.details', type: 'link', path: '/groups' }
   ];
 
   constructor(private api: ApiService) {}

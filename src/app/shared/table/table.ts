@@ -2,11 +2,17 @@ import { Component, Input, Signal, signal, computed, Output, EventEmitter } from
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'; 
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    RouterModule,
+    TranslateModule
+  ],
   templateUrl: './table.html',
   styleUrls: ['./table.scss']
 })

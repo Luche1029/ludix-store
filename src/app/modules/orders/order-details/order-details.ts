@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/core/api.service';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { environment } from 'src/app/core/constants';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-orders-detail',
   standalone: true,
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
             CurrencyPipe, 
             DatePipe,
             RouterLink,
-            FormsModule
+            FormsModule,
+            TranslateModule
           ],
   templateUrl: './order-details.html',
   styleUrl: './order-details.scss'

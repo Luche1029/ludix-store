@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/core/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+  TranslateModule],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

@@ -2,11 +2,16 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/core/api.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-group-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    FormsModule,
+    TranslateModule
+  ],
   templateUrl: './group-form.html',
   styleUrls: ['./group-form.scss']
 })

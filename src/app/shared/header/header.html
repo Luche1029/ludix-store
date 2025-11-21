@@ -1,10 +1,24 @@
 
-  <div class="logo">
-    <img src="hd_icon_dark.png" width="150px" />
+<div class="logo">
+  <img src="hd_icon_dark.png" width="150px" />
+</div>
+
+<div class="language-selector">
+  <div class="lang-dropdown" (click)="toggleLangMenu()">
+    <img [src]="'assets/flags/' + selectedLang + '.png'" class="flag-icon" />
+    <span class="lang-code">{{ selectedLang.toUpperCase() }}</span>
+    <span class="material-icons arrow">expand_more</span>
+
+    <div class="dropdown-menu" *ngIf="langMenuOpen">
+      <div class="dropdown-item" (click)="changeLanguage('it')">
+        <img src="assets/flags/it.png" class="flag-icon" />
+        <span>Italiano</span>
+      </div>
+
+      <div class="dropdown-item" (click)="changeLanguage('en')">
+        <img src="assets/flags/en.png" class="flag-icon" />
+        <span>English</span>
+      </div>
+    </div>
   </div>
-  <div class="language-selector">
-    <select [(ngModel)]="selectedLang" (change)="changeLanguage(selectedLang)">
-      <option value="it">🇮🇹 IT</option>
-      <option value="en">🇬🇧 EN</option>
-    </select>
-  </div>
+</div>

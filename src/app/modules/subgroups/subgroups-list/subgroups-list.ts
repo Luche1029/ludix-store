@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/core/api.service';
 import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -10,7 +11,8 @@ import { ColumnConfig, TableModule } from 'src/app/shared/table/table';
   imports: [
     CommonModule, 
     RouterModule,  
-    TableModule
+    TableModule,
+    TranslateModule
   ],
   templateUrl: './subgroups-list.html',
   styleUrl: './subgroups-list.scss'
@@ -21,11 +23,11 @@ export class SubgroupsList {
   error = '';
 
   columns: ColumnConfig[] = [
-    { key: 'groupCode', label: 'Group Code', type: 'text' },
-    { key: 'groupName', label: 'Group Name', type: 'text' },
-    { key: 'code', label: 'Code', type: 'text' },
-    { key: 'name', label: 'Name', type: 'text' },
-    { key: 'code', label: 'Details', type: 'link', path: '/groups' }
+    { key: 'groupCode', label: 'subgroups.group_code', type: 'text' },
+    { key: 'groupName', label: 'subgroups.group_name', type: 'text' },
+    { key: 'code', label: 'subgroups.code', type: 'text' },
+    { key: 'name', label: 'subgroups.name', type: 'text' },
+    { key: 'code', label: '', type: 'link', path: '/groups' }
   ];
 
   constructor(private api: ApiService) {}

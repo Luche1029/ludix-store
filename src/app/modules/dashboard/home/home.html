@@ -1,55 +1,35 @@
 <div class="dashboard-container">
   
   <div class="dashboard-header">
-    <h2>Dashboard</h2>
+    <h2>{{ 'dashboard.title' | translate }}</h2>
   </div>
-
-  <!--div class="dashboard-actions">
-    <div class="action-card">
-      <div class="action-content">
-        <h3>Place an Order</h3>
-        <p>Search Products and Create Order Lines</p>
-      </div>
-      <div class="action-icon">
-        <i class="material-icons">shopping_cart</i>
-      </div>
-    </div>
-
-    <div class="action-card">
-      <div class="action-content">
-        <h3>Make a Payment</h3>
-        <p>Credit Card, PayPal, Worldpay, On Account</p>
-      </div>
-      <div class="action-icon">
-        <i class="material-icons">credit_card</i>
-      </div>
-    </div>
-  </div-->
 
   <div class="dashboard-stats">
     <div class="stat-card">
-      <p>Ultimo ordine</p>
+      <p>{{ 'dashboard.last_order' | translate }}</p>
       <h3>2100.50 €</h3>
     </div>
     <div class="stat-card">
-      <p>Ordine in arrivo</p>
+      <p>{{ 'dashboard.incoming_order' | translate }}</p>
       <h3>369.22 €</h3>
     </div>
     <div class="stat-card">
-      <p>Totale in sospeso</p>
-      <h3>1568.50 €</h3>
+      <p>{{ 'dashboard.total' | translate }}</p>
+      <h3>51568.50 €</h3>
     </div>
   </div>
 
   <div class="dashboard-tables">
     <div class="table-card">
-      <div class="table-header">Ultimi 5 ordini</div>
+      <div class="table-header">
+        {{ 'dashboard.last_orders_title' | translate }}
+      </div>
       <table>
         <thead>
           <tr>
-            <th>Numero d'ordine</th>
-            <th>Data</th>
-            <th>Status</th>
+            <th>{{ 'dashboard.order_number' | translate }}</th>
+            <th>{{ 'dashboard.order_date' | translate }}</th>
+            <th>{{ 'dashboard.order_status' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -63,13 +43,15 @@
     </div>
 
     <div class="table-card">
-      <div class="table-header">Ordini da spedire</div>
+      <div class="table-header">
+        {{ 'dashboard.shipped_orders_title' | translate }}
+      </div>
       <table>
         <thead>
           <tr>
-            <th>LDV</th>
-            <th>Data</th>
-            <th>Status</th>
+            <th>{{ 'dashboard.ldv' | translate }}</th>
+            <th>{{ 'dashboard.delivery_date' | translate }}</th>
+            <th>{{ 'dashboard.delivery_status' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -81,26 +63,6 @@
         </tbody>
       </table>
     </div>
-
-    <!--div class="table-card">
-      <div class="table-header">Outstanding Payments</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Invoice Number</th>
-            <th>Due Date</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let payment of payments">
-            <td>{{ payment.number }}</td>
-            <td>{{ payment.date }}</td>
-            <td>{{ payment.amount | currency:'GBP' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div-->
   </div>
 
 </div>

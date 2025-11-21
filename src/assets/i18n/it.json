@@ -1,31 +1,195 @@
 {
-  "sidebar.dashboard": "Dashboard",
-  "sidebar.orders": "Ordini",
-  "sidebar.groups": "Gruppi",
-  "Groups List": "Lista gruppi",
-  "Add group": "Aggiungi gruppo",
-  "sidebar.subgroups": "Sottogruppi",
-  "sidebar.subgroups_list": "Lista sottogruppi",
-  "sidebar.add_subgroup": "Aggiungi sottogruppo",
-  "sidebar.stores": "Negozi",
-  "sidebar.stores_list": "Lista negozi",
-  "sidebar.add_store": "Aggiungi negozio",
-  "sidebar.addresses": "Indirizzi",
-  "Lista indirizzi": "Lista indirizzi",
-  "Nuovo indirizzo": "Nuovo indirizzo",
-  "sidebar.settings": "Impostazioni",
-  "Account": "Account",
-  "sidebar.editor": "Editor",
-  "Brand": "Brand",
-  "sidebar.brands_list": "Lista brand",
-  "sidebar.add_brand": "Aggiungi brand",
-  "Categories": "Categorie",
-  "sidebar.categories_list": "Lista categorie",
-  "sidebar.add_category": "Aggiungi categoria",
-  "Products": "Prodotti",
-  "sidebar.product_list": "Lista prodotti",
-  "sidebar.add_product": "Aggiungi prodotto",
-  "Presets": "Preset",
-  "sidebar.by_game_app": "Per Gioco / App",
-  "sidebar.by_price": "Per Prezzo"
+  "layout": {
+    "dashboard": "Dashboard",
+    "orders": "Ordini",
+    "groups": "Gruppi",
+    "groups_list": "Lista gruppi",
+    "add_group": "Aggiungi gruppo",
+
+    "subgroups": "Sottogruppi",
+    "subgroups_list": "Lista sottogruppi",
+    "add_subgroup": "Aggiungi sottogruppo",
+
+    "stores": "Negozi",
+    "stores_list": "Lista negozi",
+    "add_store": "Aggiungi negozio",
+
+    "addresses": "Indirizzi",
+    "addresses_list": "Lista indirizzi",
+    "new_address": "Nuovo indirizzo",
+
+    "settings": "Impostazioni",
+    "settings_account": "Account",
+
+    "editor": "Editor",
+
+    "brands": "Marche",
+    "brands_list": "Lista marche",
+    "add_brand": "Aggiungi marca",
+
+    "categories": "Categorie",
+    "categories_list": "Lista categorie",
+    "add_category": "Aggiungi categoria",
+
+    "products": "Prodotti",
+    "product_list": "Lista prodotti",
+    "add_product": "Aggiungi prodotto",
+
+    "presets": "Preset",
+    "by_game_app": "Per applicazione",
+    "by_price": "Per fascia di prezzo",
+
+    "page":"Pag.",
+    "of":"di",
+    "prev":"Prec",
+    "next":"Succ",
+    "details":"Dettagli",
+    "details_loading": "Caricamento...",
+    "details_error": "Errore",
+    "search":"Cerca...",
+    "save":"Salva"
+  },
+
+  "dashboard": {
+    "title": "Dashboard",
+
+    "last_order": "Ultimo ordine",
+    "incoming_order": "Ordine in arrivo",
+    "total": "Totale",
+
+    "last_orders_title": "Ultimi ordini",
+    "order_number": "Numero d'ordine",
+    "order_date": "Data",
+    "order_status": "Status",
+
+    "shipped_orders_title": "Ordini spediti",
+    "ldv": "LDV",
+    "delivery_date": "Data",
+    "delivery_status": "Status" 
+  },
+
+  "orders": {
+    "title":"Ordini",
+
+    "all_groups":"Tutti i gruppi",
+    "all_subgroups":"Tutti i sottogruppi",
+    "all_stores":"Tutti i negozi",
+    "all_status":"Tutti gli stati",
+    "apply":"applica",
+
+    "order_number": "Numero d'ordine",
+    "pn": "PN",
+    "qt": "Qt",
+    "dealer": "Negozio",
+    "status": "Status",
+    "store": "Negozio",
+    "date": "Data",
+    "total": "Totale",
+
+    "approve_order": "Approva ordine",
+    "cancel_order": "Annulla ordine",
+    "request_cancel_order": "Richiedi annullamento ordine",
+    "mark_received": "Segna come ricevuto",
+    "request_return": "Richiedi reso",
+
+    "address_title": "Indirizzo",
+    "address_edit": "Modifica indirizzo",
+    "address_cancel": "Annulla",
+    "address_save": "Salva indirizzo",
+
+    "address_vat": "P.IVA",
+    "address_first_name": "Nome",
+    "address_last_name": "Cognome",
+    "address_address": "Indirizzo",
+    "address_zip": "CAP",
+    "address_city": "Città",
+    "address_province": "Provincia",
+    "address_country": "Nazione",
+    "address_phone": "Telefono",
+    "address_email": "Email",
+
+    "pc_title": "PC",
+    "pc_label": "PC:",
+    "pc_hide_details": "Nascondi dettagli",
+    "pc_show_details": "Mostra dettagli",
+
+    "accessories_title": "Accessori",
+    "extra_components_title": "Componenti Extra"
+  
+  },
+
+  "groups": {
+    "title": "Gruppi",
+    "code":"Codice",
+    "name":"Nome",
+    "details":"Dettagli",
+
+    "add_group":"Aggiungi gruppo",
+    "supplier":"Supplier",
+    "select_supplier":"Seleziona il supplier",
+    "logo":"Logo"
+  },
+
+  "subgroups": {
+    "title":"Insegne",
+
+    "group_code":"Codice gruppo",
+    "group_name":"Nome gruppo",
+    "code":"Codice",
+    "name":"Nome",
+
+    "add_subgroup":"Aggiungi insegna",
+    "group":"Gruppo",
+    "select_group":"seleziona il gruppo",
+    "max_pc_sold":"Numero massimo di PC in un ordine (-1 nessun limite)",
+    "show_user_data":"Mostra i dati dell'utente",
+    "show_links":"Mostra i link per i prodotti",
+    "custom_banner":"Banner personalizzato"
+  },
+
+  "addresses": {
+   
+  },
+
+  "auth": {
+    "login": {
+     
+    }
+  },
+
+  "editor": {
+
+    "brands": {
+   
+    },
+
+    "categories": {
+    
+    },
+
+    "presets": {
+   
+    },
+
+    "products": {
+    
+    }
+  },
+
+  "settings": {
+  
+  },
+
+  "stores": {
+   
+  },
+
+
+  "messages": {
+
+  },
+
+  "db":{
+
+  }
 }
