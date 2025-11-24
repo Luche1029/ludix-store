@@ -1,23 +1,23 @@
 <div class="group-form">
-  <h2>Create Brand</h2>
+  <h2>{{ 'editor.brands.add_new_brand' | translate}}</h2>
 
   <form (ngSubmit)="submit()">
-    <label>Name</label>
+    <label>{{ 'editor.brands.name' | translate}}</label>
     <input type="text" [(ngModel)]="brand" name="brand" required />
 
-    <label>Code</label>
+    <label>{{ 'editor.brands.code' | translate}}</label>
     <input type="text" [(ngModel)]="code" name="code" required />
 
-    <label>Logo</label>
+    <label>{{ 'editor.brands.logo' | translate}}</label>
     <input type="file" (change)="onFileChange($event, 'L')" />
 
-    <label>Svg Label</label>
+    <label>{{ 'editor.brands.svg_label' | translate}}</label>
     <input type="file" (change)="onFileChange($event, 'S')" />
 
-    <label>Powered Image</label>
+    <label>{{ 'editor.brands.powered_logo' | translate}}</label>
     <input type="file" (change)="onFileChange($event, 'P')" />
 
-    <button type="submit" class="cta">Save</button>
+    <button type="submit" class="cta">{{ 'layout.save' | translate}}</button>
 
     <p class="error" *ngIf="error">{{ error }}</p>
     <p class="success" *ngIf="success">{{ success }}</p>

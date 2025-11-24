@@ -5,13 +5,15 @@ import { ApiService } from 'src/app/core/api.service';
 import { ColumnConfig } from 'src/app/shared/table/table';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories-list',
   imports: [
     CommonModule, 
     RouterModule,  
-    DragDropModule
+    DragDropModule,
+    TranslateModule
   ],
   templateUrl: './categories-list.html',
   styleUrl: './categories-list.scss'

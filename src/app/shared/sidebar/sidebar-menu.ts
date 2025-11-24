@@ -89,8 +89,8 @@ export const SIDEBAR_MENU: SidebarItem[] = [
         label: 'layout.products', 
         icon: 'memory', 
         children: [
-          { label: 'layout.product_list', route: '/product', icon: 'list' },
-          { label: 'layout.add_product', route: '/product/new', icon: 'add' }
+          { label: 'layout.product_list', route: '/products', icon: 'list' },
+          { label: 'layout.add_product', route: '/products/new', icon: 'add' }
         ] 
       },
       { 

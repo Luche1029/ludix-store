@@ -2,11 +2,17 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-addresses-list',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [
+    NgIf, 
+    NgFor, 
+    RouterLink,
+    TranslateModule
+  ],
   templateUrl: './addresses-list.html',
   styleUrl: './addresses-list.scss',
 })

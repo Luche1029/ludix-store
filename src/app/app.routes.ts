@@ -27,6 +27,9 @@ import { BrandForm } from './modules/editor/brands/brand-form/brand-form';
 import { CategoriesList } from './modules/editor/categories/categories-list/categories-list';
 import { CategoryForm } from './modules/editor/categories/category-form/category-form';
 import { CategoryDetails } from './modules/editor/categories/category-details/category-details';
+import { ProductDetails } from './modules/editor/products/product-details/product-details';
+import { ProductForm } from './modules/editor/products/product-form/product-form';
+import { ProductsList } from './modules/editor/products/products-list/products-list';
 import {ByApp} from './modules/editor/presets/by-app/by-app';
 import {ByPrice} from './modules/editor/presets/by-price/by-price';
 
@@ -63,6 +66,9 @@ export const routes: Routes = [
       { path: 'categories', component: CategoriesList },
       { path: 'categories/new', component: CategoryForm },
       { path: 'categories/:id', component: CategoryDetails },
+      { path: 'products', component: ProductsList },
+      { path: 'products/new', component: ProductForm },
+      { path: 'products/:id', component: ProductDetails },
       { path: 'by-app', component: ByApp},
       { path: 'by-price', component: ByPrice}
     ],

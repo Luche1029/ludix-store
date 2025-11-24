@@ -1,41 +1,41 @@
 <div class="group-form">
-  <h2>Create Category</h2>
+  <h2>{{'editor.categories.add_new_category' | translate}}</h2>
 
   <form (ngSubmit)="submit()">
-    <label>Name</label>
+    <label>{{'editor.categories.name' | translate}}</label>
     <input type="text" [(ngModel)]="category" name="categoory" required />
 
-    <label>Code</label>
+    <label>{{'editor.categories.code' | translate}}</label>
     <input type="text" [(ngModel)]="code" name="code" required />
 
-    <label>Max quantity in configuration</label>
+    <label>{{'editor.categories.max_qt_in_configuration' | translate}}</label>
     <select [(ngModel)]="qtmng" name="qtmng" required>
         <optgroup label="Mandatory">
-            <option value="SINGLE_MANDATORY">Only one component</option>
-            <option value="MULTI_EQU_MANDATORY">One or more of the same component</option>
-            <option value="MULTI_NEQ_MANDATORY">One or more components, even different ones</option>
+            <option value="SINGLE_MANDATORY">{{'editor.categories.SINGLE_MANDATORY' | translate}}</option>
+            <option value="MULTI_EQU_MANDATORY">{{'editor.categories.MULTI_EQU_MANDATORY' | translate}}</option>
+            <option value="MULTI_NEQ_MANDATORY">{{'editor.categories.MULTI_NEQ_MANDATORY' | translate}}</option>
         </optgroup>
         <optgroup label="Optional">
-            <option value="SINGLE_OPTIONAL">Max one component</option>
-            <option value="MULTI_EQU_OPTIONAL">Zero or more of the same component</option>
-            <option value="MULTI_NEQ_OPTIONAL">Zero or more components, even different ones</option>
+            <option value="SINGLE_OPTIONAL">{{'editor.categories.SINGLE_OPTIONAL' | translate}}</option>
+            <option value="MULTI_EQU_OPTIONAL">{{'editor.categories.MULTI_EQU_OPTIONAL' | translate}}</option>
+            <option value="MULTI_NEQ_OPTIONAL">{{'editor.categories.MULTI_NEQ_OPTIONAL' | translate}}</option>
         </optgroup>
     </select> 
     
-    <label>Wordpress ID</label>
+    <label>{{'editor.categories.wp_id' | translate}}</label>
     <input type="text" [(ngModel)]="wp_id" name="wp_id" required />
 
-    <label>Short description required</label>
+    <label>{{'editor.categories.short_description_required' | translate}}</label>
     <select [(ngModel)]="sdr" name="sdr" required>
-        <option value="0">No</option>
-        <option value="1">Yes</option>
+        <option value="0">{{'layout.no' | translate}}</option>
+        <option value="1">{{'layout.yes' | translate}}</option>
     </select>
 
-    <label>Icon</label>
+    <label>{{'editor.categories.icon' | translate}}</label>
     <input type="file" (change)="onFileChange($event)" />
 
 
-    <button type="submit" class="cta">Save</button>
+    <button type="submit" class="cta">{{'layout.save' | translate}}</button>
 
     <p class="error" *ngIf="error">{{ error }}</p>
     <p class="success" *ngIf="success">{{ success }}</p>

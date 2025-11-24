@@ -1,5 +1,5 @@
 <section class="categories">
-  <h2>Categories</h2>
+  <h2>{{ 'editor.categories.title' | translate }}</h2>
 
   <div 
     cdkDropList 
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <button class="reset" (click)="resetOrder()">reset order</button>
+  <button class="reset" (click)="resetOrder()">{{ 'editor.categories.reset_order' | translate }}</button>
 
   <p class="error" *ngIf="error">{{ error }}</p>
 </section>

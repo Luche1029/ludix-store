@@ -18,12 +18,12 @@
         <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
       </select>
 
-      <button type="submit">{{ 'layout.apply' | translate}}</button>
+      <button type="submit">{{ 'stores.apply' | translate}}</button>
     </form>
   </div>
 
   
 <app-table [data]="stores" [columns]="columns"></app-table>
 
-  <a routerLink="/stores/new" class="add-button">+ {{ 'stores.title' | translate}}</a>
+  <a routerLink="/stores/new" class="add-button">{{ 'stores.add_store' | translate}}</a>
 </div>

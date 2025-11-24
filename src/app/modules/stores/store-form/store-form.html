@@ -1,43 +1,43 @@
 <div class="store-form">
-  <h2>Add New Store</h2>
+  <h2>{{ 'stores.add_store' | translate}}</h2>
 
   <form (ngSubmit)="save()">
-    <label>Name
+    <label>{{ 'stores.name' | translate}}
       <input type="text" [(ngModel)]="store.name" name="name" required />
     </label>
 
-    <label>Code
+    <label>{{ 'stores.code' | translate}}
       <input type="text" [(ngModel)]="store.code" name="code" required />
     </label>
 
-    <label>Location
+    <label>{{ 'stores.location' | translate}}
       <input type="text" [(ngModel)]="store.location" name="location" />
     </label>
 
-    <label>Type
+    <label>{{ 'stores.type' | translate}}
       <input type="text" [(ngModel)]="store.type" name="type" />
     </label>
 
-    <label>Manager
+    <label>{{ 'stores.manager' | translate}} 
       <input type="text" [(ngModel)]="store.manager" name="manager" />
     </label>
 
-    <label>Email
+    <label>{{ 'stores.email' | translate}}      
       <input type="email" [(ngModel)]="store.email" name="email" />
     </label>
 
-    <label>Phone
+    <label>{{ 'stores.phone' | translate}}      
       <input type="text" [(ngModel)]="store.phone" name="phone" />
     </label>
 
     <label class="checkbox">
-      <input type="checkbox" [(ngModel)]="store.active" name="active" />
-      Active Store
+      <input type="checkbox" [(ngModel)]="store.active" name="active" />      
+      {{ 'stores.active_store' | translate}}
     </label>
 
     <div class="actions">
-      <button type="submit">Save</button>
-      <button type="button" (click)="back()">Cancel</button>
+      <button type="submit">{{ 'layout.save' | translate}}</button>
+      <button type="button" (click)="back()">{{ 'layout.cancel' | translate}}</button>
     </div>
   </form>
 </div>

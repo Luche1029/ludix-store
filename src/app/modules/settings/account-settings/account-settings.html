@@ -1,33 +1,34 @@
 <div class="account-settings">
-  <h2>Account</h2>
+  <h2>{{ 'settings.account.account' | translate }}</h2>
 
   <form (ngSubmit)="save()">
-    <label>Nome
+    <label>{{ 'settings.account.name' | translate }}
       <input type="text" [(ngModel)]="user.name" name="name" required />
     </label>
 
-    <label>Email
+    <label>{{ 'settings.account.email' | translate }}
       <input type="email" [(ngModel)]="user.email" name="email" required />
     </label>
 
-    <label>Telefono
+    <label>{{ 'settings.account.phone' | translate }}
       <input type="text" [(ngModel)]="user.phone" name="phone" />
     </label>
 
-    <label>Nuova Password
+    <label>{{ 'settings.account.new_password' | translate }}
       <input type="password" [(ngModel)]="user.password" name="password" />
     </label>
 
-    <label>Conferma Password
+    <label>{{ 'settings.account.confirm_password' | translate }}
       <input type="password"  />
     </label>
 
-    <label>PIN
+    <label>{{ 'settings.account.pin' | translate }}
       <input type="password" />
     </label>
 
     <div class="actions">
-      <button type="submit">Save</button>
+      <button type="submit">{{ 'layout.save' | translate }}</button>
+      <button type="button" (click)="cancel()">{{ 'layout.cancel' | translate}}</button>
     </div>
   </form>
 </div>

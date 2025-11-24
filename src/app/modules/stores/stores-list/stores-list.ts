@@ -34,8 +34,8 @@ export class StoresList {
   };
 
   columns: ColumnConfig[] = [
-    { key: 'name', label: 'Name', type: 'text' },
-    { key: 'code', label: 'Code', type: 'text' }
+    { key: 'name', label: 'stores.name', type: 'text' },
+    { key: 'code', label: 'stores.code', type: 'text' }
   ];
   constructor(private api: ApiService) {}
 

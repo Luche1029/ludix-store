@@ -47,7 +47,17 @@
     "details_loading": "Loading...",
     "details_error": "Error",
     "search":"Search...",
-    "save":"Save"
+    "save":"Save",
+    "cancel":"Cancel",
+    "edit":"Edit",
+    "no":"no",
+    "yes":"yes"
+  },
+
+  "auth": {
+    "login": {
+     
+    }
   },
 
   "dashboard": {
@@ -67,6 +77,7 @@
     "delivery_date": "Date",
     "delivery_status": "Status"
   },
+
   "orders": {
 
     "title":"Orders",
@@ -146,25 +157,83 @@
     "custom_banner":"Custom banner"
   },
 
+  "stores": {
+    "title":"Stores",
+    "all_groups":"All groups",
+    "all_subgroups":"All sub-groups",
+    "name":"Name",
+    "code":"Code",    
+    "apply":"apply",
+    "add_store":"Add store",
 
-  "addresses": {
-   
+    "location":"Location",
+    "type":"Type",
+    "manager":"Manager",
+    "email":"Email",
+    "phone":"Phone",
+    "active_store":"Active store",
+    "cancel":"Cancel"
   },
 
-  "auth": {
-    "login": {
-     
+  "addresses": {
+    "saved_addresses":"Saved addresses",
+    "contact":"Contact",
+    "phone":"Phone",
+    "email":"Email",
+    "default_address":"Default address",
+
+    "add_new_address":"Add new address",
+    "label":"Label",
+    "address_line_1":"Address - line 1",
+    "address_line_2":"Address - line 2",
+    "zip":"Zip",
+    "city":"City",
+    "province":"Province",
+    "country":"Country"
+  },
+
+  "settings": {
+    "account": {
+      "account":"Account",
+      "name":"Name",
+      "email":"Email",
+      "phone":"Phone",
+      "new_password":"New password",
+      "confirm_password":"Confirm password",
+      "pin":"PIN"
     }
   },
 
   "editor": {
 
     "brands": {
-   
+      "title":"Brands",
+      "code":"Code",
+      "name":"Name",
+
+      "add_new_brand":"Add new brand",
+      "logo":"Logo",
+      "svg_label":"Svg Label",
+      "powered_logo":"Logo \"powered by\""
     },
 
     "categories": {
-    
+      "title":"Categories",
+      "reset_order":"reset order",
+
+      "code":"Code",
+      "name":"Name",
+      "add_new_category":"Add new category",
+      "max_qt_in_configuration": "Max qty in configuration",
+      "SINGLE_MANDATORY":"Only one component",
+      "MULTI_EQU_MANDATORY":"One or more of the same model",
+      "MULTI_NEQ_MANDATORY":"One or more components, even different models",
+      "SINGLE_OPTIONAL":"Max one component",
+      "MULTI_EQU_OPTIONAL":"Zero or more of the same model",
+      "MULTI_NEQ_OPTIONAL":"Zero or more components, even different models",
+      "short_description_required":"Short description required",
+      "wp_id":"Wordpress ID",
+      "icon":"Icon"
     },
 
     "presets": {
@@ -176,13 +245,9 @@
     }
   },
 
-  "settings": {
-  
-  },
 
-  "stores": {
-   
-  },
+
+
 
   "messages": {
 

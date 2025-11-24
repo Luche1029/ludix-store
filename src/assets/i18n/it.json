@@ -47,7 +47,15 @@
     "details_loading": "Caricamento...",
     "details_error": "Errore",
     "search":"Cerca...",
-    "save":"Salva"
+    "save":"Salva",
+    "cancel":"Annulla",
+    "edit":"Edit"
+  },
+
+  "auth": {
+    "login": {
+     
+    }
   },
 
   "dashboard": {
@@ -147,24 +155,82 @@
     "custom_banner":"Banner personalizzato"
   },
 
-  "addresses": {
-   
+  "stores": {
+    "title":"Negozio",
+    "all_groups":"Tutti i gtuppi",
+    "all_subgroups":"Tutti i sottogruppi",
+    "name":"Nome",
+    "code":"Codice",    
+    "apply":"applica",
+    "add_store":"Aggiungi negozio",
+
+    "location":"Location",
+    "type":"Tipo",
+    "manager":"Manager",
+    "email":"Email",
+    "phone":"Phone",
+    "active_store":"Negozio attivo"
   },
 
-  "auth": {
-    "login": {
-     
+  "addresses": {
+    "saved_addresses":"Indirizzi salvati",
+    "contact":"Contatto",
+    "phone":"Telefono",
+    "email":"Email",
+    "default_address":"Indirizzo predefinito",
+
+    "add_new_address":"Aggiungi un nuovo indirizzo",
+    "label":"Etichetta",
+    "address_line_1":"Indirizzo - linea 1",
+    "address_line_2":"Indirizzo - linea 2",
+    "zip":"CAP",
+    "city":"Città",
+    "province":"Provincia",
+    "country":"Stato"
+  },
+
+  "settings": {
+    "account": {
+      "account":"Account",
+      "name":"Nome",
+      "email":"Email",
+      "phone":"Telefono",
+      "new_password":"Nuova password",
+      "confirm_password":"Conferma password",
+      "pin":"PIN"
     }
   },
 
   "editor": {
 
     "brands": {
-   
+      "title":"Brand",
+      "code":"Codice",
+      "name":"Nome",
+
+      "add_new_brand":"Aggiungi nuovo brand",
+      "logo":"Logo",
+      "svg_label":"Etichetta Svg",
+      "powered_logo":"Logo \"powered by\""
     },
 
     "categories": {
-    
+      "title":"Categorie",
+      "reset_order":"reimposta ordine",
+
+      "code":"Codice",
+      "name":"Nome",
+      "add_new_category":"Aggiungi nuova categoria",
+      "max_qt_in_configuration": "Quantità massima in una configurazione",
+      "SINGLE_MANDATORY":"Solo un componente",
+      "MULTI_EQU_MANDATORY":"Uno o più componenti dello stesso modello",
+      "MULTI_NEQ_MANDATORY":"Uno o più componenti, anche di modelli diversi",
+      "SINGLE_OPTIONAL":"Un componente al massimo",
+      "MULTI_EQU_OPTIONAL":"Zero o più componenti dello stesso modello",
+      "MULTI_NEQ_OPTIONAL":"Zero o più componenti, anche di modelli diversi",
+      "short_description_required":"Descrizione breve richiesta",
+      "wp_id":"ID Wordpress",
+      "icon":"Icona"
     },
 
     "presets": {
@@ -175,15 +241,6 @@
     
     }
   },
-
-  "settings": {
-  
-  },
-
-  "stores": {
-   
-  },
-
 
   "messages": {
 
