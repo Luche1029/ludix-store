@@ -172,11 +172,16 @@ export class AccessoriesList {
       products: sub.brands.flatMap(b => b.products).map(p => ({
         pn: p.pn,
       })),
-      visible: sub.isVisible
+      isVisible: sub.isVisible
     };
 
-    this.accessoryService.setMultipleAccessoryVisibility(payload).subscribe(() => {
-      this.updateSubcategoryVisibility();
+    this.accessoryService.setMultipleAccessoryVisibility(payload).subscribe(res => {
+      console.log(res);
+      if (res.success) {
+        sub.brands.flatMap(b => b.products).forEach(p =>{
+          p.isVisible = sub.isVisible;
+        });
+      }
     });
   }
 

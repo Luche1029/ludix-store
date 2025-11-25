@@ -17,6 +17,6 @@ export class AccessoryService {
   }
 
   setMultipleAccessoryVisibility(payload: any): Observable<AccessoryResponse> {
-    return this.api.post('setMultipleAccessoryVisibility', {payload});
+    return this.api.post('setMultipleAccessoryVisibility', payload);
   }
 }
