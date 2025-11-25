@@ -60,7 +60,8 @@ export const SIDEBAR_MENU: SidebarItem[] = [
     icon: 'settings',
     roles: ['ADM', 'SUP', 'CAT', 'STO'],
     children: [
-      { label: 'Account', route: '/settings/account', icon: 'person' },
+      { label: 'layout.settings_account', route: '/settings/account', icon: 'person' },
+      { label: 'layout.settings_accessories_list', route: '/settings/accessories', icon: 'person' },
    //   { label: 'Preferences', route: '/settings/preferences', icon: 'tune' }
     ]
   },

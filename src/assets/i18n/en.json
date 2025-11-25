@@ -1,5 +1,5 @@
 {
-    "layout": {
+  "layout": {
     "dashboard": "Dashboard",
     "orders": "Orders",
     "groups": "Groups",
@@ -20,6 +20,7 @@
 
     "settings": "Settings",
     "settings_account": "Account",
+    "settings_accessories_list":"Accessories list",
 
     "editor": "Editor",
 

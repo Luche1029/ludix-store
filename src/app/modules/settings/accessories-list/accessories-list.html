@@ -1,0 +1,98 @@
+  <div class="filters">
+    <form (ngSubmit)="applyFilters()">
+
+      <!-- ADM: Selezione gruppo -->
+      <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
+        <option value="">{{ 'orders.all_groups' | translate }}</option>
+        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+      </select>
+
+      <!-- ADM + SUP: Selezione sottogruppo -->
+      <select 
+        *ngIf="['ADM', 'SUP'].includes(user?.role)"
+        [(ngModel)]="filters.subgroup"
+        name="subgroup"
+        [disabled]="user?.role === 'ADM' && !filters.group"
+        (change)="onSubgroupChange()">
+        <option value="">{{ 'orders.all_subgroups' | translate }}</option>
+        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+      </select>
+
+      <!-- ADM, SUP, CAT: Selezione store -->
+      <select 
+        *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)"
+        [(ngModel)]="filters.store"
+        name="store"
+        [disabled]="(user?.role === 'ADM' && !filters.subgroup) || (user?.role === 'SUP' && !filters.subgroup)">
+        <option value="">{{ 'orders.all_stores' | translate }}</option>
+        <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
+      </select>
+
+      <!-- Visibili a tutti -->
+      <input type="date" [(ngModel)]="filters.startDate" name="startDate" placeholder="{{ 'orders.start_date' | translate }}" />
+      <input type="date" [(ngModel)]="filters.endDate" name="endDate" placeholder="{{ 'orders.end_date' | translate }}" />
+
+      <select [(ngModel)]="filters.status" name="status">
+        <option value="">{{ 'orders.all_status' | translate }}</option>
+        <option *ngFor="let s of status" [value]="s.id">{{ s.status }}</option>
+      </select>
+
+      <button type="submit">{{ 'orders.apply' | translate }}</button>
+    </form>
+
+    <div *ngFor="let category of categories">
+  <h3>{{ category.name }}</h3>
+
+  <div *ngFor="let sub of category.subcategories">
+    <h4>
+        <div class="form-check form-switch">
+            <input 
+                class="form-check-input" 
+                type="checkbox" 
+                role="switch" 
+                [checked]="sub.isVisible"
+                (change)="toggleCatVisibility(sub)"
+            />
+            <label class="form-check-label">                
+                {{ sub.name }}
+            </label>
+        </div>
+    </h4>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>{{'settings.accessories.logo' | translate}}</th>
+          <th>{{'settings.accessories.product' | translate}}</th>
+          <th>{{'settings.accessories.pn' | translate}}</th>
+          <th>{{'settings.accessories.shown' | translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let brand of sub.brands">
+          <tr *ngFor="let p of brand.products">
+            <td><img [src]="'https://cdn.ludix.ai/' + p.mainImage" width="40" /></td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.pn }}</td>
+            <td>
+                <div class="form-check form-switch">
+                    <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    role="switch" 
+                    [checked]="p.isVisible"
+                    (change)="toggleVisibility(p)"
+                    />
+                    <label class="form-check-label">
+                    {{ p.isVisible ? 'visibile' : 'nascosto' }}
+                    </label>
+                </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  </div>

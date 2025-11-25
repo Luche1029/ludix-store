@@ -11,6 +11,7 @@ import { StoresList } from './modules/stores/stores-list/stores-list';
 import { StoreDetails } from './modules/stores/store-details/store-details';
 import { StoreForm } from './modules/stores/store-form/store-form';
 import { AccountSettings } from './modules/settings/account-settings/account-settings';
+import { AccessoriesList } from './modules/settings/accessories-list/accessories-list';
 import { Preferences } from './modules/settings/preferences/preferences';
 import { Layout } from './modules/layout/layout';
 import { GroupsList } from './modules/groups/groups-list/groups-list';
@@ -54,6 +55,7 @@ export const routes: Routes = [
       { path: 'stores/:id', component: StoreDetails },
       { path: 'settings/account', component: AccountSettings },
       { path: 'settings/preferences', component: Preferences },
+      { path: 'settings/accessories', component: AccessoriesList },
       { path: 'groups', component: GroupsList },
       { path: 'groups/new', component: GroupForm },
       { path: 'groups/:id', component: GroupDetails },
