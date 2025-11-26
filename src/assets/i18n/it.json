@@ -199,6 +199,12 @@
       "new_password":"Nuova password",
       "confirm_password":"Conferma password",
       "pin":"PIN"
+    },
+    "accessories": {
+      "logo":"Logo",
+      "product":"Prodotto",
+      "pn":"PN",
+      "shown":"Mostrato"
     }
   },
 

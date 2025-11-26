@@ -3,11 +3,9 @@ import { ApiService } from 'src/app/core/api.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TableModule } from 'src/app/shared/table/table';
 import { FormsModule } from '@angular/forms';
 import { AccessoryService } from '../../../core/accessory.service';
 import { AccessoryCategory, AccessoryProduct, AccessorySubcategory } from 'src/app/interfaces/accessory.interface';
-import { Switch } from "src/app/shared/switch/switch";
 
 @Component({
   selector: 'app-accessories-list',
@@ -18,9 +16,7 @@ import { Switch } from "src/app/shared/switch/switch";
     CommonModule,
     RouterModule,
     FormsModule,
-    TableModule,
-    TranslateModule,
-    Switch
+    TranslateModule
   ],
 })
 export class AccessoriesList {
@@ -29,16 +25,11 @@ export class AccessoriesList {
   user: any;
   filters = {
     group: '',
-    subgroup: '',
-    store: '',
-    startDate: '',
-    endDate: '',
-    status: ''
+    subgroup: ''
   };
   status: any[]= [];
   groups: any[] = [];
   subgroups: any[] = [];
-  stores: any[] = [];
   
   categories: AccessoryCategory[] = [];
 
@@ -48,23 +39,15 @@ export class AccessoriesList {
   ) {}
 
   ngOnInit(): void {
-    const subgroupCode = 'MIC-GR1';
+    const stored = localStorage.getItem('user');
+    this.user = stored ? JSON.parse(stored) : null;
+    this.loadInitialFilters();
+  }
+
+  loadAccessories(subgroupCode: string) {
     this.accessoryService.getAccessories(subgroupCode).subscribe(res => {
       if (res.success) this.categories = res.related;
       this.updateSubcategoryVisibility();
-    });
-  }
-
-  loadStatus() {
-    this.api.post<any>('/getStatus', null).subscribe({
-        next: (res) => {
-        this.status = res.status || [];
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = 'Error loading status';
-        this.loading = false;
-      }
     });
   }
 
@@ -94,56 +77,28 @@ export class AccessoriesList {
     });
   }
 
-  loadStores(subgroupCode: any) {
-    this.api.post<any>('/getStores', {subgroupCode}).subscribe({
-        next: (res) => {
-        this.stores = res.stores || [];
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = 'Error loading subgroups';
-        this.loading = false;
-      }
-    });
-  }
 
   loadInitialFilters() {
-    if (this.user.role === 'ADM') {
+    if (this.user.role === 'ADM') 
       this.loadGroups();
-    } else if (this.user.role === 'SUP') {
+    else if (this.user.role === 'SUP') 
       this.loadSubgroups(this.user.belongs);
-    } else if (this.user.role === 'CAT') {
-      this.loadStores(this.user.belongs);
-    }
+    else if (this.user.role === 'CAT') 
+      this.loadAccessories(this.user.belongs);    
   }
 
   onGroupChange() {
     this.filters.subgroup = '';
-    this.filters.store = '';
     this.subgroups = [];
-    this.stores = [];
 
     if (this.filters.group) {
       this.loadSubgroups(this.filters.group);
     }
   }
   
-  onSubgroupChange() {
-    this.filters.store = '';
-    this.stores = [];
-
-    if (this.filters.subgroup) {
-      this.loadStores( this.filters.subgroup);     
-    }
-  }
   
   applyFilters() {
-    const body = {
-      ...this.filters,
-      role: this.user.role,
-      belongs: this.user.belongs
-    };
-
+    this.loadAccessories(this.filters.subgroup);  
   }
 
   toggleVisibility(product: AccessoryProduct) {

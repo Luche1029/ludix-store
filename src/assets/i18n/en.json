@@ -202,6 +202,12 @@
       "new_password":"New password",
       "confirm_password":"Confirm password",
       "pin":"PIN"
+    },
+    "accessories": {
+      "logo":"Logo",
+      "product":"Product",
+      "pn":"SKU",
+      "shown":"Shown"
     }
   },
 
