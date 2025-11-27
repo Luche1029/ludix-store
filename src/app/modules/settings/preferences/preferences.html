@@ -15,7 +15,8 @@
         *ngIf="['ADM', 'SUP'].includes(user?.role)"
         [(ngModel)]="filters.subgroup"
         name="subgroup"
-        [disabled]="user?.role === 'ADM' && !filters.group">
+        [disabled]="user?.role === 'ADM' && !filters.group"
+        (change)="onSubgroupChange()">
         <option value="">{{ 'orders.all_subgroups' | translate }}</option>
         <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
       </select>
@@ -28,7 +29,7 @@
     </form>
   </div>
 
-  <div class="wrapper">   
+  <div class="wrapper" *ngIf="showSettings">   
     <form (submit)="updateSettings()">
     <section>
         <h3>{{ 'settings.preferences.language' | translate}}</h3>

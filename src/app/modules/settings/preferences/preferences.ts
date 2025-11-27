@@ -42,6 +42,7 @@ export class Preferences {
     whiteListEnabled: false
   };
 
+  showSettings = false;
   constructor(
     private api: ApiService,
     private settingsService: SettingsService
@@ -53,13 +54,15 @@ export class Preferences {
     this.loadInitialFilters();
   }
 
-loadSettings(subgroupCode: string) {
-  this.settingsService.getSubgroupSettings(subgroupCode).subscribe(res => {
-    if (res.success) {
-      Object.assign(this.settings, res.settings);
-    }
-  });
-}
+  loadSettings(subgroupCode: string) {
+    this.showSettings = false;
+    this.settingsService.getSubgroupSettings(subgroupCode).subscribe(res => {
+      if (res.success) {
+        Object.assign(this.settings, res.settings);
+        this.showSettings = true;
+      }
+    });
+  }
 
 
   loadInitialFilters() {
@@ -98,6 +101,7 @@ loadSettings(subgroupCode: string) {
   }
 
   onGroupChange() {
+    this.showSettings = false;
     this.filters.subgroup = '';
     this.subgroups = [];
 
@@ -106,27 +110,34 @@ loadSettings(subgroupCode: string) {
     }
   }
 
+  onSubgroupChange() {
+    this.showSettings = false;
+  }
+
   applyFilters() {
     this.loadSettings(this.filters.subgroup);
   }
 
   updateSettings() {
-    const formData = new FormData();
-    formData.append('lang', this.settings.lang);
-    formData.append('id_log_type', this.settings.loginType.toString()); 
- 
-  
-/*
-    this.api.post<any>('createGroup', formData).subscribe({
-      next: (res) => {
-        if (res.success) alert('Group saved successfully');
-        else this.error = res.error;
-      },
-      error: (err) => {
-        this.error = err.error?.error || err.message;
-      }
-    });*/
+    const payload = {
+      subgroupCode: this.user.role === 'CAT' ? this.user.belongs : this.filters.subgroup, 
+      pin_enabled: this.settings.pinEnabled,
+      lang: this.settings.lang,
+      id_handler: this.settings.handler,
+      id_log_type: this.settings.loginType,
+      id_shipping_type: this.settings.shippingType,
+      view_link: this.settings.linkEnabled,
+      store_enabled: this.settings.storeEnabled,
+      whitelist: this.settings.whiteListEnabled,
+      banner: this.settings.banner,
+      max_pc_sold: this.settings.maxPcSold,
+      show_user_data: this.settings.showUserData
+    };
 
-    alert(JSON.stringify(formData));
+    this.settingsService.setSubgroupSettings(payload).subscribe(res => {
+      if (!res.success) alert('aaaaaaaaaaaaahhhhhhh');
+    });
+
+
   }
 }

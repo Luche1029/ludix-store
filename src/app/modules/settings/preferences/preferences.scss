@@ -1,4 +1,49 @@
+select,
+input[type="number"] {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  background: #f9f9f9;
 
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    background: #fff;
+  }
+}
+
+select {
+  width: 100%;
+}
+
+input[type="number"] {
+  width: 90%;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex: 0 0 auto;
+
+  &:hover {
+    background: #0056b3;
+  }
+}
+section {
+  display: flex;
+  flex-direction: column;
+    border:1px solid #ccc;
+    padding: 9px;
+    margin-bottom: 11px;
+    
+}
 
 .filters {
   margin-bottom: 2rem;
@@ -16,47 +61,14 @@
     flex-wrap: wrap;
     gap: 1rem;
     width: 100%;
-  }
 
-  select,
-  input[type="date"] {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
-    border: 1px solid #ccc;
-    border-radius: 0.3rem;
-    background: #f9f9f9;
-    min-width: 180px;
-    flex: 1 1 auto;
-
-    &:focus {
-      outline: none;
-      border-color: #007bff;
-      background: #fff;
+    select {
+      width: 45%;
+    }
+    button {
+      width: 7%;
     }
   }
-
-  button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    flex: 0 0 auto;
-
-    &:hover {
-      background: #0056b3;
-    }
-  }
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-    border:1px solid #ccc;
-    padding: 9px;
 }
 
 .row {

@@ -1,0 +1,21 @@
+/*.layout {
+    height: 100vh;
+    position:relative
+}
+
+.header,.sidebar {
+    position: fixed;
+}
+
+.sidebar {
+    top:60px;
+}
+.header {
+    top:0px;
+    left: 0px;
+    width:100vw;
+    
+}
+.content {
+    overflow-y: auto;
+}*/
