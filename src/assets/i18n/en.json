@@ -52,7 +52,9 @@
     "cancel":"Cancel",
     "edit":"Edit",
     "no":"no",
-    "yes":"yes"
+    "yes":"yes",
+    "italian":"Italian",
+    "english":"English"
   },
 
   "auth": {
@@ -208,7 +210,35 @@
       "product":"Product",
       "pn":"SKU",
       "shown":"Shown"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "language": "Language",
+      "login_management": "Login management",
+      "login_type": "Login type",
+      "whitelist_enabled": "Whitelist enabled",
+      "orders_management": "Orders management",
+      "pin_enabled": "PIN enabled",
+      "handler": "Order confirmed by",
+      "shipping_type": "Order shipped to",
+      "maxPcSold": "Maximum number of PCs in an order",
+      "view_management": "View settings",
+      "store_enabled": "Show HW store (individual components)",
+      "link_enabled": "Show external product links",
+      "show_user_data": "Show user data",
+      "banner": "Custom banner",
+      "login_by_store":"login by store",
+      "login_by_operator":"login by operator (operator code needed)",
+      "handled_by_store":"confirmed in store",
+      "handled_by_category":"confirmed by category",
+      "ship_to_central":"shipped to the central warehouse",
+      "ship_to_store":"shipped to the store",
+      "ship_to_customer":"shipped to the customer",
+      "enabled":"enabled",
+      "disabled":"disabled",
+      "pin":"PIN"
     }
+
   },
 
   "editor": {

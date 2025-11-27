@@ -50,7 +50,9 @@
     "search":"Cerca...",
     "save":"Salva",
     "cancel":"Annulla",
-    "edit":"Edit"
+    "edit":"Edit",
+    "italian":"Italiano",
+    "english":"Inglese"
   },
 
   "auth": {
@@ -189,7 +191,6 @@
     "province":"Provincia",
     "country":"Stato"
   },
-
   "settings": {
     "account": {
       "account":"Account",
@@ -205,9 +206,35 @@
       "product":"Prodotto",
       "pn":"PN",
       "shown":"Mostrato"
+    }, 
+    "preferences": {
+      "title": "Preferenze",
+      "language":"Lingua",
+      "login_management":"Gestione accessi",
+      "login_type":"Tipo di login",
+      "whitelist_enabled":"Whitelist",
+      "orders_management":"Gestione ordini",
+      "pin_enabled":"PIN abilitato",
+      "handler":"Ordinie confermato da",
+      "shipping_type":"Ordine spedito a",
+      "maxPcSold":"Numero massimo PC in un ordine",
+      "view_management":"Gestione visualizzazioni",
+      "store_enabled":"Visualizza HW store (componenti singole)",
+      "link_enabled":"Mostra link esterni dei prodotti",
+      "show_user_data":"Mostra i dati dell'utente",
+      "banner":"Banner personalizzato",
+      "login_by_store":"login come negozio",
+      "login_by_operator":"login come operatore (occorre il codice operatore)",
+      "handled_by_store":"confermato in negozio",
+      "handled_by_category":"confermato dal category",
+      "ship_to_central":"spedito al magazzino centrale",
+      "ship_to_store":"spedito in negozio",
+      "ship_to_customer":"spedito al cliente",
+      "enabled":"abilitato",
+      "disabled":"disabilitato",
+      "pin":"PIN"
     }
   },
-
   "editor": {
 
     "brands": {

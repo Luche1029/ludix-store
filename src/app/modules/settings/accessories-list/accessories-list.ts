@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AccessoryService } from '../../../core/accessory.service';
+import { SettingsService } from '../../../core/settings.service';
 import { AccessoryCategory, AccessoryProduct, AccessorySubcategory } from 'src/app/interfaces/accessory.interface';
 
 @Component({
@@ -35,7 +35,7 @@ export class AccessoriesList {
 
   constructor(
     private api: ApiService,
-    private accessoryService: AccessoryService
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class AccessoriesList {
   }
 
   loadAccessories(subgroupCode: string) {
-    this.accessoryService.getAccessories(subgroupCode).subscribe(res => {
+    this.settingsService.getAccessories(subgroupCode).subscribe(res => {
       if (res.success) this.categories = res.related;
       this.updateSubcategoryVisibility();
     });
@@ -104,7 +104,7 @@ export class AccessoriesList {
   toggleVisibility(product: AccessoryProduct) {
     const subgroupCode = 'MIC-GR1';
     product.isVisible = !product.isVisible;
-    this.accessoryService.setAccessoryVisibility(subgroupCode, product.pn, product.isVisible).subscribe(res => { 
+    this.settingsService.setAccessoryVisibility(subgroupCode, product.pn, product.isVisible).subscribe(res => { 
        this.updateSubcategoryVisibility();
     });
   }
@@ -130,7 +130,7 @@ export class AccessoriesList {
       isVisible: sub.isVisible
     };
 
-    this.accessoryService.setMultipleAccessoryVisibility(payload).subscribe(res => {
+    this.settingsService.setMultipleAccessoryVisibility(payload).subscribe(res => {
       console.log(res);
       if (res.success) {
         sub.brands.flatMap(b => b.products).forEach(p =>{
