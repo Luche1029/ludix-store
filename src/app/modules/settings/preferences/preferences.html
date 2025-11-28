@@ -1,7 +1,7 @@
   
   <h2>{{ 'settings.preferences.title' | translate}}</h2>
 
-  <div class="filters">
+  <div class="filters" *ngIf="user.role !== 'CAT'">
     <form (ngSubmit)="applyFilters()">
 
       <!-- ADM: Selezione gruppo -->
