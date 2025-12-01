@@ -1,21 +1,23 @@
-<div class="order-details">
+<div class="container">
 
   <div *ngIf="loading">{{ 'orders.details_loading' | translate }}</div>
   <div *ngIf="error">{{ error }}</div>
 
   <div *ngIf="!loading && orderDetails">
-  <section class="pc-component two-columns">
+  <section class="grid grid-2">
 
     <!-- LEFT COLUMN -->
-    <div class="left">
-      <h2>{{ 'orders.order_number' | translate }} {{ orderDetails.orderNumber }}</h2>
-
-      <p>{{ 'orders.status' | translate }}: {{ orderDetails.status }}</p>
-      <p>{{ 'orders.store' | translate }}: {{ orderDetails.dealer }}</p>
-      <p>{{ 'orders.date' | translate }}: {{ orderDetails.date | date:'short' }}</p>
-      <p>{{ 'orders.total' | translate }}: {{ orderDetails.total }} €</p>
-
-      <div class="action-buttons">
+    <div class="tile">
+      <div class="tile-header">
+        <h2>{{ 'orders.order_number' | translate }} {{ orderDetails.orderNumber }}</h2>
+      </div>
+      <div class="tile-body">
+        <p>{{ 'orders.status' | translate }}: {{ orderDetails.status }}</p>
+        <p>{{ 'orders.store' | translate }}: {{ orderDetails.dealer }}</p>
+        <p>{{ 'orders.date' | translate }}: {{ orderDetails.date | date:'short' }}</p>
+        <p>{{ 'orders.total' | translate }}: {{ orderDetails.total }} €</p>
+      </div>
+      <div class="tile-buttons">
 
         <button class="cta"
                 (click)="updateOrderStatus(3)"
@@ -54,108 +56,99 @@
       </div>
     </div>
 
-    <!-- RIGHT COLUMN (ADDRESS FORM) -->
-    <div class="right">
-      <h3>{{ 'orders.address_title' | translate }}</h3>
+    <div class="tile">
 
       <form #addressForm="ngForm">
 
-        <div class="form-group">
-          <label>{{ 'orders.address_vat' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.vatNumber" name="vatNumber" [readonly]="!isEditable" />
+        <div class="tile-header">
+          <h2>{{ 'orders.address_title' | translate }}</h2>
         </div>
 
-        <div class="form-group">
-          <label>{{ 'orders.address_first_name' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.firstName" name="firstName" [readonly]="!isEditable" />
+        <div class="tile-body" style="margin-bottom: 55px;">
+
+          <div class="form-group">
+            <label>{{ 'orders.address_vat' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.vatNumber" name="vatNumber" [readonly]="!isEditable" />
+       
+            <label>{{ 'orders.address_first_name' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.firstName" name="firstName" [readonly]="!isEditable" />
+       
+            <label>{{ 'orders.address_last_name' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.lastName" name="lastName" [readonly]="!isEditable" />
+       
+            <label>{{ 'orders.address_address' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.address" name="address" [readonly]="!isEditable" />
+       
+            <label>{{ 'orders.address_zip' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.zip" name="zip" [readonly]="!isEditable" />
+     
+            <label>{{ 'orders.address_city' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.city" name="city" [readonly]="!isEditable" />
+        
+            <label>{{ 'orders.address_province' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.province" name="province" [readonly]="!isEditable" />
+       
+            <label>{{ 'orders.address_country' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.country" name="country" [readonly]="!isEditable" />
+         
+            <label>{{ 'orders.address_phone' | translate }}</label>
+            <input type="text" [(ngModel)]="orderDetails.address.phone" name="phone" [readonly]="!isEditable" />
+         
+            <label>{{ 'orders.address_email' | translate }}</label>
+            <input type="email" [(ngModel)]="orderDetails.address.email" name="email" [readonly]="!isEditable" />
+          </div>
         </div>
+      
+        <div class="tile-buttons">
 
-        <div class="form-group">
-          <label>{{ 'orders.address_last_name' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.lastName" name="lastName" [readonly]="!isEditable" />
+          <button class="cta"
+                  *ngIf="(orderDetails.statusId == 2 || orderDetails.statusId == 3) && !isEditable"
+                  (click)="isEditable = true">
+            <span class="material-icons">edit</span>&nbsp;
+            {{ 'orders.address_edit' | translate }}
+          </button>
+
+          <button class="cta"
+                  *ngIf="(orderDetails.statusId == 2 || orderDetails.statusId == 3) && isEditable"
+                  (click)="isEditable = false">
+            <span class="material-icons">close</span>&nbsp;
+            {{ 'orders.address_cancel' | translate }}
+          </button>
+
+          <button class="cta"
+                  type="button"
+                  (click)="saveAddress()"
+                  *ngIf="isEditable">
+            <span class="material-icons">save</span>&nbsp;
+            {{ 'orders.address_save' | translate }}
+          </button>
         </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_address' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.address" name="address" [readonly]="!isEditable" />
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_zip' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.zip" name="zip" [readonly]="!isEditable" />
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_city' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.city" name="city" [readonly]="!isEditable" />
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_province' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.province" name="province" [readonly]="!isEditable" />
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_country' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.country" name="country" [readonly]="!isEditable" />
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_phone' | translate }}</label>
-          <input type="text" [(ngModel)]="orderDetails.address.phone" name="phone" [readonly]="!isEditable" />
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'orders.address_email' | translate }}</label>
-          <input type="email" [(ngModel)]="orderDetails.address.email" name="email" [readonly]="!isEditable" />
-        </div>
-
-        <button class="cta"
-                *ngIf="(orderDetails.statusId == 2 || orderDetails.statusId == 3) && !isEditable"
-                (click)="isEditable = true">
-          <span class="material-icons">edit</span>&nbsp;
-          {{ 'orders.address_edit' | translate }}
-        </button>
-
-        <button class="cta"
-                *ngIf="(orderDetails.statusId == 2 || orderDetails.statusId == 3) && isEditable"
-                (click)="isEditable = false">
-          <span class="material-icons">close</span>&nbsp;
-          {{ 'orders.address_cancel' | translate }}
-        </button>
-
-        <button class="cta"
-                type="button"
-                (click)="saveAddress()"
-                *ngIf="isEditable">
-          <span class="material-icons">save</span>&nbsp;
-          {{ 'orders.address_save' | translate }}
-        </button>
-
       </form>
-    </div>
+      
+      </div>
+ 
   </section>
 
-    <section class="pc-component">
-      <h3>{{ 'orders.pc_title' | translate }}</h3>
+    <section class="tile">
+      <div class="tile-header">
+        <h3><strong>{{ 'orders.pc_label' | translate }}</strong> {{ orderDetails.pc.pcPn }} (x{{ orderDetails.pc.pcQty }})</h3>
+      </div>
 
-      <div class="pc-header">
-        <p><strong>{{ 'orders.pc_label' | translate }}</strong> {{ orderDetails.pc.pcPn }} (x{{ orderDetails.pc.pcQty }})</p>
-
+      <div class="tile-buttons">      
         <button (click)="togglePcDetails()" class="cta">
           <span class="material-icons">{{ showPcComponents ? 'visibility_off' : 'visibility' }}</span>&nbsp;
           {{ showPcComponents ? ('orders.pc_hide_details' | translate) : ('orders.pc_show_details' | translate) }}
         </button>
       </div>
 
-      <div *ngIf="showPcComponents" class="pc-components">
-        <div class="grid">
-          <div *ngFor="let comp of orderDetails.pc.components" class="card">
-            <img [src]="IMAGES_REMOTE_URL + comp.image" alt="{{ comp.name }}" />
+      <div *ngIf="showPcComponents" class="row" style="margin-bottom: 55px;">
+        
+          <div *ngFor="let comp of orderDetails.pc.components" class="tile">
+            <img [src]="IMAGES_REMOTE_URL + comp.image" alt="" />
             <p>{{ comp.name }}</p>
           </div>
         </div>
-      </div>
+      
     </section>
 
     <section *ngIf="orderDetails.accessories?.length">
@@ -168,10 +161,12 @@
     </section>
 
     <section *ngIf="orderDetails.extraComponents?.length">
-      <h3>{{ 'orders.extra_components_title' | translate }}</h3>
+      <div class="tile-header">
+        <h3>{{ 'orders.extra_components_title' | translate }}</h3>
+      </div>
 
-      <div class="grid">
-        <div *ngFor="let e of orderDetails.extraComponents" class="section">
+      <div class="col">
+        <div *ngFor="let e of orderDetails.extraComponents" class="row">
           <img [src]="IMAGES_REMOTE_URL + e.image" alt="{{ e.name }}" class="thumb"/>
           <p>{{ e.name }}</p>
         </div>

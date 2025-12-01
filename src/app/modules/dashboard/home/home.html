@@ -1,67 +1,81 @@
-<div class="dashboard-container">
-  
-  <div class="dashboard-header">
-    <h2>{{ 'dashboard.title' | translate }}</h2>
+<div class="container">  
+    
+  <h2>{{ 'dashboard.title' | translate }}</h2>
+
+  <div class="grid grid-3">
+    <div class="tile">
+      <div class="tile-header">
+        <p>{{ 'dashboard.last_order' | translate }}</p>
+      </div>
+      <div class="tile-body">
+        <h3>2100.50 €</h3>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-header">
+        <p>{{ 'dashboard.incoming_order' | translate }}</p>
+      </div>
+      <div class="tile-body">
+        <h3>369.22 €</h3>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile-header">
+        <p>{{ 'dashboard.total' | translate }}</p>
+      </div>
+      <div class="tile-body">
+        <h3>51568.50 €</h3>
+      </div>
+    </div>
   </div>
 
-  <div class="dashboard-stats">
-    <div class="stat-card">
-      <p>{{ 'dashboard.last_order' | translate }}</p>
-      <h3>2100.50 €</h3>
-    </div>
-    <div class="stat-card">
-      <p>{{ 'dashboard.incoming_order' | translate }}</p>
-      <h3>369.22 €</h3>
-    </div>
-    <div class="stat-card">
-      <p>{{ 'dashboard.total' | translate }}</p>
-      <h3>51568.50 €</h3>
-    </div>
-  </div>
-
-  <div class="dashboard-tables">
-    <div class="table-card">
-      <div class="table-header">
+  <div class="grid grid-2">
+    <div class="tile">
+      <div class="tile-header">
         {{ 'dashboard.last_orders_title' | translate }}
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>{{ 'dashboard.order_number' | translate }}</th>
-            <th>{{ 'dashboard.order_date' | translate }}</th>
-            <th>{{ 'dashboard.order_status' | translate }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orders">
-            <td>{{ order.number }}</td>
-            <td>{{ order.date }}</td>
-            <td>{{ order.status }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tile-body">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'dashboard.order_number' | translate }}</th>
+              <th>{{ 'dashboard.order_date' | translate }}</th>
+              <th>{{ 'dashboard.order_status' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{ order.number }}</td>
+              <td>{{ order.date }}</td>
+              <td>{{ order.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="table-card">
-      <div class="table-header">
+    <div class="tile">
+      <div class="tile-header">
         {{ 'dashboard.shipped_orders_title' | translate }}
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>{{ 'dashboard.ldv' | translate }}</th>
-            <th>{{ 'dashboard.delivery_date' | translate }}</th>
-            <th>{{ 'dashboard.delivery_status' | translate }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let delivery of deliveries">
-            <td>{{ delivery.number }}</td>
-            <td>{{ delivery.date }}</td>
-            <td>{{ delivery.status }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tile-body">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'dashboard.ldv' | translate }}</th>
+              <th>{{ 'dashboard.delivery_date' | translate }}</th>
+              <th>{{ 'dashboard.delivery_status' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let delivery of deliveries">
+              <td>{{ delivery.number }}</td>
+              <td>{{ delivery.date }}</td>
+              <td>{{ delivery.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

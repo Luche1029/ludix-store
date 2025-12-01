@@ -1,65 +1,50 @@
-<div class="address-form">
-  <h2>{{ 'addresses.add_new_address' | translate}}</h2>
+<div class="container">
 
-  <form (ngSubmit)="save()">
-    <label>
-      {{ 'addresses.label' | translate}}
+  <div class="form-group">
+    <form (ngSubmit)="save()">
+      <h2>{{ 'addresses.add_new_address' | translate}}</h2>
+      <div class="line"></div>
+      <label>{{ 'addresses.label' | translate}}</label>
       <input type="text" [(ngModel)]="formData.label" name="label" required />
-    </label>
 
-    <label>      
-      {{ 'addresses.contact' | translate}}
+
+      <label>{{ 'addresses.contact' | translate}}</label>
       <input type="text" [(ngModel)]="formData.contact" name="contact" required />
-    </label>
-
-    <label>
-      {{ 'addresses.address_line_1' | translate}}
+      
+      <label>{{ 'addresses.address_line_1' | translate}}</label>
       <input type="text" [(ngModel)]="formData.address1" name="address1" required />
-    </label>
-
-    <label>
-      {{ 'addresses.address_line_2' | translate}}
+      
+      <label> {{ 'addresses.address_line_2' | translate}}</label>
       <input type="text" [(ngModel)]="formData.address2" name="address2" />
-    </label>
-
-    <label>
-      {{ 'addresses.zip' | translate}}
+      
+      <label>{{ 'addresses.zip' | translate}}</label>
       <input type="text" [(ngModel)]="formData.zip" name="zip" required />
-    </label>
-
-    <label>      
-      {{ 'addresses.city' | translate}}
+      
+      <label>{{ 'addresses.city' | translate}}</label>
       <input type="text" [(ngModel)]="formData.city" name="city" required />
-    </label>
-
-    <label>      
-      {{ 'addresses.province' | translate}}
+      
+      <label>{{ 'addresses.province' | translate}}</label>
       <input type="text" [(ngModel)]="formData.province" name="province" required />
-    </label>
-
-    <label>
-      {{ 'addresses.country' | translate}}
+      
+      <label>{{ 'addresses.country' | translate}}</label>
       <input type="text" [(ngModel)]="formData.country" name="country" required />
-    </label>
-
-    <label>      
-      {{ 'addresses.phone' | translate}}
+      
+      <label>{{ 'addresses.phone' | translate}}</label>
       <input type="text" [(ngModel)]="formData.phone" name="phone" />
-    </label>
-
-    <label>      
-      {{ 'addresses.email' | translate}}
+      
+      <label>{{ 'addresses.email' | translate}}</label>
       <input type="email" [(ngModel)]="formData.email" name="email" />
-    </label>
 
-    <label class="checkbox">
-      <input type="checkbox" [(ngModel)]="formData.isDefault" name="isDefault" />      
-      {{ 'addresses.default_address' | translate}}
-    </label>
+        <app-switch 
+          label="{{ 'addresses.default_address' | translate}}" 
+          [(ngModel)]="formData.isDefault" 
+          name="isDefault" >
+        </app-switch>
 
-    <div class="buttons">
-      <button type="submit">{{ 'layout.save' | translate}}</button>
-      <button type="button" (click)="cancel()">{{ 'layout.cancel' | translate}}</button>
-    </div>
-  </form>
+      <div class="row">
+        <button type="submit">{{ 'layout.save' | translate}}</button>
+        <button type="button" (click)="cancel()">{{ 'layout.cancel' | translate}}</button>
+      </div>
+    </form>
+  </div>
 </div>

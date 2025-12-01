@@ -1,4 +1,4 @@
-<div class="stores-list">
+<div class="container">
   <h2>{{ 'stores.title' | translate}}</h2>
 
   <div class="filters">
@@ -23,7 +23,6 @@
   </div>
 
   
-<app-table [data]="stores" [columns]="columns"></app-table>
+  <app-table [data]="stores" [columns]="columns"></app-table>
 
-  <a routerLink="/stores/new" class="add-button">{{ 'stores.add_store' | translate}}</a>
 </div>

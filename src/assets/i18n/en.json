@@ -184,6 +184,7 @@
     "phone":"Phone",
     "email":"Email",
     "default_address":"Default address",
+    "add_address":"Add address",
 
     "add_new_address":"Add new address",
     "label":"Label",

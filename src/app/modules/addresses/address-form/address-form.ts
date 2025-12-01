@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Switch} from 'src/app/shared/switch/switch';
 
 @Component({
   selector: 'app-address-form',
@@ -10,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule, 
     FormsModule,
+    Switch,
     TranslateModule
   ],
   templateUrl: './address-form.html',

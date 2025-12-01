@@ -1,34 +1,32 @@
-<div class="account-settings">
-  <h2>{{ 'settings.account.account' | translate }}</h2>
+<div class="container">
+    
+  <div class="form-group">
+    <h2>{{ 'settings.account.account' | translate }}</h2>
+    <div class="line"></div>
+    <form (ngSubmit)="save()">
 
-  <form (ngSubmit)="save()">
-    <label>{{ 'settings.account.name' | translate }}
+      <label>{{ 'settings.account.name' | translate }}</label>
       <input type="text" [(ngModel)]="user.name" name="name" required />
-    </label>
 
-    <label>{{ 'settings.account.email' | translate }}
+      <label>{{ 'settings.account.email' | translate }}</label>
       <input type="email" [(ngModel)]="user.email" name="email" required />
-    </label>
-
-    <label>{{ 'settings.account.phone' | translate }}
+      
+      <label>{{ 'settings.account.phone' | translate }}</label>
       <input type="text" [(ngModel)]="user.phone" name="phone" />
-    </label>
-
-    <label>{{ 'settings.account.new_password' | translate }}
+      
+      <label>{{ 'settings.account.new_password' | translate }}</label>
       <input type="password" [(ngModel)]="user.password" name="password" />
-    </label>
-
-    <label>{{ 'settings.account.confirm_password' | translate }}
+      
+      <label>{{ 'settings.account.confirm_password' | translate }}</label>
       <input type="password"  />
-    </label>
+      
+      <label>{{ 'settings.account.pin' | translate }}</label>
+      <input type="password" />    
 
-    <label>{{ 'settings.account.pin' | translate }}
-      <input type="password" />
-    </label>
-
-    <div class="actions">
-      <button type="submit">{{ 'layout.save' | translate }}</button>
-      <button type="button" (click)="cancel()">{{ 'layout.cancel' | translate}}</button>
-    </div>
-  </form>
+      <div class="row">
+        <button type="submit">{{ 'layout.save' | translate }}</button>
+        <button type="button" (click)="cancel()">{{ 'layout.cancel' | translate}}</button>
+      </div>
+   </form>
+  </div>
 </div>

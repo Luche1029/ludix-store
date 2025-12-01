@@ -1,3 +1,4 @@
+<div class="container">
 <div class="filters" *ngIf="user.role !== 'CAT'">
   <form (ngSubmit)="applyFilters()">
 
@@ -28,23 +29,17 @@
 <div *ngFor="let category of categories">
   <h3>{{ category.name }}</h3>
 
-  <div *ngFor="let sub of category.subcategories">
+  <div *ngFor="let sub of category.subcategories" class="tile" style="margin-bottom: 15px;">
     <h4>
-        <div class="form-check form-switch">
-            <input 
-                class="form-check-input" 
-                type="checkbox" 
-                role="switch" 
-                [checked]="sub.isVisible"
-                (change)="toggleCatVisibility(sub)"
-            />
-            <label class="form-check-label">                
-                {{ sub.name }}
-            </label>
-        </div>
+        <app-switch 
+          label="{{ sub.isVisible ? 'visibile' : 'nascosto' }}"
+          [(ngModel)]="sub.isVisible"
+          (change)="toggleCatVisibility(sub)">
+        </app-switch>
+
     </h4>
 
-    <table class="table table-striped">
+    <table class="table">
       <thead>
         <tr>
           <th>{{'settings.accessories.logo' | translate}}</th>
@@ -60,23 +55,19 @@
             <td>{{ p.name }}</td>
             <td>{{ p.pn }}</td>
             <td>
-                <div class="form-check form-switch">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch" 
-                    [checked]="p.isVisible"
-                    (change)="toggleVisibility(p)"
-                    />
-                    <label class="form-check-label">
-                    {{ p.isVisible ? 'visibile' : 'nascosto' }}
-                    </label>
-                </div>
+              <app-switch 
+                label="{{ p.isVisible ? 'visibile' : 'nascosto' }}"
+                [(ngModel)]="p.isVisible"
+                (change)="toggleVisibility(p)">
+              </app-switch>
+
             </td>
           </tr>
         </ng-container>
       </tbody>
     </table>
   </div>
+
 </div>
 
+</div>

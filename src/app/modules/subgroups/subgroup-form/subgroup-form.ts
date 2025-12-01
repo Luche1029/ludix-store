@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/core/api.service';
-import { Switch} from 'src/app/shared/switch/switch'
+import { Switch} from 'src/app/shared/switch/switch';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({

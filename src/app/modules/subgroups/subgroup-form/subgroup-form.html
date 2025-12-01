@@ -1,7 +1,9 @@
-<div class="subgroup-form">
-  <h2>{{ 'subgroups.add_subgroup' | translate }}</h2>
+<div class="container">
 
+  <div class="form-group">
   <form (ngSubmit)="submit()">
+    <h2>{{ 'subgroups.add_subgroup' | translate }}</h2>
+    <div class="line"></div>
     <label>{{ 'subgroups.name' | translate }}</label>
     <input type="text" [(ngModel)]="name" name="name" required />
 
@@ -36,4 +38,5 @@
 
     <p class="error" *ngIf="error">{{ error }}</p>
   </form>
+  </div>
 </div>

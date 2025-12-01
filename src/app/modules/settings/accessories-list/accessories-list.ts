@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SettingsService } from '../../../core/settings.service';
 import { AccessoryCategory, AccessoryProduct, AccessorySubcategory } from 'src/app/interfaces/accessory.interface';
+import { Switch} from 'src/app/shared/switch/switch';
 
 @Component({
   selector: 'app-accessories-list',
@@ -16,6 +17,7 @@ import { AccessoryCategory, AccessoryProduct, AccessorySubcategory } from 'src/a
     CommonModule,
     RouterModule,
     FormsModule,
+    Switch,
     TranslateModule
   ],
 })

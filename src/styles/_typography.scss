@@ -26,3 +26,24 @@ a {
     text-decoration: underline;
   }
 }
+
+ table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        text-align: left;
+        padding: 0.5rem;
+        border-bottom: 1px solid $border-color;
+        font-size: 0.875rem;
+      }
+
+      th {
+        font-weight: 500;
+        color: $heading-color;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+    }

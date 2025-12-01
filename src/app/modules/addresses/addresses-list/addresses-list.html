@@ -1,18 +1,28 @@
-<div class="addresses-list">
+<div class="container">
   <h2>{{'addresses.saved_addresses' | translate}}</h2>
 
-  <button class="add-btn" (click)="addAddress()">{{'addresses.add_addresses' | translate}}</button>
+  <div class="fab">
+    <button (click)="addAddress()"><span class="material-icons">add</span></button>
+    <label>{{'addresses.add_address' | translate}}</label>    
+  </div>
 
-  <div class="address-card" *ngFor="let addr of addresses">
-    <h3>{{ addr.label }}</h3>
-    <p><strong>{{'addresses.contact' | translate}}:</strong> {{ addr.contact }}</p>
-    <p>{{ addr.address1 }}</p>
-    <p *ngIf="addr.address2">{{ addr.address2 }}</p>
-    <p>{{ addr.zip }} {{ addr.city }} ({{ addr.province }}), {{ addr.country }}</p>
-    <p><strong>{{'addresses.phone' | translate}}:</strong> {{ addr.phone }}</p>
-    <p><strong>{{'addresses.email' | translate}}:</strong> {{ addr.email }}</p>
-    <p *ngIf="addr.isDefault" class="default">{{'addresses.default_address' | translate}}</p>
-
-    <button class="edit-btn" (click)="editAddress(addr)">{{'layout.edit' | translate}}</button>
+  <div class="grid grid-3">
+    <div class="tile" *ngFor="let addr of addresses">
+      <div class="tile-header">
+        <h3>{{ addr.label }}</h3>
+      </div>
+      <div class="tile-bpdy">
+        <p><strong>{{'addresses.contact' | translate}}:</strong> {{ addr.contact }}</p>
+        <p>{{ addr.address1 }}</p>
+        <p *ngIf="addr.address2">{{ addr.address2 }}</p>
+        <p>{{ addr.zip }} {{ addr.city }} ({{ addr.province }}), {{ addr.country }}</p>
+        <p><strong>{{'addresses.phone' | translate}}:</strong> {{ addr.phone }}</p>
+        <p><strong>{{'addresses.email' | translate}}:</strong> {{ addr.email }}</p>
+        <p *ngIf="addr.isDefault" class="default">{{'addresses.default_address' | translate}}</p>
+      </div>
+      <div class="tile-buttons">
+        <button class="edit-btn" (click)="editAddress(addr)">{{'layout.edit' | translate}}</button>
+      </div>
+    </div>
   </div>
 </div>

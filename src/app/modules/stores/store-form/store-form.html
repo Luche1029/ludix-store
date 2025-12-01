@@ -1,43 +1,43 @@
-<div class="store-form">
-  <h2>{{ 'stores.add_store' | translate}}</h2>
+<div class="container">
 
-  <form (ngSubmit)="save()">
-    <label>{{ 'stores.name' | translate}}
+  <div class="form-group">
+    <form (ngSubmit)="save()">
+    <h2>{{ 'stores.add_store' | translate}}</h2>
+
+    <div class="line"></div>
+      <label>{{ 'stores.name' | translate}}</label>
       <input type="text" [(ngModel)]="store.name" name="name" required />
-    </label>
 
-    <label>{{ 'stores.code' | translate}}
+      <label>{{ 'stores.code' | translate}}</label>
       <input type="text" [(ngModel)]="store.code" name="code" required />
-    </label>
 
-    <label>{{ 'stores.location' | translate}}
+
+      <label>{{ 'stores.location' | translate}}</label>
       <input type="text" [(ngModel)]="store.location" name="location" />
-    </label>
-
-    <label>{{ 'stores.type' | translate}}
-      <input type="text" [(ngModel)]="store.type" name="type" />
-    </label>
-
-    <label>{{ 'stores.manager' | translate}} 
+ 
+      <label>{{ 'stores.type' | translate}}</label>
+        <input type="text" [(ngModel)]="store.type" name="type" />
+     
+      <label>{{ 'stores.manager' | translate}}</label> 
       <input type="text" [(ngModel)]="store.manager" name="manager" />
-    </label>
 
-    <label>{{ 'stores.email' | translate}}      
+      <label>{{ 'stores.email' | translate}}</label>      
       <input type="email" [(ngModel)]="store.email" name="email" />
-    </label>
+ 
+      <label>{{ 'stores.phone' | translate}}</label>      
+        <input type="text" [(ngModel)]="store.phone" name="phone" /> 
 
-    <label>{{ 'stores.phone' | translate}}      
-      <input type="text" [(ngModel)]="store.phone" name="phone" />
-    </label>
+      <app-switch 
+        label="{{ 'stores.active_store' | translate }}" 
+        [(ngModel)]="store.active" 
+        name="active" >
+      </app-switch>
 
-    <label class="checkbox">
-      <input type="checkbox" [(ngModel)]="store.active" name="active" />      
-      {{ 'stores.active_store' | translate}}
-    </label>
-
-    <div class="actions">
-      <button type="submit">{{ 'layout.save' | translate}}</button>
-      <button type="button" (click)="back()">{{ 'layout.cancel' | translate}}</button>
-    </div>
-  </form>
+      <div class="row">
+        <button type="submit">{{ 'layout.save' | translate}}</button>
+        <button type="button" (click)="back()">{{ 'layout.cancel' | translate}}</button>
+      </div>
+   
+    </form>
+  </div>
 </div>
