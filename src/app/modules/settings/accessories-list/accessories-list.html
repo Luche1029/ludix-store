@@ -31,8 +31,9 @@
 
   <div *ngFor="let sub of category.subcategories" class="tile" style="margin-bottom: 15px;">
     <h4>
+        
         <app-switch 
-          label="{{ sub.isVisible ? 'visibile' : 'nascosto' }}"
+          label="{{sub.name}}"
           [(ngModel)]="sub.isVisible"
           (change)="toggleCatVisibility(sub)">
         </app-switch>
@@ -51,7 +52,7 @@
       <tbody>
         <ng-container *ngFor="let brand of sub.brands">
           <tr *ngFor="let p of brand.products">
-            <td><img [src]="'https://cdn.ludix.ai/' + p.mainImage" width="40" /></td>
+            <td><img [src]="'https://ddxtuodftkuuchpokqff.supabase.co/storage/v1/object/public/' + p.mainImage" width="40" /></td>
             <td>{{ p.name }}</td>
             <td>{{ p.pn }}</td>
             <td>

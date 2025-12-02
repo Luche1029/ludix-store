@@ -1,43 +1,46 @@
-<div class="group-form">
-  <h2>{{'editor.categories.add_new_category' | translate}}</h2>
+<div class="container">
 
-  <form (ngSubmit)="submit()">
-    <label>{{'editor.categories.name' | translate}}</label>
-    <input type="text" [(ngModel)]="category" name="categoory" required />
+  <div class="form-group">
+    <h2>{{'editor.categories.add_new_category' | translate}}</h2>
+    <div class="line"></div>
+    <form (ngSubmit)="submit()">
+      <label>{{'editor.categories.name' | translate}}</label>
+      <input type="text" [(ngModel)]="category" name="categoory" required />
 
-    <label>{{'editor.categories.code' | translate}}</label>
-    <input type="text" [(ngModel)]="code" name="code" required />
+      <label>{{'editor.categories.code' | translate}}</label>
+      <input type="text" [(ngModel)]="code" name="code" required />
 
-    <label>{{'editor.categories.max_qt_in_configuration' | translate}}</label>
-    <select [(ngModel)]="qtmng" name="qtmng" required>
-        <optgroup label="Mandatory">
-            <option value="SINGLE_MANDATORY">{{'editor.categories.SINGLE_MANDATORY' | translate}}</option>
-            <option value="MULTI_EQU_MANDATORY">{{'editor.categories.MULTI_EQU_MANDATORY' | translate}}</option>
-            <option value="MULTI_NEQ_MANDATORY">{{'editor.categories.MULTI_NEQ_MANDATORY' | translate}}</option>
-        </optgroup>
-        <optgroup label="Optional">
-            <option value="SINGLE_OPTIONAL">{{'editor.categories.SINGLE_OPTIONAL' | translate}}</option>
-            <option value="MULTI_EQU_OPTIONAL">{{'editor.categories.MULTI_EQU_OPTIONAL' | translate}}</option>
-            <option value="MULTI_NEQ_OPTIONAL">{{'editor.categories.MULTI_NEQ_OPTIONAL' | translate}}</option>
-        </optgroup>
-    </select> 
-    
-    <label>{{'editor.categories.wp_id' | translate}}</label>
-    <input type="text" [(ngModel)]="wp_id" name="wp_id" required />
+      <label>{{'editor.categories.max_qt_in_configuration' | translate}}</label>
+      <select [(ngModel)]="qtmng" name="qtmng" required>
+          <optgroup label="Mandatory">
+              <option value="SINGLE_MANDATORY">{{'editor.categories.SINGLE_MANDATORY' | translate}}</option>
+              <option value="MULTI_EQU_MANDATORY">{{'editor.categories.MULTI_EQU_MANDATORY' | translate}}</option>
+              <option value="MULTI_NEQ_MANDATORY">{{'editor.categories.MULTI_NEQ_MANDATORY' | translate}}</option>
+          </optgroup>
+          <optgroup label="Optional">
+              <option value="SINGLE_OPTIONAL">{{'editor.categories.SINGLE_OPTIONAL' | translate}}</option>
+              <option value="MULTI_EQU_OPTIONAL">{{'editor.categories.MULTI_EQU_OPTIONAL' | translate}}</option>
+              <option value="MULTI_NEQ_OPTIONAL">{{'editor.categories.MULTI_NEQ_OPTIONAL' | translate}}</option>
+          </optgroup>
+      </select> 
+      
+      <label>{{'editor.categories.wp_id' | translate}}</label>
+      <input type="text" [(ngModel)]="wp_id" name="wp_id" required />
 
-    <label>{{'editor.categories.short_description_required' | translate}}</label>
-    <select [(ngModel)]="sdr" name="sdr" required>
-        <option value="0">{{'layout.no' | translate}}</option>
-        <option value="1">{{'layout.yes' | translate}}</option>
-    </select>
+      <label>{{'editor.categories.short_description_required' | translate}}</label>
+      <select [(ngModel)]="sdr" name="sdr" required>
+          <option value="0">{{'layout.no' | translate}}</option>
+          <option value="1">{{'layout.yes' | translate}}</option>
+      </select>
 
-    <label>{{'editor.categories.icon' | translate}}</label>
-    <input type="file" (change)="onFileChange($event)" />
+      <label>{{'editor.categories.icon' | translate}}</label>
+      <input type="file" (change)="onFileChange($event)" />
 
 
-    <button type="submit" class="cta">{{'layout.save' | translate}}</button>
+      <button type="submit" class="cta">{{'layout.save' | translate}}</button>
 
-    <p class="error" *ngIf="error">{{ error }}</p>
-    <p class="success" *ngIf="success">{{ success }}</p>
-  </form>
+      <p class="error" *ngIf="error">{{ error }}</p>
+      <p class="success" *ngIf="success">{{ success }}</p>
+    </form>
+  </div>
 </div>

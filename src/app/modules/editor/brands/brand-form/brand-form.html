@@ -1,25 +1,28 @@
-<div class="group-form">
-  <h2>{{ 'editor.brands.add_new_brand' | translate}}</h2>
+<div class="container">
 
-  <form (ngSubmit)="submit()">
-    <label>{{ 'editor.brands.name' | translate}}</label>
-    <input type="text" [(ngModel)]="brand" name="brand" required />
+  <div class="form-group">
+    <h2>{{ 'editor.brands.add_new_brand' | translate}}</h2>
+    <div class="line"></div>
+    <form (ngSubmit)="submit()">
+      <label>{{ 'editor.brands.name' | translate}}</label>
+      <input type="text" [(ngModel)]="brand" name="brand" required />
 
-    <label>{{ 'editor.brands.code' | translate}}</label>
-    <input type="text" [(ngModel)]="code" name="code" required />
+      <label>{{ 'editor.brands.code' | translate}}</label>
+      <input type="text" [(ngModel)]="code" name="code" required />
 
-    <label>{{ 'editor.brands.logo' | translate}}</label>
-    <input type="file" (change)="onFileChange($event, 'L')" />
+      <label>{{ 'editor.brands.logo' | translate}}</label>
+      <input type="file" (change)="onFileChange($event, 'L')" />
 
-    <label>{{ 'editor.brands.svg_label' | translate}}</label>
-    <input type="file" (change)="onFileChange($event, 'S')" />
+      <label>{{ 'editor.brands.svg_label' | translate}}</label>
+      <input type="file" (change)="onFileChange($event, 'S')" />
 
-    <label>{{ 'editor.brands.powered_logo' | translate}}</label>
-    <input type="file" (change)="onFileChange($event, 'P')" />
+      <label>{{ 'editor.brands.powered_logo' | translate}}</label>
+      <input type="file" (change)="onFileChange($event, 'P')" />
 
-    <button type="submit" class="cta">{{ 'layout.save' | translate}}</button>
+      <button type="submit" class="cta">{{ 'layout.save' | translate}}</button>
 
-    <p class="error" *ngIf="error">{{ error }}</p>
-    <p class="success" *ngIf="success">{{ success }}</p>
-  </form>
+      <p class="error" *ngIf="error">{{ error }}</p>
+      <p class="success" *ngIf="success">{{ success }}</p>
+    </form>
+  </div>
 </div>

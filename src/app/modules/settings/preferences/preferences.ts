@@ -5,12 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/core/api.service';
 import { SettingsService } from 'src/app/core/settings.service';
 import { SettingsCategory, SettingsResponse } from 'src/app/interfaces/settings.interface';
+import { Switch} from 'src/app/shared/switch/switch';
 
 @Component({
   selector: 'app-preferences',
+  standalone:true,
   imports: [
     TranslateModule,
     CommonModule,
+    Switch,
     FormsModule
   ],
   templateUrl: './preferences.html',

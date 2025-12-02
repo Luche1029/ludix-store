@@ -1,186 +1,142 @@
   
-  <h2>{{ 'settings.preferences.title' | translate}}</h2>
+  <div class="container">
+  
+    <h2>{{ 'settings.preferences.title' | translate}}</h2>
 
-  <div class="filters" *ngIf="user.role !== 'CAT'">
-    <form (ngSubmit)="applyFilters()">
+    <div class="filters" *ngIf="user.role !== 'CAT'">
+        <form (ngSubmit)="applyFilters()">
 
-      <!-- ADM: Selezione gruppo -->
-      <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
-        <option value="">{{ 'orders.all_groups' | translate }}</option>
-        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
-      </select>
+        <!-- ADM: Selezione gruppo -->
+        <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
+            <option value="">{{ 'orders.all_groups' | translate }}</option>
+            <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+        </select>
 
-      <!-- ADM + SUP: Selezione sottogruppo -->
-      <select 
-        *ngIf="['ADM', 'SUP'].includes(user?.role)"
-        [(ngModel)]="filters.subgroup"
-        name="subgroup"
-        [disabled]="user?.role === 'ADM' && !filters.group"
-        (change)="onSubgroupChange()">
-        <option value="">{{ 'orders.all_subgroups' | translate }}</option>
-        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
-      </select>
+        <!-- ADM + SUP: Selezione sottogruppo -->
+        <select 
+            *ngIf="['ADM', 'SUP'].includes(user?.role)"
+            [(ngModel)]="filters.subgroup"
+            name="subgroup"
+            [disabled]="user?.role === 'ADM' && !filters.group"
+            (change)="onSubgroupChange()">
+            <option value="">{{ 'orders.all_subgroups' | translate }}</option>
+            <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+        </select>
 
-      <button 
-        *ngIf="['ADM', 'SUP'].includes(user?.role)"
-        type="submit">
-          {{ 'orders.apply' | translate }}
-        </button>
-    </form>
-  </div>
+        <button 
+            *ngIf="['ADM', 'SUP'].includes(user?.role)"
+            type="submit">
+            {{ 'orders.apply' | translate }}
+            </button>
+        </form>
+    </div>
 
-  <div class="wrapper" *ngIf="showSettings">   
-    <form (submit)="updateSettings()">
-    <section>
-        <h3>{{ 'settings.preferences.language' | translate}}</h3>
-        <div class="row">
-            <div class="tile">
-                <label>{{ 'settings.preferences.language' | translate}}</label>
-                <select [(ngModel)]="settings.lang" name="lang"> 
-                    <option value="it">{{'layout.italian' | translate}}</option>
-                    <option value="en">{{'layout.english' | translate}}</option>
-                </select>
+    <div class="col" *ngIf="showSettings">   
+        <form (submit)="updateSettings()">
+            <h3>{{ 'settings.preferences.language' | translate}}</h3>
+            <div class="row">            
+                <div class="tile">
+                    <select [(ngModel)]="settings.lang" name="lang"> 
+                        <option value="it">{{'layout.italian' | translate}}</option>
+                        <option value="en">{{'layout.english' | translate}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-    </section>
+       
+            <h3>{{ 'settings.preferences.login_management' | translate}}</h3>         
+            <div class="row">                
+                <div class="tile">
+                    <label>{{ 'settings.preferences.login_type' | translate}}</label>
+                    <br>
+                    <select [(ngModel)]="settings.loginType" name="id_log_type"> 
+                        <option value="1">{{'settings.preferences.login_by_store' | translate}}</option>
+                        <option value="2">{{'settings.preferences.login_by_operator' | translate}}</option>
+                    </select>
+                </div>
+                <div class="tile">
+                    <label>{{ 'settings.preferences.whitelist_enabled' | translate}}</label>
+                    <app-switch 
+                        name="whitelist"
+                        label="{{ (settings.whiteListEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}"
+                        [(ngModel)]="settings.whiteListEnabled">
+                    </app-switch>
+                </div>
+            </div>
     
-    <section>
-        <h3>{{ 'settings.preferences.login_management' | translate}}</h3>
-
-        <div class="row">
-            
-            <div class="tile">
-            <label>{{ 'settings.preferences.login_type' | translate}}</label>
-                <select [(ngModel)]="settings.loginType" name="id_log_type"> 
-                    <option value="1">{{'settings.preferences.login_by_store' | translate}}</option>
-                    <option value="2">{{'settings.preferences.login_by_operator' | translate}}</option>
-                </select>
-            </div>
-
-            <div class="tile">
-                <label>{{ 'settings.preferences.whitelist_enabled' | translate}}</label>
-                <div class="form-check form-switch">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch"     
-                    [(ngModel)]="settings.whiteListEnabled"     
-                    name="whitelist"
-                    />
-                    <label class="form-check-label">
-                    {{ (settings.whiteListEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}
-                    </label>
+            <h3>{{ 'settings.preferences.orders_management' | translate}}</h3>
+            <div class="row">
+                <div class="tile">
+                    <label>{{ 'settings.preferences.pin' | translate}}</label>
+                    <app-switch 
+                        name="pin_enabled"
+                        label="{{ (settings.pinEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}"
+                        [(ngModel)]="settings.pinEnabled">
+                    </app-switch>                
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h3>{{ 'settings.preferences.orders_management' | translate}}</h3>
-        <div class="row">
-
-            <div class="tile">
-                <label>{{ 'settings.preferences.pin' | translate}}</label>
-                  <div class="form-check form-switch">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch" 
-                    [(ngModel)]="settings.pinEnabled"        
-                    name="pin_enabled"         
-                    />
-                    <label class="form-check-label">
-                    {{ (settings.pinEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}
-                    </label>
+                <div class="tile">
+                    <label>{{ 'settings.preferences.handler' | translate}}</label>
+                    <select [(ngModel)]="settings.handler" name="id_handler" > 
+                        <option value="1">{{'settings.preferences.handled_by_store' | translate}}</option>
+                        <option value="2">{{'settings.preferences.handled_by_category' | translate}}</option>
+                    </select>
                 </div>
 
-            </div>
+                <div class="tile">
+                    <label>{{ 'settings.preferences.shipping_type' | translate}}</label>
+                    <select [(ngModel)]="settings.shippingType" name="id_shipping_type"> 
+                        <option value="1">{{'settings.preferences.ship_to_central' | translate}}</option>
+                        <option value="2">{{'settings.preferences.ship_to_store' | translate}}</option>
+                        <option value="3">{{'settings.preferences.ship_to_customer' | translate}}</option>
+                    </select>
+                </div>
 
-            <div class="tile">
-                <label>{{ 'settings.preferences.handler' | translate}}</label>
-                <select [(ngModel)]="settings.handler" name="id_handler" > 
-                    <option value="1">{{'settings.preferences.handled_by_store' | translate}}</option>
-                    <option value="2">{{'settings.preferences.handled_by_category' | translate}}</option>
-                </select>
-            </div>
-
-            <div class="tile">
-                <label>{{ 'settings.preferences.shipping_type' | translate}}</label>
-                <select [(ngModel)]="settings.shippingType" name="id_shipping_type"> 
-                    <option value="1">{{'settings.preferences.ship_to_central' | translate}}</option>
-                    <option value="2">{{'settings.preferences.ship_to_store' | translate}}</option>
-                    <option value="3">{{'settings.preferences.ship_to_customer' | translate}}</option>
-                </select>
-            </div>
-
-            <div class="tile">
-                <label>{{ 'settings.preferences.maxPcSold' | translate}}</label>
-                <input type="number" name="label" [(ngModel)]="settings.maxPcSold" name="max_pc_sold" />
-            </div>
-        </div>
-    </section>
-
-    <section>
-            
-        <h3>{{ 'settings.preferences.view_management' | translate}}</h3>
-
-        <div class="row">
-
-            <div class="tile">
-                <label>{{ 'settings.preferences.store_enabled' | translate}}</label>
-                  <div class="form-check form-switch">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch"
-                    [(ngModel)]="settings.storeEnabled"   
-                    name="store_enabled"           
-                    />
-                    <label class="form-check-label">
-                    {{ (settings.storeEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}
-                    </label>
+                <div class="tile">
+                    <label>{{ 'settings.preferences.maxPcSold' | translate}}</label>
+                    <input type="number" name="label" [(ngModel)]="settings.maxPcSold" name="max_pc_sold" />
                 </div>
             </div>
+  
 
-            <div class="tile">
-                <label>{{ 'settings.preferences.link_enabled' | translate}}</label>
-                  <div class="form-check form-switch">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch" 
-                    [(ngModel)]="settings.linkEnabled"   
-                    name="view_link"                       
-                    />
-                    <label class="form-check-label">
-                    {{ (settings.linkEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}
-                    </label>
+       
+                
+            <h3>{{ 'settings.preferences.view_management' | translate}}</h3>
+            <div class="row">
+                <div class="tile">
+                    <label>{{ 'settings.preferences.store_enabled' | translate}}</label>
+                    <app-switch 
+                        name="store_enabled"
+                        label="{{ (settings.storeEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}"
+                        [(ngModel)]="settings.storeEnabled">
+                    </app-switch>             
                 </div>
+
+                <div class="tile">
+                    <label>{{ 'settings.preferences.link_enabled' | translate}}</label>
+                    <app-switch 
+                        name="view_link"
+                        label="{{ (settings.linkEnabled ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}"
+                        [(ngModel)]="settings.linkEnabled">
+                    </app-switch>   
+                </div>
+
+                <div class="tile">
+                    <label>{{ 'settings.preferences.show_user_data' | translate}}</label>
+                    <app-switch 
+                        name="show_user_data"
+                        label="{{ (settings.showUserData ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}"
+                        [(ngModel)]="settings.showUserData">
+                    </app-switch>   
+                </div>
+
+                <!--div class="tile">
+                    <label>{{ 'settings.preferences.banner' | translate}}</label>
+                    <input type="text" name="label" />
+                </div-->
             </div>
 
-            <div class="tile">
-                <label>{{ 'settings.preferences.show_user_data' | translate}}</label>
-                  <div class="form-check form-switch">
-                    <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch" 
-                    [(ngModel)]="settings.showUserData"          
-                    name="show_user_data"                                   
-                    />
-                    <label class="form-check-label">
-                    {{ (settings.showUserData ? 'settings.preferences.enabled' : 'settings.preferences.disabled') | translate }}
-                    </label>
-                </div>
-            </div>
+        <button type="submit">{{ 'layout.save' | translate}}</button>
+        </form>
+    </div>
 
-            <!--div class="tile">
-                <label>{{ 'settings.preferences.banner' | translate}}</label>
-                <input type="text" name="label" />
-            </div-->
-        </div>
-    </section>
-    <button type="submit">{{ 'layout.save' | translate}}</button>
-    </form>
  </div>
