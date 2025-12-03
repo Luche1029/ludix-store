@@ -25,7 +25,7 @@ export class GroupsList {
   columns: ColumnConfig[] = [
     { key: 'code', label: 'groups.code', type: 'text' },
     { key: 'name', label: 'groups.name', type: 'text' },
-    { key: 'code', label: 'groups.details', type: 'link', path: '/groups' }
+    { key: 'code', label: '', type: 'link', path: '/groups' }
   ];
 
   constructor(private api: ApiService) {}

@@ -27,7 +27,7 @@ export class SubgroupsList {
     { key: 'groupName', label: 'subgroups.group_name', type: 'text' },
     { key: 'code', label: 'subgroups.code', type: 'text' },
     { key: 'name', label: 'subgroups.name', type: 'text' },
-    { key: 'code', label: '', type: 'link', path: '/groups' }
+    { key: 'code', label: '', type: 'link', path: '/subgroups' }
   ];
 
   constructor(private api: ApiService) {}

@@ -1,1 +1,48 @@
-subgroup-details
+<div class="container">
+
+  <div class="form-group">
+  <form (ngSubmit)="submit()">
+    <h2>{{ 'subgroups.add_subgroup' | translate }}</h2>
+    <div class="line"></div>
+    <label>{{ 'subgroups.name' | translate }}</label>
+    <input type="text" [(ngModel)]="name" name="name" required />
+
+    <label>{{ 'subgroups.code' | translate }}</label>
+    <input type="text" [(ngModel)]="code" name="code" required />
+
+    <label>{{ 'subgroups.group' | translate }}</label>
+    <select [(ngModel)]="group" name="group" required>
+      <option value="">{{ 'subgroups.select_group' | translate }}</option>
+      <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+    </select>
+
+    <label>{{ 'subgroups.max_pc_sold' | translate }}</label>
+    <input type="number" [(ngModel)]="maxPcSold" name="maxPcSold" required min="-1"/>
+
+    <app-switch 
+        label="{{ 'subgroups.show_user_data' | translate }}" 
+        [(ngModel)]="showUserData" 
+        name="showUserData">
+    </app-switch>
+
+    <app-switch 
+        label="{{ 'subgroups.show_links' | translate }}" 
+        [(ngModel)]="showLink" 
+        name="showLink">
+    </app-switch>
+
+    <app-switch 
+        label="{{ 'subgroups.ediel' | translate }}" 
+        [(ngModel)]="ediel" 
+        name="showLink">
+    </app-switch>
+
+    <label>{{ 'subgroups.custom_banner' | translate }}</label>
+    <input type="file" (change)="onFileChange($event)" />
+
+    <button type="submit" class="cta">{{ 'layout.save' | translate }}</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </form>
+  </div>
+</div>

@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/core/api.service';
-import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { environment } from 'src/app/core/constants';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,9 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-orders-detail',
   standalone: true,
   imports: [CommonModule, 
-            CurrencyPipe, 
             DatePipe,
-            RouterLink,
             FormsModule,
             TranslateModule
           ],
@@ -29,7 +26,6 @@ export class OrderDetails {
   public IMAGES_REMOTE_URL = environment.imagesRemoteUrl;
 
   private route = inject(ActivatedRoute);
-  private http = inject(HttpClient);
 
   showPcComponents = false;
 

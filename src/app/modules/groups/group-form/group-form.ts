@@ -36,7 +36,6 @@ export class GroupForm {
     this.loading = true;
     this.api.post<any>('getSuppliers', null).subscribe({
       next: (res) => {
-        console.log(JSON.stringify(res));
         this.suppliers = res.suppliers || [];
         this.loading = false;
       },

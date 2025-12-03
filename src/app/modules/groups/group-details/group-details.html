@@ -1,1 +1,27 @@
-group-details
+<div class="container">
+
+  <div class="form-group">
+    <h2>{{'groups.add_group' | translate }}</h2>
+    <div class="line"></div>
+    <form (ngSubmit)="submit()">
+      <label>{{'groups.name' | translate }}</label>
+      <input type="text" [(ngModel)]="name" name="name" required />
+
+      <label>{{'groups.code' | translate }}</label>
+      <input type="text" [(ngModel)]="code" name="code" required readonly/>
+
+      <label>{{'groups.supplier' | translate }}</label>
+      <select [(ngModel)]="supplier" name="supplier" required>
+        <option value="">{{'groups.select_supplier' | translate }}</option>
+        <option *ngFor="let s of suppliers" [value]="s.code">{{ s.name }}</option>
+      </select>
+
+      <label>{{'groups.logo' | translate }}</label>
+      <input type="file" (change)="onFileChange($event)" />
+
+      <button type="submit" class="cta">{{'layout.save' | translate }}</button>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+  </div>
+</div>
