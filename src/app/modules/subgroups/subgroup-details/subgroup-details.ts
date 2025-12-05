@@ -90,6 +90,7 @@ export class SubgroupDetails {
     formData.append('maxPcSold', `${this.maxPcSold}`);
     formData.append('showUserData', `${this.showUserData ? 1 : 0}`);
     formData.append('showLink', `${this.showLink ? 1 : 0}`);
+    formData.append('ediel', `${this.ediel ? 1 : 0}`);
 
     if (this.bannerFile) {
       formData.append('banner', this.bannerFile);

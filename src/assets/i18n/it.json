@@ -138,7 +138,9 @@
     "add_group":"Aggiungi gruppo",
     "supplier":"Supplier",
     "select_supplier":"Seleziona il supplier",
-    "logo":"Logo"
+    "logo":"Logo",
+    
+    "edit_group":"Modifica gruppo"
   },
 
   "subgroups": {
@@ -155,7 +157,10 @@
     "max_pc_sold":"Numero massimo di PC in un ordine (-1 nessun limite)",
     "show_user_data":"Mostra i dati dell'utente",
     "show_links":"Mostra i link per i prodotti",
-    "custom_banner":"Banner personalizzato"
+    "custom_banner":"Banner personalizzato",
+    
+    "edit_subgroup":"Modifica insegna",
+    "ediel":"Ediel"
   },
 
   "stores": {

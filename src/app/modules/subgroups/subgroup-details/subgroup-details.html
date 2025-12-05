@@ -2,13 +2,13 @@
 
   <div class="form-group">
   <form (ngSubmit)="submit()">
-    <h2>{{ 'subgroups.add_subgroup' | translate }}</h2>
+    <h2>{{ 'subgroups.edit_subgroup' | translate }}</h2>
     <div class="line"></div>
     <label>{{ 'subgroups.name' | translate }}</label>
     <input type="text" [(ngModel)]="name" name="name" required />
 
     <label>{{ 'subgroups.code' | translate }}</label>
-    <input type="text" [(ngModel)]="code" name="code" required />
+    <input type="text" [(ngModel)]="code" name="code" required readonly/>
 
     <label>{{ 'subgroups.group' | translate }}</label>
     <select [(ngModel)]="group" name="group" required>
