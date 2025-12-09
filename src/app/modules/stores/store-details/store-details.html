@@ -1,16 +1,57 @@
-<div class="store-details">
-  <h2>Store Details</h2>
+<div class="container">
 
-  <div class="details">
-    <p><strong>Name:</strong> {{ store.name }}</p>
-    <p><strong>Code:</strong> {{ store.code }}</p>
-    <p><strong>Location:</strong> {{ store.location }}</p>
-    <p><strong>Type:</strong> {{ store.type }}</p>
-    <p><strong>Manager:</strong> {{ store.manager }}</p>
-    <p><strong>Email:</strong> {{ store.contact }}</p>
-    <p><strong>Phone:</strong> {{ store.phone }}</p>
-    <p><strong>Status:</strong> {{ store.active ? 'Active' : 'Inactive' }}</p>
+  <div class="form-group">
+  <form (ngSubmit)="submit()">
+    <h2>{{ 'stores.edit_store' | translate }}</h2>
+    <div class="line"></div>
+
+    <label>{{ 'stores.name' | translate }}</label>
+    <input type="text" [(ngModel)]="name" name="name" required />
+
+    <label>{{ 'stores.code' | translate }}</label>
+    <input type="text" [(ngModel)]="storeCode" name="code" required readonly/>
+
+    <label>{{ 'stores.vat' | translate }}</label>
+    <input type="text" [(ngModel)]="vat" name="vat" required />
+
+    <label>{{ 'stores.address' | translate }}</label>
+    <input type="text" [(ngModel)]="address" name="address" required />
+
+    <label>{{ 'stores.zip' | translate }}</label>
+    <input type="text" [(ngModel)]="zip" name="zip" required />
+
+    <label>{{ 'stores.city' | translate }}</label>
+    <input type="text" [(ngModel)]="city" name="city" required />
+
+    <label>{{ 'stores.province' | translate }}</label>
+    <input type="text" [(ngModel)]="province" name="province" required />
+
+    <label>{{ 'stores.referent' | translate }}</label>
+    <input type="text" [(ngModel)]="referent" name="referent" required />
+
+    <label>{{ 'stores.phone' | translate }}</label>
+    <input type="tel" [(ngModel)]="phone" name="phone" required />
+
+    <label>{{ 'stores.mail' | translate }}</label>
+    <input type="mail" [(ngModel)]="mail" name="mail" required />
+
+    <label>{{ 'stores.pin' | translate }}</label>
+    <input type="text" [(ngModel)]="pin" name="pin" required />
+
+    <label>{{ 'stores.channel' | translate }}</label>
+    <select [(ngModel)]="channel" name="channel" required>
+      <option *ngFor="let c of channels" [value]="c.id">{{ c.channel }}</option>
+    </select>
+
+    <app-switch 
+        label="{{ 'stores.admin' | translate }}" 
+        [(ngModel)]="admin" 
+        name="admin">
+    </app-switch>
+
+    <button type="submit" class="cta">{{ 'layout.save' | translate }}</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </form>
   </div>
-
-  <button class="back-btn" (click)="back()">← Back to Stores</button>
 </div>

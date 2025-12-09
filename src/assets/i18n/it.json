@@ -177,7 +177,19 @@
     "manager":"Manager",
     "email":"Email",
     "phone":"Phone",
-    "active_store":"Negozio attivo"
+    "active_store":"Negozio attivo",
+
+    "edit_store":"Modifica Store",
+    "vat":"Partita IVA",
+    "address":"Indirizzo",
+    "zip":"CAP",
+    "city":"Città",
+    "province":"Provincia",
+    "referent":"Referente",
+    "mail":"E-mail",
+    "pin":"PIN",
+    "channel":"Canale",
+    "admin":"Amministratore"
   },
 
   "addresses": {

@@ -1,13 +1,13 @@
 <div class="container">
   <h2>{{ 'stores.title' | translate}}</h2>
 
-  <div class="filters">
+  <div class="filters"  *ngIf="['ADM', 'SUP'].includes(user?.role)">
     <form (ngSubmit)="applyFilters()">
     
       <!-- ADM: Selezione gruppo -->
       <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
         <option value="">{{ 'stores.all_groups' | translate}}</option>
-        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+        <option *ngFor="let g of groups" [value]="g.code">{{ g.code }} | {{ g.name }}</option>
       </select>
 
       <!-- ADM + SUP: Selezione sottogruppo -->
@@ -15,14 +15,13 @@
               [disabled]="user?.role === 'ADM' && !filters.group" 
               (change)="onSubgroupChange()">
         <option value="">{{ 'stores.all_subgroups' | translate}}</option>
-        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.code }} | {{ sg.name }}</option>
       </select>
 
       <button type="submit">{{ 'stores.apply' | translate}}</button>
     </form>
   </div>
 
-  
   <app-table [data]="stores" [columns]="columns"></app-table>
 
 </div>

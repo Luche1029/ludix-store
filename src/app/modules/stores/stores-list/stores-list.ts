@@ -35,7 +35,8 @@ export class StoresList {
 
   columns: ColumnConfig[] = [
     { key: 'name', label: 'stores.name', type: 'text' },
-    { key: 'code', label: 'stores.code', type: 'text' }
+    { key: 'store_code', label: 'stores.code', type: 'text' },
+    { key: 'store_code', label: '', type: 'link', path: '/stores' }
   ];
   constructor(private api: ApiService) {}
 
@@ -91,6 +92,9 @@ export class StoresList {
     }
     else if (this.user.role === 'SUP') {
       this.loadSubgroups(this.user.belongs);
+    }  
+    else if (this.user.role === 'CAT') {
+      this.loadStores(this.user.belongs);
     }  
   }
 

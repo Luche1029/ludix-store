@@ -180,7 +180,19 @@
     "email":"Email",
     "phone":"Phone",
     "active_store":"Active store",
-    "cancel":"Cancel"
+    "cancel":"Cancel",
+
+    "edit_store":"Edit Store",
+    "vat":"Vat Code",
+    "address":"Address",
+    "zip":"Zip",
+    "city":"City",
+    "province":"Province",
+    "referent":"Referent",
+    "mail":"E-mail",
+    "pin":"PIN",
+    "channel":"Channel",
+    "admin":"Administrator"
   },
 
   "addresses": {

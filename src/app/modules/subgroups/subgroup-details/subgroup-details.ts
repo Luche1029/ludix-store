@@ -72,7 +72,7 @@ export class SubgroupDetails {
         this.loading = false;
       }
     });
-    }
+  }
 
 
   onFileChange(event: any) {

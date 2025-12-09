@@ -52,7 +52,7 @@ export const routes: Routes = [
       { path: 'addresses/:id', component: AddressForm },
       { path: 'stores', component: StoresList },
       { path: 'stores/new', component: StoreForm },
-      { path: 'stores/:id', component: StoreDetails },
+      { path: 'stores/:code', component: StoreDetails },
       { path: 'settings/account', component: AccountSettings },
       { path: 'settings/preferences', component: Preferences },
       { path: 'settings/accessories', component: AccessoriesList },
