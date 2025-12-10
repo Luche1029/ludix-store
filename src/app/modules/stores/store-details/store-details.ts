@@ -24,8 +24,6 @@ export class StoreDetails {
 
   channels: any[] = [];
 
-  store = [];
-
   storeCode: string = '';
   channel: number = 0;
   name: string = '';
@@ -95,7 +93,7 @@ export class StoreDetails {
     const formData = new FormData();
 
     formData.append('name', this.name);
-    formData.append('code', this.storeCode); // <-- attenzione: nel form name="code"
+    formData.append('code', this.storeCode); 
     formData.append('vat', this.vat);
     formData.append('address', this.address);
     formData.append('zip', this.zip);
@@ -121,7 +119,6 @@ export class StoreDetails {
       }
     });
   }
-
 
   back() {
     this.router.navigate(['/stores']);

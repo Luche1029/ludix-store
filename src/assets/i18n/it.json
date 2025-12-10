@@ -189,7 +189,8 @@
     "mail":"E-mail",
     "pin":"PIN",
     "channel":"Canale",
-    "admin":"Amministratore"
+    "admin":"Amministratore",
+    "subgroup":"Insegna"
   },
 
   "addresses": {
