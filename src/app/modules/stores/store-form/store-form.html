@@ -11,6 +11,7 @@
     <label>{{ 'subgroups.group' | translate }}</label>
     <select 
       [(ngModel)]="groupCode" 
+      (change)="onGroupChange()"
       name="group_code"   
       required>
       <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>      

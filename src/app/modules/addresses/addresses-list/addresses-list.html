@@ -7,7 +7,7 @@
   </div>
 
   <div class="grid grid-3">
-    <div class="tile" *ngFor="let addr of addresses">
+    <div class="tile" *ngFor="let addr of addresses" style="height: 300px;">
       <div class="tile-header">
         <h3>{{ addr.label }}</h3>
       </div>
@@ -22,6 +22,7 @@
       </div>
       <div class="tile-buttons">
         <button class="edit-btn" (click)="editAddress(addr)">{{'layout.edit' | translate}}</button>
+        <button class="edit-btn" >{{'layout.delete' | translate}}</button>
       </div>
     </div>
   </div>

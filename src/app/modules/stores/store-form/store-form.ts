@@ -59,7 +59,9 @@ export class StoreForm {
     const formData = new FormData();
 
     formData.append('name', this.name);
-    formData.append('code', this.storeCode); 
+    formData.append('storeCode', this.storeCode); 
+    formData.append('groupCode', this.groupCode); 
+    formData.append('subgroupCode', this.subgroupCode); 
     formData.append('vat', this.vat);
     formData.append('address', this.address);
     formData.append('zip', this.zip);
@@ -72,10 +74,11 @@ export class StoreForm {
     formData.append('channel', `${this.channel}`);
     formData.append('admin', this.admin ? '1' : '0');
 
-    this.api.post<any>('updateStore', formData).subscribe({
+    this.api.post<any>('createStore', formData).subscribe({
       next: (res) => {
+        console.log(JSON.stringify(res));
         if (res.success) {
-          alert('Store updated successfully');
+          alert('Store inserted successfully');
         } else {
           this.error = res.error;
         }
@@ -91,6 +94,7 @@ export class StoreForm {
       this.loadGroups();
     }
     else if (this.user.role === 'SUP') {
+      this.groupCode = this.user.belongs;
       this.loadSubgroups(this.user.belongs);
     }  
     else if (this.user.role === 'CAT') {
@@ -100,7 +104,7 @@ export class StoreForm {
 
   loadGroups() {
     this.api.post<any>('/getGroups', null).subscribe({
-        next: (res) => {
+      next: (res) => {
         this.groups = res.groups || [];
         this.loading = false;
       },
@@ -113,7 +117,7 @@ export class StoreForm {
 
   loadSubgroups(groupCode: any) {
     this.api.post<any>('/getSubgroups', {groupCode}).subscribe({
-        next: (res) => {
+      next: (res) => {
         this.subgroups = res.subgroups || [];
         this.loading = false;
       },
@@ -125,13 +129,11 @@ export class StoreForm {
   }
 
   onGroupChange() {
-    /*this.filters.subgroup = '';
     this.subgroups = [];
-    this.stores = [];
 
-    if (this.filters.group) {
-      this.loadSubgroups(this.filters.group);
-    }    */
+    if (this.groupCode) {
+      this.loadSubgroups(this.groupCode);
+    }    
     
   }
 
@@ -140,7 +142,4 @@ export class StoreForm {
     this.router.navigate(['/stores']);
   }
 
-  save() {
-
-  }
 }
