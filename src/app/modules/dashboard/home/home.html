@@ -8,7 +8,8 @@
         <p>{{ 'dashboard.last_order' | translate }}</p>
       </div>
       <div class="tile-body">
-        <h3>2100.50 €</h3>
+        <h3>{{data.lastOrder.order_number}}</h3>
+        <h4>{{data.lastOrder.total}} €</h4>
       </div>
     </div>
     <div class="tile">
@@ -16,7 +17,8 @@
         <p>{{ 'dashboard.incoming_order' | translate }}</p>
       </div>
       <div class="tile-body">
-        <h3>369.22 €</h3>
+        <h3>{{data.maxOrder.order_number}}</h3>
+        <h4>{{data.maxOrder.total}} €</h4>
       </div>
     </div>
     <div class="tile">
@@ -24,7 +26,7 @@
         <p>{{ 'dashboard.total' | translate }}</p>
       </div>
       <div class="tile-body">
-        <h3>51568.50 €</h3>
+        <h3>{{data.totalOrders.totalone}}</h3>
       </div>
     </div>
   </div>
@@ -44,8 +46,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let order of orders">
-              <td>{{ order.number }}</td>
+            <tr *ngFor="let order of data.lastFiveOrders">
+              <td>{{ order.order_number }}</td>
               <td>{{ order.date }}</td>
               <td>{{ order.status }}</td>
             </tr>
@@ -68,8 +70,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let delivery of deliveries">
-              <td>{{ delivery.number }}</td>
+            <tr *ngFor="let delivery of data.maxFiveOrders">
+              <td>{{ delivery.order_number }}</td>
               <td>{{ delivery.date }}</td>
               <td>{{ delivery.status }}</td>
             </tr>
