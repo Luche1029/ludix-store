@@ -1,12 +1,45 @@
 <div class="container">
 
+  {{user | json}}
   <div class="form-group">
     <form (ngSubmit)="save()">
       <h2>{{ 'addresses.add_new_address' | translate}}</h2>
       <div class="line"></div>
+
+      <label>{{ 'subgroups.group' | translate}}</label>
+      <select 
+          [(ngModel)]="filters.group" 
+          name="group" 
+          [disabled]="user?.role !== 'ADM'"
+          (change)="onGroupChange()">
+        <option value="">{{ 'orders.all_groups' | translate }}</option>
+        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+      </select>
+
+      <label>{{ 'stores.subgroup' | translate}}</label>
+      <select 
+        [(ngModel)]="filters.subgroup"
+        name="subgroup"
+        [disabled]="!['ADM','SUP'].includes(user?.role)"
+        (change)="onSubgroupChange()">
+        <option value="">{{ 'orders.all_subgroups' | translate }}</option>
+        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+      </select>
+
+      <label>{{ 'addresses.store' | translate}}</label>
+      <select 
+        [(ngModel)]="filters.store"
+        name="store"
+        [disabled]="!['ADM','SUP','CAT'].includes(user?.role)">
+        <option value="">{{ 'orders.all_stores' | translate }}</option>
+        <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
+      </select>
+
       <label>{{ 'addresses.label' | translate}}</label>
       <input type="text" [(ngModel)]="formData.label" name="label" required />
 
+      <label>{{ 'addresses.vat_number' | translate}}</label>
+      <input type="text" [(ngModel)]="formData.vat_number" name="vat_number" required />
 
       <label>{{ 'addresses.contact' | translate}}</label>
       <input type="text" [(ngModel)]="formData.contact" name="contact" required />
@@ -35,11 +68,11 @@
       <label>{{ 'addresses.email' | translate}}</label>
       <input type="email" [(ngModel)]="formData.email" name="email" />
 
-        <app-switch 
-          label="{{ 'addresses.default_address' | translate}}" 
-          [(ngModel)]="formData.isDefault" 
-          name="isDefault" >
-        </app-switch>
+      <app-switch 
+        label="{{ 'addresses.default_address' | translate}}" 
+        [(ngModel)]="formData.isDefault" 
+        name="isDefault" >
+      </app-switch>
 
       <div class="row">
         <button type="submit">{{ 'layout.save' | translate}}</button>

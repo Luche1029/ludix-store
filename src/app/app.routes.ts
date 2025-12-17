@@ -48,7 +48,7 @@ export const routes: Routes = [
       { path: 'orders', component: OrdersList },
       { path: 'orders/:orderNumber', component: OrderDetails },
       { path: 'addresses', component: AddressesList },
-      { path: 'addresses/new', component: AddressForm },
+      { path: 'addresses/new/:sc', component: AddressForm },
       { path: 'addresses/:id', component: AddressForm },
       { path: 'stores', component: StoresList },
       { path: 'stores/new', component: StoreForm },

@@ -207,6 +207,7 @@
 
     "add_new_address":"Add new address",
     "label":"Label",
+    "vat_number":"VAT Number",
     "address_line_1":"Address - line 1",
     "address_line_2":"Address - line 2",
     "zip":"Zip",

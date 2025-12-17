@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ApiService } from 'src/app/core/api.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-addresses-list',
@@ -10,49 +11,142 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     NgIf, 
     NgFor, 
-    RouterLink,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   templateUrl: './addresses-list.html',
   styleUrl: './addresses-list.scss',
 })
 export class AddressesList {
-  addresses = [
-    {
-      label: 'Home',
-      contact: 'John Doe',
-      address1: '123 Main Street',
-      address2: '',
-      city: 'New York',
-      province: 'NY',
-      zip: '10001',
-      country: 'USA',
-      phone: '+1 555 123456',
-      email: 'john@example.com',
-      isDefault: true,
-    },
-    {
-      label: 'Office',
-      contact: 'John Doe',
-      address1: '456 Office Park',
-      address2: 'Floor 3',
-      city: 'New York',
-      province: 'NY',
-      zip: '10002',
-      country: 'USA',
-      phone: '+1 555 987654',
-      email: 'john.office@example.com',
-      isDefault: false,
-    },
-  ];
+  loading = true;
+  error = '';
+  user: any;
+  filters = {
+    group: '',
+    subgroup: '',
+    store: ''
+  };
+  groups: any[] = [];
+  subgroups: any[] = [];
+  stores: any[] = [];
+  addresses: any[] = [ ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private api: ApiService
+  ) {}
+
+  ngOnInit(): void {
+    const stored = localStorage.getItem('user');
+    this.user = stored ? JSON.parse(stored) : null;
+    this.loadInitialFilters();
+  }
+
+  loadGroups() {
+    this.api.post<any>('/getGroups', null).subscribe({
+        next: (res) => {
+        this.groups = res.groups || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Error loading groups';
+        this.loading = false;
+      }
+    });
+  }
+
+  loadSubgroups(groupCode: any) {
+    this.api.post<any>('/getSubgroups', {groupCode}).subscribe({
+        next: (res) => {
+        this.subgroups = res.subgroups || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Error loading subgroups';
+        this.loading = false;
+      }
+    });
+  }
+
+  loadStores(subgroupCode: any) {
+    this.api.post<any>('/getStores', {subgroupCode}).subscribe({
+        next: (res) => {
+        this.stores = res.stores || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Error loading subgroups';
+        this.loading = false;
+      }
+    });
+  }
+
+  loadInitialFilters() {
+    if (this.user.role === 'ADM') {
+      this.loadGroups();
+    } else if (this.user.role === 'SUP') {
+      this.loadSubgroups(this.user.belongs);
+    } else if (this.user.role === 'CAT') {
+      this.loadStores(this.user.belongs);
+    }
+  }
+
+  onGroupChange() {
+    this.filters.subgroup = '';
+    this.filters.store = '';
+    this.subgroups = [];
+    this.stores = [];
+
+    if (this.filters.group) {
+      this.loadSubgroups(this.filters.group);
+    }
+  }
+
+  onSubgroupChange() {
+    this.filters.store = '';
+    this.stores = [];
+
+    if (this.filters.subgroup) {
+      this.loadStores( this.filters.subgroup);     
+    }
+  }
+
+  applyFilters() {
+    this.api.post<any>('/getAddresses', {storeCode: this.filters.store}).subscribe({
+      next: (res) => {
+        this.addresses = res.addresses || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Error loading addresses';
+        this.loading = false;
+      }
+    });
+  }
 
   editAddress(address: any): void {
     this.router.navigate(['/addresses/new'], { state: { address } });
   }
 
+  
   addAddress(): void {
-    this.router.navigate(['/addresses/new']);
+    alert(this.filters.store);
+    this.router.navigate([`/addresses/new/${this.filters.store}`]);
   }
+
+  deleteAddress(addressId: number): any {
+    console.log("addressId", addressId);
+    this.api.post<any>('/deleteAddress', {addressId}).subscribe({
+      next: (res) => {
+        console.log(JSON.stringify(res));
+        this.loading = false;
+        this.applyFilters(); 
+      },
+      error: (err) => {
+        this.error = 'Error loading addresses';
+        this.loading = false;
+      }
+    });
+  }
+
 }

@@ -204,6 +204,7 @@
 
     "add_new_address":"Aggiungi un nuovo indirizzo",
     "label":"Etichetta",
+    "vat_number":"Partita IVA",
     "address_line_1":"Indirizzo - linea 1",
     "address_line_2":"Indirizzo - linea 2",
     "zip":"CAP",

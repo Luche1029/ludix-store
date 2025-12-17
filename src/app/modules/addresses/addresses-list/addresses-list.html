@@ -1,29 +1,66 @@
 <div class="container">
   <h2>{{'addresses.saved_addresses' | translate}}</h2>
 
-  <div class="fab">
-    <button (click)="addAddress()"><span class="material-icons">add</span></button>
-    <label>{{'addresses.add_address' | translate}}</label>    
+
+
+  <div class="filters">
+    <form (ngSubmit)="applyFilters()">
+
+      <!-- ADM: Selezione gruppo -->
+      <select *ngIf="user?.role === 'ADM'" [(ngModel)]="filters.group" name="group" (change)="onGroupChange()">
+        <option value="">{{ 'orders.all_groups' | translate }}</option>
+        <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
+      </select>
+
+      <!-- ADM + SUP: Selezione sottogruppo -->
+      <select 
+        *ngIf="['ADM', 'SUP'].includes(user?.role)"
+        [(ngModel)]="filters.subgroup"
+        name="subgroup"
+        [disabled]="user?.role === 'ADM' && !filters.group"
+        (change)="onSubgroupChange()">
+        <option value="">{{ 'orders.all_subgroups' | translate }}</option>
+        <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
+      </select>
+
+      <!-- ADM, SUP, CAT: Selezione store -->
+      <select 
+        *ngIf="['ADM', 'SUP', 'CAT'].includes(user?.role)"
+        [(ngModel)]="filters.store"
+        name="store"
+        [disabled]="(user?.role === 'ADM' && !filters.subgroup) || (user?.role === 'SUP' && !filters.subgroup)">
+        <option value="">{{ 'orders.all_stores' | translate }}</option>
+        <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
+      </select>
+
+      <button type="submit">{{ 'orders.apply' | translate }}</button>
+    </form>
   </div>
 
   <div class="grid grid-3">
     <div class="tile" *ngFor="let addr of addresses" style="height: 300px;">
       <div class="tile-header">
-        <h3>{{ addr.label }}</h3>
+        <h3>{{ addr.label }}<small *ngIf="addr.isDefault" class="default"> ({{'addresses.default_address' | translate}})</small></h3>
       </div>
-      <div class="tile-bpdy">
-        <p><strong>{{'addresses.contact' | translate}}:</strong> {{ addr.contact }}</p>
+      <div class="tile-body">
+        <p><strong>{{'addresses.contact' | translate}}:</strong> {{ addr.referent }}</p>
         <p>{{ addr.address1 }}</p>
         <p *ngIf="addr.address2">{{ addr.address2 }}</p>
         <p>{{ addr.zip }} {{ addr.city }} ({{ addr.province }}), {{ addr.country }}</p>
         <p><strong>{{'addresses.phone' | translate}}:</strong> {{ addr.phone }}</p>
         <p><strong>{{'addresses.email' | translate}}:</strong> {{ addr.email }}</p>
-        <p *ngIf="addr.isDefault" class="default">{{'addresses.default_address' | translate}}</p>
+        
       </div>
       <div class="tile-buttons">
         <button class="edit-btn" (click)="editAddress(addr)">{{'layout.edit' | translate}}</button>
-        <button class="edit-btn" >{{'layout.delete' | translate}}</button>
+        <button class="edit-btn" (click)="deleteAddress(addr.id)">{{'layout.delete' | translate}}</button>
       </div>
     </div>
   </div>
+
+
+  <!--div class="fab">
+    <button (click)="addAddress()"><span class="material-icons">add</span></button>
+    <label>{{'addresses.add_address' | translate}}</label>    
+  </div-->
 </div>
