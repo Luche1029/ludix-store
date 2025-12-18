@@ -5,17 +5,16 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Switch} from 'src/app/shared/switch/switch';
 import { ApiService } from 'src/app/core/api.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-address-form',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     Switch,
-    TranslateModule
-  ],
+    TranslateModule,
+],
   templateUrl: './address-form.html',
   styleUrl: './address-form.scss',
 })
@@ -27,6 +26,7 @@ export class AddressForm {
   subgroups: any[] = [];
   stores: any[] = [];
 
+  storeCode = '';
   filters = {
     group: '',
     subgroup: '',
@@ -34,9 +34,10 @@ export class AddressForm {
   };
 
   formData = {
+    id: 0,
     label: '',
     vat_number: '',
-    contact: '',
+    referent: '',
     address1: '',
     address2: '',
     zip: '',
@@ -48,40 +49,43 @@ export class AddressForm {
     isDefault: false,
   };
 
+  state:any = null;
+
   constructor(
     private router: Router,
     private api: ApiService
   ) {
 
-    const state = this.router.getCurrentNavigation()?.extras?.state;
-    if (state?.['address']) {
-      this.formData = { ...state['address'] };
+    this.state = this.router.getCurrentNavigation()?.extras?.state;
+    if (this.state?.['address']) {
+      this.formData = { ...this.state['address'] };
+      this.storeCode = this.state['address'].store_code;
     }
   }
   
-  private route = inject(ActivatedRoute);
-  storeCode = this.route.snapshot.paramMap.get('sc')!;
 
   ngOnInit() {
     const stored = localStorage.getItem('user');
     this.user = stored ? JSON.parse(stored) : null;
-    this.loadGroups();
-    if (['SUP', 'CAT', 'STO'].includes(this.user.role)) {
-      //this.filters.group = this.user.groupCode;
+    if (this.user.role === 'ADM') {
+      this.loadGroups();
+    }
+    else if (this.user.role === 'SUP') {
+      this.filters.group = this.user.belongs;
       this.loadSubgroups(this.filters.group);
     }
-    if (['CAT', 'STO'].includes(this.user.role)) {
-      this.filters.subgroup = this.user.subgroupCode;
+    else if (this.user.role === 'CAT') {
+      this.filters.subgroup = this.user.belongs;
       this.loadStores(this.filters.subgroup);
     }
-    if (this.user.role === 'STO') {
-      this.filters.store = this.user.storeCode;
+    else if (this.user.role === 'STO') {
+      this.storeCode = this.user.belongs;
     }
   }
 
   loadGroups() {
     this.api.post<any>('/getGroups', null).subscribe({
-        next: (res) => {
+      next: (res) => {
         this.groups = res.groups || [];
         this.loading = false;
       },
@@ -138,6 +142,10 @@ export class AddressForm {
     }
   }
 
+  onStoreChange() {
+    this.storeCode = this.filters.store;
+  }
+
   loadStoreDetails(storeCode: string) {
     this.loading = true;
     this.api.post<any>('getStoreDetails', {storeCode}).subscribe({
@@ -162,12 +170,13 @@ export class AddressForm {
       zip: this.formData.zip,
       city: this.formData.city,
       province: this.formData.province,
-      referent: this.formData.contact,
+      country: this.formData.country,
+      referent: this.formData.referent,
       phone: this.formData.phone,
       mail: this.formData.email,
       def: this.formData.isDefault
     }
-
+    
     this.api.post<any>('/createAddress', payload).subscribe({
         next: (res) => {
         this.loading = false;
@@ -180,7 +189,38 @@ export class AddressForm {
     this.router.navigate(['/addresses']);
   }
 
-  cancel(): void {
+  update(): void {
+    
+    const payload = {
+      addressId: this.formData.id,
+      storeCode: this.storeCode,
+      label: this.formData.label,
+      vat_number: this.formData.vat_number,
+      address1: this.formData.address1,
+      address2: this.formData.address2,
+      zip: this.formData.zip,
+      city: this.formData.city,
+      province: this.formData.province,
+      country: this.formData.country,
+      referent: this.formData.referent,
+      phone: this.formData.phone,
+      mail: this.formData.email,
+      def: this.formData.isDefault
+    }
+
+    this.api.post<any>('/updateAddress', payload).subscribe({
+        next: (res) => {
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Error saving address';
+        this.loading = false;
+      }
+    });
     this.router.navigate(['/addresses']);
+  }
+
+  cancel(): void {
+    this.router.navigate(['/addresses'], { state: { filters: this.filters } });
   }
 }

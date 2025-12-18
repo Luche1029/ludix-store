@@ -1,39 +1,41 @@
 <div class="container">
 
-  {{user | json}}
   <div class="form-group">
     <form (ngSubmit)="save()">
       <h2>{{ 'addresses.add_new_address' | translate}}</h2>
       <div class="line"></div>
 
-      <label>{{ 'subgroups.group' | translate}}</label>
+      <label *ngIf="user.role === 'ADM' && !state">{{ 'subgroups.group' | translate}}</label>
       <select 
+        *ngIf="user.role === 'ADM' && !state"
           [(ngModel)]="filters.group" 
           name="group" 
-          [disabled]="user?.role !== 'ADM'"
           (change)="onGroupChange()">
         <option value="">{{ 'orders.all_groups' | translate }}</option>
         <option *ngFor="let g of groups" [value]="g.code">{{ g.name }}</option>
       </select>
 
-      <label>{{ 'stores.subgroup' | translate}}</label>
+      <label *ngIf="['ADM', 'SUP'].includes(user.role) && !state">{{ 'stores.subgroup' | translate}}</label>
       <select 
+        *ngIf="['ADM', 'SUP'].includes(user.role) && !state"
         [(ngModel)]="filters.subgroup"
         name="subgroup"
-        [disabled]="!['ADM','SUP'].includes(user?.role)"
         (change)="onSubgroupChange()">
         <option value="">{{ 'orders.all_subgroups' | translate }}</option>
         <option *ngFor="let sg of subgroups" [value]="sg.code">{{ sg.name }}</option>
       </select>
-
-      <label>{{ 'addresses.store' | translate}}</label>
+ 
+      <label *ngIf="['ADM', 'SUP', 'CAT'].includes(user.role) && !state">{{ 'orders.store' | translate}}</label>
       <select 
+        *ngIf="['ADM', 'SUP', 'CAT'].includes(user.role) && !state"
         [(ngModel)]="filters.store"
         name="store"
-        [disabled]="!['ADM','SUP','CAT'].includes(user?.role)">
+        (change)="onStoreChange()"
+        required>
         <option value="">{{ 'orders.all_stores' | translate }}</option>
         <option *ngFor="let s of stores" [value]="s.store_code">{{ s.name }}</option>
       </select>
+
 
       <label>{{ 'addresses.label' | translate}}</label>
       <input type="text" [(ngModel)]="formData.label" name="label" required />
@@ -41,8 +43,8 @@
       <label>{{ 'addresses.vat_number' | translate}}</label>
       <input type="text" [(ngModel)]="formData.vat_number" name="vat_number" required />
 
-      <label>{{ 'addresses.contact' | translate}}</label>
-      <input type="text" [(ngModel)]="formData.contact" name="contact" required />
+      <label>{{ 'addresses.referent' | translate}}</label>
+      <input type="text" [(ngModel)]="formData.referent" name="referent" required />
       
       <label>{{ 'addresses.address_line_1' | translate}}</label>
       <input type="text" [(ngModel)]="formData.address1" name="address1" required />
@@ -75,7 +77,8 @@
       </app-switch>
 
       <div class="row">
-        <button type="submit">{{ 'layout.save' | translate}}</button>
+        <button type="submit" *ngIf="!state">{{ 'layout.save' | translate}}</button>
+        <button type="button" *ngIf="state" (click)="update()">{{ 'layout.save' | translate}}</button>
         <button type="button" (click)="cancel()">{{ 'layout.cancel' | translate}}</button>
       </div>
     </form>

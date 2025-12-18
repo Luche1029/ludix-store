@@ -34,8 +34,11 @@ export class AddressesList {
   constructor(
     private router: Router,
     private api: ApiService
-  ) {}
+  ) {
 
+  }
+
+  
   ngOnInit(): void {
     const stored = localStorage.getItem('user');
     this.user = stored ? JSON.parse(stored) : null;
@@ -128,11 +131,6 @@ export class AddressesList {
     this.router.navigate(['/addresses/new'], { state: { address } });
   }
 
-  
-  addAddress(): void {
-    alert(this.filters.store);
-    this.router.navigate([`/addresses/new/${this.filters.store}`]);
-  }
 
   deleteAddress(addressId: number): any {
     console.log("addressId", addressId);
